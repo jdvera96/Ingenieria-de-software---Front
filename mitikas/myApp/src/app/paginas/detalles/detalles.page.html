@@ -1,0 +1,53 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>detalles</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/tab1"></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+</ion-header>
+
+<ion-content>
+  <div class="card">
+    <img class="imagen" src="{{imagen}}" alt="">
+    <div class="card-body">
+      <p class="detalles-precio">Precio ${{precio}} USD</p>
+      <h5 class="card-title detalles-titulo">Información del curso</h5>
+      <p class="card-text detalles-short">{{short}}</p>
+      
+      <hr>
+      <div class="detalles-contenedor-div">
+        <div class="circulo">
+          <img class="detalles-iconos" src="https://image.flaticon.com/icons/png/512/1246/1246334.png" alt="">
+        </div>
+      
+        <p class="detalles-texto">100% en línea</p>
+      </div>
+
+      <div class="detalles-contenedor-div">
+        <div class="circulo">
+          <img class="detalles-iconos" src="https://image.flaticon.com/icons/png/512/833/833593.png" alt="">
+        </div>
+        <p class="detalles-texto">{{sesiones}} sesiones</p>
+      </div>
+      <div class="detalles-contenedor-div">
+        <div class="circulo">
+          <img class="detalles-iconos" src="https://image.flaticon.com/icons/png/512/1373/1373419.png" alt="">
+        </div>
+        <p class="detalles-texto">Completamente en español</p>
+      </div>
+      
+      <hr>
+      <div class="detalles-boton">
+        Comprar ahora
+      </div>
+    </div>
+    
+  </div>
+
+  <!--Importando bootstrap-->
+  <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+</ion-content>

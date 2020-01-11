@@ -1,0 +1,51 @@
+
+.detalles-titulo{
+    font-weight: bold;
+}
+
+.detalles-iconos{
+    width: 18px;
+    height: 18px;
+    float: left;
+    margin-top: 25%;
+    margin-left: 25%;
+}
+
+.circulo{
+    float: left;
+    width: 40px;
+    height: 40px;
+    border-radius: 200px 200px 200px 200px;
+-moz-border-radius: 200px 200px 200px 200px;
+-webkit-border-radius: 200px 200px 200px 200px;
+border: 2px solid rgb(223, 220, 220);
+
+}
+
+.detalles-texto{
+    float: left;
+    margin-left: 4%;
+    margin-top: 2%;
+}
+
+.detalles-contenedor-div{
+    overflow: hidden;
+    margin-top: 2%;
+}
+
+.detalles-precio{
+    color: green;
+    font-weight: bold;
+}
+
+.detalles-boton{
+    margin-bottom: 10%;
+    width: 50%;
+    height:40px;
+    margin: auto;
+    background-color: #ec5252;
+    text-align: center;
+    padding-top: 7px;
+    margin-bottom: 50px;
+    color: white;
+}
