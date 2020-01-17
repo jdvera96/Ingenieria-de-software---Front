@@ -9,10 +9,10 @@
 
 <ion-content class="main-container">
 
-  <div *ngFor="let item of datos" (click)="openNavDetailsPage(item.id)" class="contenedor">
+  <div *ngFor="let item of datos" (click)="openNavDetailsPage(item.id_curso)" class="contenedor">
     <img class="imagen" src="{{item.imagen}}" alt="">
     <div class="contenido">
-      <h3 class="titulo">{{ item.titulo }}</h3>
+      <h3 class="titulo">{{ item.titulo_curso }}</h3>
       <p class="descripcion">{{ item.short }}</p>
       <div class="containter-price">
         <p class="text-price">{{item.precio}} USD</p>
