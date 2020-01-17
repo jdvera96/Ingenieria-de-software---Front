@@ -1,0 +1,28 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>{{materia}}</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button text="Atrás" defaultHref="/mis-cursos" ></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+</ion-header>
+
+<ion-content>
+  <!-- Icon top -->
+  <ion-segment color="primary" (ionChange)="segmentChanged($event)">
+    
+    <ion-segment-button value="Tareas">
+      <ion-label>Tareas</ion-label>
+      <ion-icon name="md-clipboard"></ion-icon>
+    </ion-segment-button>
+    <ion-segment-button value="Calificaciones"  checked="true">
+      <ion-label>Calificaciones</ion-label>
+      <ion-icon name="md-checkmark-circle"></ion-icon>
+    </ion-segment-button>
+    <ion-segment-button value="Asistencias">
+      <ion-label>Asistencias</ion-label>
+      <ion-icon name="md-clock"></ion-icon>
+    </ion-segment-button>
+  </ion-segment>
+</ion-content>

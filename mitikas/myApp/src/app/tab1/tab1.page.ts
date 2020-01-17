@@ -16,7 +16,7 @@ export class Tab1Page {
 
   // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
   openNavDetailsPage(id: string) { 
-      this.nav.navigateForward(`detalles/${id}`); 
+      this.nav.navigateForward(`detalles/${id}`);
   }
 
 }

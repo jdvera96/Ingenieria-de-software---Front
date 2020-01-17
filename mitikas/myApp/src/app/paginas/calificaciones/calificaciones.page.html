@@ -1,0 +1,74 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>{{materia}}</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button text="Atrás" defaultHref="/mis-cursos" ></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+</ion-header>
+
+<ion-content>
+  <!-- Icon top -->
+  <ion-segment color="primary" (ionChange)="segmentChanged($event)">
+    
+    <ion-segment-button value="Tareas">
+      <ion-label>Tareas</ion-label>
+      <ion-icon name="md-clipboard"></ion-icon>
+    </ion-segment-button>
+    <ion-segment-button value="Calificaciones"  checked="true">
+      <ion-label>Calificaciones</ion-label>
+      <ion-icon name="md-checkmark-circle"></ion-icon>
+    </ion-segment-button>
+    <ion-segment-button value="Asistencias">
+      <ion-label>Asistencias</ion-label>
+      <ion-icon name="md-clock"></ion-icon>
+    </ion-segment-button>
+    
+  </ion-segment>
+  <ion-list id="calificacionesEstudiante">
+    
+    <ion-toolbar>
+      <ion-searchbar id ="barraBusqueda"placeholder="Buscar" ></ion-searchbar>
+    </ion-toolbar>
+    <div id="elementos">
+        <ion-item class ="notas" *ngFor="let tarea of calificaciones" >
+          <ion-label>{{tarea.titulo}}</ion-label>
+          <ion-note slot="end" color="primary">{{tarea.calificacion}}</ion-note>
+        </ion-item  >
+    </div>
+  </ion-list>
+  <div id="relleno"></div>
+  <ion-list id ="bannerPromedio">
+    <ion-toolbar>
+      <ion-item >
+        <ion-label class="font-weight-bold">Promedio: </ion-label>
+        <ion-note slot="end" color="primary">{{promedio}}</ion-note>
+      </ion-item >
+    </ion-toolbar>
+  </ion-list>
+  <ion-footer id="bannerTab">
+    <ion-tabs>
+      <ion-tab-bar slot="bottom">
+        <ion-tab-button routerLink= "/tabs/tab1">
+          <ion-icon name="home"></ion-icon>
+          <ion-label>Principales</ion-label>
+        </ion-tab-button>
+
+        <ion-tab-button routerLink="/tabs/tab2">
+          <ion-icon name="gift"></ion-icon>
+          <ion-label>Promociones</ion-label>
+        </ion-tab-button>
+
+        <ion-tab-button routerLink="/tabs/tab3">
+          <ion-icon name="heart"></ion-icon>
+          <ion-label>Favoritos</ion-label>
+        </ion-tab-button>
+      </ion-tab-bar>
+    </ion-tabs>
+  </ion-footer>
+</ion-content>
+<!--Importando bootstrap-->
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>

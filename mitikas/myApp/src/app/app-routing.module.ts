@@ -8,7 +8,25 @@ const routes: Routes = [
         path: '',
         loadChildren: () => import('./tabs/tabs.module').then(m => m.TabsPageModule)
     },
-    { path: 'detalles/:id', loadChildren: './paginas/detalles/detalles.module#DetallesPageModule' }
+    { path: 'detalles/:id', loadChildren: './paginas/detalles/detalles.module#DetallesPageModule' },
+    
+    {
+      path: 'calificaciones',
+      loadChildren: () => import('./paginas/calificaciones/calificaciones.module').then( m => m.CalificacionesPageModule)
+    },  {
+    path: 'mis-cursos',
+    loadChildren: () => import('./paginas/mis-cursos/mis-cursos.module').then( m => m.MisCursosPageModule)
+  },
+  {
+    path: 'tareas',
+    loadChildren: () => import('./paginas/tareas/tareas.module').then( m => m.TareasPageModule)
+  },
+  {
+    path: 'asistencias',
+    loadChildren: () => import('./paginas/asistencias/asistencias.module').then( m => m.AsistenciasPageModule)
+  }
+
+
 ];
 @NgModule({
     imports: [

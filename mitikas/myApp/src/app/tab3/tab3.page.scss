@@ -1,1 +1,50 @@
-
+.welcome-card img {
+    max-height: 35vh;
+    overflow: hidden;
+  }
+  
+  .contenedor{
+    margin-left: 3%;
+    margin-right: 3%;
+    margin-top: 5%;
+    overflow: hidden;
+    border: solid 1px whitesmoke;
+  }
+  
+  .imagen{
+    margin-top: 1%;
+    float: left;
+    width: 50%;
+  }
+  
+  .contenido{
+    float: left;
+    padding-left: 3%;
+    padding-top: 1%;
+    width: 50%;
+  }
+  
+  .titulo{
+    font-size: 13px;
+    font-weight: bold;
+  }
+  
+  .descripcion{
+    font-size: 11px;
+    margin-bottom: 0%;
+  }
+  
+  .text-price{
+    float: right;
+    font-size: 11px;
+    color: red;
+  }
+  
+  .icono-price{
+    float: right;
+    font-size: 11px;
+    margin-top: 1%;
+    margin-right: 2%;
+  
+    color: green;
+  }

@@ -1,0 +1,53 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Mi Curso</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button text="Atrás"defaultHref="/tabs/tab1"></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+</ion-header>
+
+<ion-content fullscreen>
+  
+  <!-- Icon top -->
+  <ion-segment color="primary" (ionChange)="segmentChanged($event)">
+    
+    <ion-segment-button value="Tareas" checked="true">
+      <ion-label>Tareas</ion-label>
+      <ion-icon name="md-clipboard"></ion-icon>
+    </ion-segment-button>
+    <ion-segment-button value="Calificaciones">
+      <ion-label>Calificaciones</ion-label>
+      <ion-icon name="md-checkmark-circle"></ion-icon>
+    </ion-segment-button>
+    <ion-segment-button value="Asistencias">
+      <ion-label>Asistencias</ion-label>
+      <ion-icon name="md-clock"></ion-icon>
+    </ion-segment-button>
+
+
+    
+  </ion-segment>
+</ion-content>
+
+<!--<ion-tabs>
+
+  <ion-tab-bar slot="bottom">
+    <ion-tab-button tab="/tabs/tab1">
+      <ion-icon name="home"></ion-icon>
+      <ion-label>Principal</ion-label>
+    </ion-tab-button>
+
+    <ion-tab-button tab="/tabs/tab2">
+      <ion-icon name="gift"></ion-icon>
+      <ion-label>Promociones</ion-label>
+    </ion-tab-button>
+
+    <ion-tab-button tab="/tabs/tab3">
+      <ion-icon name="md-book"></ion-icon>
+      <ion-label>Mis Cursos</ion-label>
+    </ion-tab-button>
+  </ion-tab-bar>
+
+</ion-tabs>-->
