@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import {ConsultaService} from '../../servicio/consulta.service';
-import { NumericValueAccessor, NavController } from '@ionic/angular';
-import * as $ from 'jquery';
+import {NavController } from '@ionic/angular';
 
 @Component({
   selector: 'app-calificaciones',

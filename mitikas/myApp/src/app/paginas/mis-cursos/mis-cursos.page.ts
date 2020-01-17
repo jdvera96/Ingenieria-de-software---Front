@@ -15,8 +15,8 @@ export class MisCursosPage implements OnInit {
   segmentChanged(ev: any) {
     //this.nav.navigateForward(`calificaciones`);
     console.log('Segment changed', ev);
-    if(ev.detail.value == "Calificaciones")
-      this.nav.navigateForward(`calificaciones`);
+    //if(ev.detail.value == "Calificaciones")
+      //this.nav.navigateForward(`calificaciones`);
     //console.log('Segment changed', ev.detail.value);
   }
 
