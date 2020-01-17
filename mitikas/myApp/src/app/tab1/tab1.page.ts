@@ -9,9 +9,12 @@ import { NavController } from '@ionic/angular';
 })
 export class Tab1Page {
 
-  datos;
+  datos: any[];
   constructor(public consultar: ConsultaService,public nav: NavController) {
-      this.datos=this.consultar.obtenerCursos();
+      this.consultar.obtenerCursos().subscribe((data)=>{
+        var anydata=<any>data;
+        this.datos=anydata;
+      });
   }
 
   // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
