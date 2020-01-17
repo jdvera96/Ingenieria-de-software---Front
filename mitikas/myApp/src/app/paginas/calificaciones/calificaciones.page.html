@@ -1,17 +1,15 @@
 <ion-header>
-  <!--<ion-toolbar>
+  <ion-toolbar>
     <ion-title>{{materia}}</ion-title>
     <ion-buttons slot="start">
-      <ion-back-button text="Atrás" defaultHref="/mis-cursos" ></ion-back-button>
+      <ion-back-button text="Atrás" defaultHref="/tabs/tab3" ></ion-back-button>
     </ion-buttons>
   </ion-toolbar>
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">-->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 </ion-header>
 
-<ion-content>    
-  </ion-segment>
-  <ion-list id="calificacionesEstudiante">
-    
+<ion-content>
+  <ion-list id="calificacionesEstudiante">    
     <ion-toolbar>
       <ion-searchbar id ="barraBusqueda"placeholder="Buscar" ></ion-searchbar>
     </ion-toolbar>
@@ -45,8 +43,8 @@
         </ion-tab-button>
 
         <ion-tab-button routerLink="/tabs/tab3">
-          <ion-icon name="heart"></ion-icon>
-          <ion-label>Favoritos</ion-label>
+          <ion-icon name="md-book"></ion-icon>
+          <ion-label>Mis Cursos</ion-label>
         </ion-tab-button>
       </ion-tab-bar>
     </ion-tabs>

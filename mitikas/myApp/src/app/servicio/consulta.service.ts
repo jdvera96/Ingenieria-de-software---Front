@@ -31,6 +31,10 @@ export class ConsultaService {
       return this.http.get("http://patricioxavi10.pythonanywhere.com/api/cursos");
   }
 
+  obtenerMisCursos(id: string){    
+    return this.http.get("http://patricioxavi10.pythonanywhere.com/api/getClase/"+id);
+  }
+
   obtenerCalificaciones(){
     return this.db_calificaciones;
   }

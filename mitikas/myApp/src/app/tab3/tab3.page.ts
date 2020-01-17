@@ -9,12 +9,20 @@ import { NavController } from '@ionic/angular';
 })
 export class Tab3Page {
   
-  datos;
+  datosa: any[];
   constructor(public consultar: ConsultaService,public nav: NavController) {
-      this.datos=this.consultar.obtenerCursos();
+    this.consultar.obtenerMisCursos("0911111111").subscribe((data)=>{
+      var anydata=<any>data;
+      this.datosa=anydata;
+      
+      console.log(this.datosa);
+    });    
   }
 
-  openMyCourse(id: string){
-    this.nav.navigateForward(`mis-cursos`);
+  openMyCourse(id_clase: string){
+    this.nav.navigateForward(`calificaciones/${id_clase}`);
+  }
+  openNavDetailsPage(id: string) { 
+    this.nav.navigateForward(`detalles/${id}`);
   }
 }

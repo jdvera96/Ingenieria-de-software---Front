@@ -17,7 +17,7 @@ export class CalificacionesPage implements OnInit {
   calificaciones: Array<any>;
   promedio: number;
   constructor(public nav: NavController,private activatedRoute: ActivatedRoute, public consulta: ConsultaService) {
-    const num=this.activatedRoute.snapshot.paramMap.get('id');
+    const num=this.activatedRoute.snapshot.paramMap.get('id_clase');
     this.id=parseInt(num, 10);
     this.materia="Diseño de Software";
     this.calificaciones=this.consulta.obtenerCalificaciones();

@@ -11,9 +11,10 @@ const routes: Routes = [
     { path: 'detalles/:id', loadChildren: './paginas/detalles/detalles.module#DetallesPageModule' },
     
     {
-      path: 'calificaciones',
+      path: 'calificaciones/:id_clase',
       loadChildren: () => import('./paginas/calificaciones/calificaciones.module').then( m => m.CalificacionesPageModule)
-    },  {
+    },
+  {
     path: 'mis-cursos',
     loadChildren: () => import('./paginas/mis-cursos/mis-cursos.module').then( m => m.MisCursosPageModule)
   },
