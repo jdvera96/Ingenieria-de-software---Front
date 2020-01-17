@@ -29,17 +29,16 @@ export class CalificacionesPage implements OnInit {
   }
   ngAfterViewInit() {
     const searchbar = document.querySelector('ion-searchbar');
-    const items = Array.from(document.querySelector('div#elementos').children);
+    var items: HTMLElement[] =(<HTMLElement[]> <any> document.getElementsByTagName('ion-item'));
     searchbar.addEventListener('ionInput', handleInput);
     function handleInput(event) {
       const query = event.target.value.toLowerCase();
       requestAnimationFrame(() => {
-        items.forEach(item => {
+        for(let i =0;i<items.length;i++){
+          let item = items[i]
           const shouldShow = item.textContent.toLowerCase().indexOf(query) > -1;
-          let newitem : HTMLElement;
-          ;
           item.style.display = shouldShow ? 'block' : 'none';
-        });
+        }
       });
     }
   }
