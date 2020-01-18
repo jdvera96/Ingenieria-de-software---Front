@@ -14,8 +14,6 @@ export class Tab3Page {
     this.consultar.obtenerMisCursos("0911111111").subscribe((data)=>{
       var anydata=<any>data;
       this.datosa=anydata;
-      
-      console.log(this.datosa);
     });    
   }
 

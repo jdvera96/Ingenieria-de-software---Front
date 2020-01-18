@@ -1,6 +1,6 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>{{materia}}</ion-title>
+    <ion-title>{{titulo}}</ion-title>
     <ion-buttons slot="start">
       <ion-back-button text="Atrás" defaultHref="/tabs/tab3" ></ion-back-button>
     </ion-buttons>
@@ -31,8 +31,8 @@
       <ion-searchbar id ="barraBusqueda"placeholder="Buscar" ></ion-searchbar>
     </ion-toolbar>
     <div id="elementos">
-        <ion-item class ="notas" *ngFor="let tarea of calificaciones" >
-          <ion-label>{{tarea.titulo}}</ion-label>
+        <ion-item class ="notas" *ngFor="let tarea of datos" >
+          <ion-label>{{tarea.nombre_tarea}}</ion-label>
           <ion-note slot="end" color="primary">{{tarea.calificacion}}</ion-note>
         </ion-item  >
     </div>
