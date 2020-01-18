@@ -16,12 +16,17 @@ export class CalificacionesPage implements OnInit {
   calificacion: number;
   calificaciones: Array<any>;
   promedio: number;
+  datos: any[];
+  tam:number
   constructor(public nav: NavController,private activatedRoute: ActivatedRoute, public consulta: ConsultaService) {
     const num=this.activatedRoute.snapshot.paramMap.get('id_clase');
     this.id=parseInt(num, 10);
-    this.materia="Diseño de Software";
-    this.calificaciones=this.consulta.obtenerCalificaciones();
-    this.promedio = this.calcularPromedio(this.calificaciones);
+    consulta.obtenerCalificacionesClase("0911111111",num).subscribe((data)=>{
+      var anydata=<any>data;
+      this.datos = anydata;
+      this.titulo =data[0]["id_clase"]["id_curso"]["titulo_curso"];
+      this.promedio = this.calcularPromedio(this.datos);
+    });
    }
 
   ngOnInit() {
@@ -45,10 +50,11 @@ export class CalificacionesPage implements OnInit {
   calcularPromedio(calificaciones){
     let promedio = 0;
     let suma = 0;
-    for (let i=0;i<calificaciones.length;i++) {
+    this.tam = calificaciones.length;
+    for (let i = 0;i<this.tam;i++) {
       suma+=calificaciones[i]["calificacion"];
     }
-    promedio = Math.round(suma/calificaciones.length*100)/100;
+    promedio = Math.round(suma/this.tam*100)/100;
     return promedio
   }
 

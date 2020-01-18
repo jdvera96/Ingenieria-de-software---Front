@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {HttpClient} from '@angular/common/http'
+import {HttpClient, HttpParams} from '@angular/common/http'
 @Injectable({
     providedIn: 'root'
 })
@@ -39,10 +39,16 @@ export class ConsultaService {
     return this.db_calificaciones;
   }
 
+  obtenerCalificacionesClase(idEstudiante:string,idClase:string){
+    let path = "http://patricioxavi10.pythonanywhere.com/api/getTarea/estudiante/";
+    path = path + `?id_estudiante=`+idEstudiante+"&id_clase="+idClase;
+    return this.http.get(path);
+  }
+
   // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
   obtenerCursobyId(id: number){
       let path="http://patricioxavi10.pythonanywhere.com/api/curso/"+id;
-    return this.http.get(path);
+      return this.http.get(path);
   }
 
 }
