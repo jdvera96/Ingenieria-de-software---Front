@@ -18,7 +18,7 @@ export class Tab3Page {
   }
 
   openMyCourse(id_clase: string){
-    this.nav.navigateForward(`tareas`);
+    this.nav.navigateForward(`tareas/${id_clase}`);
     //this.nav.navigateForward(`calificaciones/${id_clase}`);
   }
   openNavDetailsPage(id: string) { 

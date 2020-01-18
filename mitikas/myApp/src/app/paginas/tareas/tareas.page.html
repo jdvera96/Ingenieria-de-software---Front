@@ -30,15 +30,16 @@
 
   <ion-list>
     <ion-list-header>
-      Items with Labels
+      Mis tareas
     </ion-list-header>
-    <ion-item>
-      <ion-label>Label</ion-label>
-    </ion-item>    
+
+    <div *ngFor="let item of datos" class="contenedor">
+      <ion-item>
+        <ion-label>{{ item.nombre_tarea }}:<br>{{ item.descripcion_tarea }}</ion-label>
+        
+      </ion-item>          
+      </div>    
   </ion-list>
-
-
-
 
   <ion-footer id="bannerTab">
     <ion-tabs>

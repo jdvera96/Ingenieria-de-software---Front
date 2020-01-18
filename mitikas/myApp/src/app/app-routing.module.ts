@@ -11,7 +11,7 @@ const routes: Routes = [
     { path: 'detalles/:id', loadChildren: './paginas/detalles/detalles.module#DetallesPageModule' },
     
     {
-      path: 'calificaciones',
+      path: 'calificaciones/:id_clase',
       loadChildren: () => import('./paginas/calificaciones/calificaciones.module').then( m => m.CalificacionesPageModule)
     },
   {
@@ -19,7 +19,7 @@ const routes: Routes = [
     loadChildren: () => import('./paginas/mis-cursos/mis-cursos.module').then( m => m.MisCursosPageModule)
   },
   {
-    path: 'tareas',
+    path: 'tareas/:id_clase',
     loadChildren: () => import('./paginas/tareas/tareas.module').then( m => m.TareasPageModule)
   },
   {

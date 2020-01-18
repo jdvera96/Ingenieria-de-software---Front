@@ -8,6 +8,7 @@ import { NavController } from '@ionic/angular';
 })
 export class AsistenciasPage implements OnInit {
 
+  datos: any[];
   constructor(public nav: NavController) { }
 
   ngOnInit() {

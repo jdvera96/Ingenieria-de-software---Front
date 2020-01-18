@@ -18,10 +18,11 @@ export class CalificacionesPage implements OnInit {
   promedio: number;
   datos: any[];
   tam:number
+  
   constructor(public nav: NavController,private activatedRoute: ActivatedRoute, public consulta: ConsultaService) {
     const num=this.activatedRoute.snapshot.paramMap.get('id_clase');
     this.id=parseInt(num, 10);
-    consulta.obtenerCalificacionesClase("0911111111",num).subscribe((data)=>{
+    consulta.obtenerClase("0911111111",num).subscribe((data)=>{
       var anydata=<any>data;
       this.datos = anydata;
       this.titulo =data[0]["id_clase"]["id_curso"]["titulo_curso"];
@@ -60,9 +61,9 @@ export class CalificacionesPage implements OnInit {
 
   segmentChanged(ev: any) {
     //this.nav.navigateForward(`calificaciones`);
-    console.log('Segment changed', ev);
+    console.log(this.id);
     if(ev.detail.value == "Tareas")
-      this.nav.navigateRoot(`tareas`);
+      this.nav.navigateRoot(`tareas/${this.id}`);
     else if(ev.detail.value == "Asistencias")
       this.nav.navigateRoot(`asistencias`);
 
