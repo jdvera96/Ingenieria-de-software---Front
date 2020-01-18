@@ -16,10 +16,10 @@ export class TareasPage implements OnInit {
   segmentChanged(ev: any) {
     //this.nav.navigateForward(`calificaciones`);
     //console.log('Segment changed', ev);
-    if(ev.detail.value == "Calificiaciones")
-      this.nav.navigateForward(`calificacioness`);
+    if(ev.detail.value == "Calificaciones")
+      this.nav.navigateRoot(`calificaciones`);
     else if(ev.detail.value == "Asistencias")
-      this.nav.navigateForward(`asistencias`);
+      this.nav.navigateRoot(`asistencias`);
 
     //console.log('Segment changed', ev.detail.value);
   }

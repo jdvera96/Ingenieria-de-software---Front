@@ -55,10 +55,10 @@ export class CalificacionesPage implements OnInit {
   segmentChanged(ev: any) {
     //this.nav.navigateForward(`calificaciones`);
     console.log('Segment changed', ev);
-    /*if(ev.detail.value == "Tareas")
-      this.nav.navigateForward(`tareas`);
+    if(ev.detail.value == "Tareas")
+      this.nav.navigateRoot(`tareas`);
     else if(ev.detail.value == "Asistencias")
-      this.nav.navigateForward(`asistencias`);*/
+      this.nav.navigateRoot(`asistencias`);
 
     //console.log('Segment changed', ev.detail.value);
   }

@@ -17,9 +17,9 @@ export class AsistenciasPage implements OnInit {
     //this.nav.navigateForward(`calificaciones`);
     console.log('Segment changed', ev);
     if(ev.detail.value == "Tareas")
-      this.nav.navigateForward(`tareas`);
+      this.nav.navigateRoot(`tareas`);
     else if(ev.detail.value == "Calificaciones")
-      this.nav.navigateForward(`calificaciones`);
+      this.nav.navigateRoot(`calificaciones`);
 
     //console.log('Segment changed', ev.detail.value);
   }

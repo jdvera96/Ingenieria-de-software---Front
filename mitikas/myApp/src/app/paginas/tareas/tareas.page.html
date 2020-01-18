@@ -2,16 +2,17 @@
   <ion-toolbar>
     <ion-title>{{materia}}</ion-title>
     <ion-buttons slot="start">
-      <ion-back-button text="Atrás" defaultHref="/mis-cursos" ></ion-back-button>
+      <ion-back-button text="Atrás" defaultHref="/tabs/tab3" ></ion-back-button>
     </ion-buttons>
   </ion-toolbar>
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 </ion-header>
 
-<ion-content>
+<ion-content>  
+
   <!-- Icon top -->
   <ion-segment color="primary" (ionChange)="segmentChanged($event)">
-    
+      
     <ion-segment-button value="Tareas" checked="true">
       <ion-label>Tareas</ion-label>
       <ion-icon name="md-clipboard"></ion-icon>
@@ -25,6 +26,39 @@
       <ion-icon name="md-clock"></ion-icon>
     </ion-segment-button>
   </ion-segment>
-</ion-content>
 
+
+  <ion-list>
+    <ion-list-header>
+      Items with Labels
+    </ion-list-header>
+    <ion-item>
+      <ion-label>Label</ion-label>
+    </ion-item>    
+  </ion-list>
+
+
+
+
+  <ion-footer id="bannerTab">
+    <ion-tabs>
+      <ion-tab-bar slot="bottom">
+        <ion-tab-button routerLink= "/tabs/tab1">
+          <ion-icon name="home"></ion-icon>
+          <ion-label>Principales</ion-label>
+        </ion-tab-button>
+
+        <ion-tab-button routerLink="/tabs/tab2">
+          <ion-icon name="gift"></ion-icon>
+          <ion-label>Promociones</ion-label>
+        </ion-tab-button>
+
+        <ion-tab-button routerLink="/tabs/tab3">
+          <ion-icon name="md-book"></ion-icon>
+          <ion-label>Mis Cursos</ion-label>
+        </ion-tab-button>
+      </ion-tab-bar>
+    </ion-tabs>
+  </ion-footer>
+  </ion-content>
 
