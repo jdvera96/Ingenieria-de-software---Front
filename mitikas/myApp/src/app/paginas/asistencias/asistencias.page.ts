@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NavController } from '@ionic/angular';
+import {ConsultaService} from '../../servicio/consulta.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-asistencias',
@@ -8,21 +10,25 @@ import { NavController } from '@ionic/angular';
 })
 export class AsistenciasPage implements OnInit {
 
+  id:number;
   datos: any[];
-  constructor(public nav: NavController) { }
+  constructor(public nav: NavController,private activatedRoute: ActivatedRoute,public consulta: ConsultaService) {
+    const num=this.activatedRoute.snapshot.paramMap.get('id_clase');
+    this.id=parseInt(num, 10);
+    consulta.obtenerClase("0911111111",num).subscribe((data)=>{
+      var anydata=<any>data;
+      this.datos = anydata;
+    });
+   }
 
   ngOnInit() {
   }
 
   segmentChanged(ev: any) {
-    //this.nav.navigateForward(`calificaciones`);
-    console.log('Segment changed', ev);
     if(ev.detail.value == "Tareas")
-      this.nav.navigateRoot(`tareas`);
+      this.nav.navigateRoot(`tareas/${this.id}`);
     else if(ev.detail.value == "Calificaciones")
-      this.nav.navigateRoot(`calificaciones`);
-
-    //console.log('Segment changed', ev.detail.value);
+      this.nav.navigateRoot(`calificaciones/${this.id}`);
   }
 
 }

@@ -28,9 +28,11 @@ export class TareasPage implements OnInit {
     if(ev.detail.value == "Calificaciones")
       this.nav.navigateRoot(`calificaciones/${this.id}`);
     else if(ev.detail.value == "Asistencias")
-      this.nav.navigateRoot(`asistencias`);
+      this.nav.navigateRoot(`asistencias/${this.id}`);
   }
 
-
+  scriptItem(){
+    
+  }
 
 }

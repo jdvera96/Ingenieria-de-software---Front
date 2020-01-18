@@ -23,7 +23,7 @@ const routes: Routes = [
     loadChildren: () => import('./paginas/tareas/tareas.module').then( m => m.TareasPageModule)
   },
   {
-    path: 'asistencias',
+    path: 'asistencias/:id_clase',
     loadChildren: () => import('./paginas/asistencias/asistencias.module').then( m => m.AsistenciasPageModule)
   }
 
