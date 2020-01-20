@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 //importamos el servicio 
 import {ConsultaService} from '../../servicio/consulta.service';
+declare const pay: any;
 @Component({
     selector: 'app-detalles',
     templateUrl: './detalles.page.html',
@@ -33,15 +34,14 @@ export class DetallesPage implements OnInit {
             this.short=this.descripcion;
             console.log(this.data['precio']);
           });
-          
-    
         }
 
     // eslint-disable-next-line @typescript-eslint/no-empty-function
     // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
-    ngOnInit() {
-
-        
+    ngOnInit() {   
+    }
+    ionViewWillEnter() {
+        pay();
     }
 
 }

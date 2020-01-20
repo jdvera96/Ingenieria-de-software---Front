@@ -39,7 +39,7 @@
                 "input": "src/global.scss"
               }
             ],
-            "scripts": []
+            "scripts": ["src/assets/paypal.js"]
           },
           "configurations": {
             "production": {
