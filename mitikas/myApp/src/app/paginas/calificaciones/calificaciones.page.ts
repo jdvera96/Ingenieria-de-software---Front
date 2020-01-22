@@ -18,6 +18,7 @@ export class CalificacionesPage implements OnInit {
   promedio: number;
   datos: any[];
   tam:number
+  reload: boolean = false;
   
   constructor(public nav: NavController,private activatedRoute: ActivatedRoute, public consulta: ConsultaService) {
     const num=this.activatedRoute.snapshot.paramMap.get('id_clase');
@@ -27,6 +28,12 @@ export class CalificacionesPage implements OnInit {
       this.datos = anydata;
       this.titulo =data[0]["id_clase"]["id_curso"]["titulo_curso"];
       this.promedio = this.calcularPromedio(this.datos);
+      /*if(!this.reload){
+        console.log("aqui");
+        location.reload();
+        this.reload = true;
+        console.log(this.reload);
+      }*/
     });
    }
 
