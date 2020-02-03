@@ -28,11 +28,11 @@ export class ConsultaService {
 
   // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
   obtenerCursos(){
-      return this.http.get("http://patricioxavi10.pythonanywhere.com/api/cursos");
+      return this.https.get("http://patricioxavi10.pythonanywhere.com/api/cursos");
   }
 
   obtenerMisCursos(id: string){    
-    return this.http.get("http://patricioxavi10.pythonanywhere.com/api/getClase/"+id);
+    return this.https.get("http://patricioxavi10.pythonanywhere.com/api/getClase/"+id);
   }
 
   obtenerCalificaciones(){
@@ -40,7 +40,7 @@ export class ConsultaService {
   }
 
   obtenerClase(idEstudiante:string,idClase:string){
-    let path = "http://patricioxavi10.pythonanywhere.com/api/getTarea/estudiante/";
+    let path = "https://patricioxavi10.pythonanywhere.com/api/getTarea/estudiante/";
     path = path + `?id_estudiante=`+idEstudiante+"&id_clase="+idClase;
     return this.http.get(path);
   }
@@ -49,7 +49,7 @@ export class ConsultaService {
 
   // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
   obtenerCursobyId(id: number){
-      let path="http://patricioxavi10.pythonanywhere.com/api/curso/"+id;
+      let path="https://patricioxavi10.pythonanywhere.com/api/curso/"+id;
       return this.http.get(path);
   }
 
