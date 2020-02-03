@@ -28,11 +28,11 @@ export class ConsultaService {
 
   // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
   obtenerCursos(){
-      return this.https.get("http://patricioxavi10.pythonanywhere.com/api/cursos");
+      return this.http.get("https://patricioxavi10.pythonanywhere.com/api/cursos");
   }
 
   obtenerMisCursos(id: string){    
-    return this.https.get("http://patricioxavi10.pythonanywhere.com/api/getClase/"+id);
+    return this.http.get("https://patricioxavi10.pythonanywhere.com/api/getClase/"+id);
   }
 
   obtenerCalificaciones(){

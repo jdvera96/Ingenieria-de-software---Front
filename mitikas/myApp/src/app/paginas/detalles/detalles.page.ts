@@ -35,11 +35,12 @@ export class DetallesPage implements AfterViewChecked  {
       return actions.payment.execute().then((payment) => {
         //Do something when payment is successful.
         console.log(this.id)
+        var idString = this.id.toString();
         let datos = {
           "asistencia": "false",
           "id_profesor": "0945345674",
           "id_estudiante" : "0911111111" ,
-          "id_curso" : "1",
+          "id_curso" : idString,
           "id_supervisor" : "0945345674" 
          
   }
@@ -86,10 +87,7 @@ export class DetallesPage implements AfterViewChecked  {
   }
 
 
-  
-
-
-    id: number;
+  id: number;
     titulo: string;
     short: string;
     descripcion: string;
