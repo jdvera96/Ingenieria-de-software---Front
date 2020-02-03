@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 //importamos el servicio 
 import {ConsultaService} from '../../servicio/consulta.service';
+import { NavController, AlertController } from '@ionic/angular';
 //declare const pay: any;
 declare var paypal: any;
 @Component({
@@ -60,12 +61,29 @@ export class DetallesPage implements AfterViewChecked  {
         });
 
 
-
+        this.presentAlertConfirm();
         console.log("Pago con exito")
       })
     }
   };
 
+  async presentAlertConfirm() {
+    const alert = await this.alertController.create({
+      header: '¡Felicidades!',
+      message: 'El pago se ha realizado con éxito',
+      buttons: [
+        {
+          text: 'Ir a mis cursos',
+          handler: () => {
+            this.nav.navigateRoot(`/tabs/tab3`);
+            console.log('Confirm Okay');
+          }
+        }
+      ]
+    });
+
+    await alert.present();
+  }
 
   ngAfterViewChecked(): void {
     if (!this.addScript) {
@@ -97,7 +115,7 @@ export class DetallesPage implements AfterViewChecked  {
     data: any[];
 
     // eslint-disable-next-line @typescript-eslint/no-empty-function
-    constructor(private activatedRoute: ActivatedRoute, public consulta: ConsultaService,public http: HttpClient){ 
+    constructor(public nav: NavController,private activatedRoute: ActivatedRoute, public consulta: ConsultaService,public http: HttpClient,public alertController: AlertController){ 
         const num=this.activatedRoute.snapshot.paramMap.get('id');
         this.id=parseInt(num, 10);
         this.consulta.obtenerCursobyId(this.id).subscribe((data)=>{
