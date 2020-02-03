@@ -1,14 +1,93 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, AfterViewChecked } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { HttpClient } from '@angular/common/http';
 //importamos el servicio 
 import {ConsultaService} from '../../servicio/consulta.service';
-declare const pay: any;
+//declare const pay: any;
+declare var paypal: any;
 @Component({
     selector: 'app-detalles',
     templateUrl: './detalles.page.html',
     styleUrls: ['./detalles.page.scss']
 })
-export class DetallesPage implements OnInit {
+export class DetallesPage implements AfterViewChecked  {
+  addScript: boolean = false;
+  paypalLoad: boolean = true;
+  
+  finalAmount: number = 1;
+  paypalConfig = {
+    env: 'sandbox',
+    client: {
+      sandbox: 'AS5b0QtwuULsZR4lDfJtLxOZH_pLFgEtO8ida32DabWAwbLbB1T_deRsuzak6yP6Sz-HyNAxfSeOZrKS',
+      production: '<your-production-key here>'
+    },
+    commit: true,
+    payment: (data, actions) => {
+      return actions.payment.create({
+        payment: {
+          transactions: [
+            { amount: { total: this.precio, currency: 'USD' } }
+          ]
+        }
+      });
+    },
+    onAuthorize: (data, actions) => {
+      return actions.payment.execute().then((payment) => {
+        //Do something when payment is successful.
+        console.log(this.id)
+        let datos = {
+          "asistencia": "false",
+          "id_profesor": "0945345674",
+          "id_estudiante" : "0911111111" ,
+          "id_curso" : "1",
+          "id_supervisor" : "0945345674" 
+         
+  }
+        let options = {
+          headers: {
+            'Content-Type': 'application/json'
+          }
+    
+        };
+
+        this.http.post("https://patricioxavi10.pythonanywhere.com/api/crearClase", datos,options)
+        .subscribe(data => {
+          console.log(data);
+          
+         }, error => {
+          console.log(error);
+        });
+
+
+
+        console.log("Pago con exito")
+      })
+    }
+  };
+
+
+  ngAfterViewChecked(): void {
+    if (!this.addScript) {
+      this.addPaypalScript().then(() => {
+        paypal.Button.render(this.paypalConfig, '#boton');
+        this.paypalLoad = false;
+      })
+    }
+  }
+  
+  addPaypalScript() {
+    this.addScript = true;
+    return new Promise((resolve, reject) => {
+      let scripttagElement = document.createElement('script');    
+      scripttagElement.src = 'https://www.paypalobjects.com/api/checkout.js';
+      scripttagElement.onload = resolve;
+      document.body.appendChild(scripttagElement);
+    })
+  }
+
+
+  
+
 
     id: number;
     titulo: string;
@@ -20,7 +99,7 @@ export class DetallesPage implements OnInit {
     data: any[];
 
     // eslint-disable-next-line @typescript-eslint/no-empty-function
-    constructor(private activatedRoute: ActivatedRoute, public consulta: ConsultaService){ 
+    constructor(private activatedRoute: ActivatedRoute, public consulta: ConsultaService,public http: HttpClient){ 
         const num=this.activatedRoute.snapshot.paramMap.get('id');
         this.id=parseInt(num, 10);
         this.consulta.obtenerCursobyId(this.id).subscribe((data)=>{
@@ -38,10 +117,10 @@ export class DetallesPage implements OnInit {
 
     // eslint-disable-next-line @typescript-eslint/no-empty-function
     // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
-    ngOnInit() {   
-    }
+  
     ionViewWillEnter() {
-        pay();
+ 
+                
     }
 
 }
