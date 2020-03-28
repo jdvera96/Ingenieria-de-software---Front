@@ -2,19 +2,19 @@ import { Component, AfterViewChecked } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 //importamos el servicio 
-import {ConsultaService} from '../../servicio/consulta.service';
+import { ConsultaService } from '../../servicio/consulta.service';
 import { NavController, AlertController } from '@ionic/angular';
 //declare const pay: any;
 declare var paypal: any;
 @Component({
-    selector: 'app-detalles',
-    templateUrl: './detalles.page.html',
-    styleUrls: ['./detalles.page.scss']
+  selector: 'app-detalles',
+  templateUrl: './detalles.page.html',
+  styleUrls: ['./detalles.page.scss']
 })
-export class DetallesPage implements AfterViewChecked  {
+export class DetallesPage implements AfterViewChecked {
   addScript: boolean = false;
   paypalLoad: boolean = true;
-  
+
   finalAmount: number = 1;
   paypalConfig = {
     env: 'sandbox',
@@ -40,25 +40,25 @@ export class DetallesPage implements AfterViewChecked  {
         let datos = {
           "asistencia": "false",
           "id_profesor": "0945345674",
-          "id_estudiante" : "0911111111" ,
-          "id_curso" : idString,
-          "id_supervisor" : "0945345674" 
-         
-  }
+          "id_estudiante": "0911111111",
+          "id_curso": idString,
+          "id_supervisor": "0945345674"
+
+        }
         let options = {
           headers: {
             'Content-Type': 'application/json'
           }
-    
+
         };
 
-        this.http.post("https://patricioxavi10.pythonanywhere.com/api/crearClase", datos,options)
-        .subscribe(data => {
-          console.log(data);
-          
-         }, error => {
-          console.log(error);
-        });
+        this.http.post("https://patricioxavi10.pythonanywhere.com/api/crearClase", datos, options)
+          .subscribe(data => {
+            console.log(data);
+
+          }, error => {
+            console.log(error);
+          });
 
 
         this.presentAlertConfirm();
@@ -93,11 +93,11 @@ export class DetallesPage implements AfterViewChecked  {
       })
     }
   }
-  
+
   addPaypalScript() {
     this.addScript = true;
     return new Promise((resolve, reject) => {
-      let scripttagElement = document.createElement('script');    
+      let scripttagElement = document.createElement('script');
       scripttagElement.src = 'https://www.paypalobjects.com/api/checkout.js';
       scripttagElement.onload = resolve;
       document.body.appendChild(scripttagElement);
@@ -106,37 +106,37 @@ export class DetallesPage implements AfterViewChecked  {
 
 
   id: number;
-    titulo: string;
-    short: string;
-    descripcion: string;
-    imagen: string;
-    sesiones: number;
-    precio: number;
-    data: any[];
+  titulo: string;
+  short: string;
+  descripcion: string;
+  imagen: string;
+  sesiones: number;
+  precio: number;
+  data: any[];
 
-    // eslint-disable-next-line @typescript-eslint/no-empty-function
-    constructor(public nav: NavController,private activatedRoute: ActivatedRoute, public consulta: ConsultaService,public http: HttpClient,public alertController: AlertController){ 
-        const num=this.activatedRoute.snapshot.paramMap.get('id');
-        this.id=parseInt(num, 10);
-        this.consulta.obtenerCursobyId(this.id).subscribe((data)=>{
-            var anydata=<any>data;
-            this.data=anydata;
-            console.log(this.data);
-            this.precio=this.data['precio'];
-            this.imagen=this.data['imagen'];
-            this.descripcion=this.data['descripcion'];
-            this.sesiones=this.data['num_sesiones'];
-            this.short=this.descripcion;
-            console.log(this.data['precio']);
-          });
-        }
+  // eslint-disable-next-line @typescript-eslint/no-empty-function
+  constructor(public nav: NavController, private activatedRoute: ActivatedRoute, public consulta: ConsultaService, public http: HttpClient, public alertController: AlertController) {
+    const num = this.activatedRoute.snapshot.paramMap.get('id');
+    this.id = parseInt(num, 10);
+    this.consulta.obtenerCursobyId(this.id).subscribe((data) => {
+      var anydata = <any>data;
+      this.data = anydata;
+      console.log(this.data);
+      this.precio = this.data['precio'];
+      this.imagen = this.data['imagen'];
+      this.descripcion = this.data['descripcion'];
+      this.sesiones = this.data['num_sesiones'];
+      this.short = this.descripcion;
+      console.log(this.data['precio']);
+    });
+  }
 
-    // eslint-disable-next-line @typescript-eslint/no-empty-function
-    // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
-  
-    ionViewWillEnter() {
- 
-                
-    }
+  // eslint-disable-next-line @typescript-eslint/no-empty-function
+  // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
+
+  ionViewWillEnter() {
+
+
+  }
 
 }
