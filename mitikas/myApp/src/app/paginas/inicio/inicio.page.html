@@ -1,0 +1,37 @@
+<script type="module" src="https://cdn.jsdelivr.net/npm/@ionic/core@next/dist/ionic/ionic.esm.js"></script>
+  <script nomodule src="https://cdn.jsdelivr.net/npm/@ionic/core@next/dist/ionic/ionic.js"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@ionic/core@next/css/ionic.bundle.css"/>
+
+<ion-content>
+  <div id = "formularioLogin">
+    <img id = "logo" src="assets/img/logo-png.png" alt="logo">
+    <form onsubmit="">
+      <ion-list lines="full" class="ion-no-margin ion-no-padding">
+        <ion-item>
+          <ion-label position="floating">Ingresa tu email:<ion-text color="danger">*</ion-text></ion-label>
+          <ion-input required type="email" maxlength = 50 mode="md" oninput="" pattern = ""></ion-input> <!--handleFirstNameValue(event)-->
+        </ion-item>
+        <ion-item>
+          <ion-label position="floating">Ingresa tu contraseña:<ion-text color="danger">*</ion-text></ion-label>
+          <ion-input required type="password" maxlength = 20 mode="md" oninput="" ></ion-input> <!--handleFirstNameValue(event)-->
+        </ion-item>
+      </ion-list>
+      <div class="ion-padding">
+        <ion-button expand="block" type="submit" class="ion-no-margin">Iniciar Sesión</ion-button>
+      </div>
+    </form>
+    <div id="contraseniaOlvidada">
+      <a routerLink="" >¿Olvidaste tu contraseña?</a>
+    </div>
+    <div id = "relleno"></div>
+  </div>
+  
+  <div class="ion-padding" id ="registro">
+    <ion-label >¿Aún no tienes cuenta?</ion-label>
+    <br><br/>
+    <ion-button expand="block"  class="ion-no-margin">Registrate</ion-button>
+  </div>
+ 
+</ion-content>
+
+
