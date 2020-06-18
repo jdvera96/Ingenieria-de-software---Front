@@ -6,14 +6,14 @@
   <div id = "formularioLogin">
     <img id = "logo" src="assets/img/logo-png.png" alt="logo">
     <form onsubmit="">
-      <ion-list lines="full" class="ion-no-margin ion-no-padding">
+      <ion-list lines="full" class="ion-no-margin ion-no-padding ion-padding-bottom">
         <ion-item>
-          <ion-label position="floating">Ingresa tu email:<ion-text color="danger">*</ion-text></ion-label>
-          <ion-input required type="email" maxlength = 50 mode="md" oninput="" pattern = ""></ion-input> <!--handleFirstNameValue(event)-->
+          <ion-label class="ion-text-center" position="floating">Ingresa tu email:<ion-text color="danger">*</ion-text></ion-label>
+          <ion-input class="ion-text-center" required type="email" maxlength = 50 mode="md" oninput="" pattern = ""></ion-input> <!--handleFirstNameValue(event)-->
         </ion-item>
         <ion-item>
-          <ion-label position="floating">Ingresa tu contraseña:<ion-text color="danger">*</ion-text></ion-label>
-          <ion-input required type="password" maxlength = 20 mode="md" oninput="" ></ion-input> <!--handleFirstNameValue(event)-->
+          <ion-label class="ion-text-center" position="floating">Ingresa tu contraseña:<ion-text color="danger">*</ion-text></ion-label>
+          <ion-input class="ion-text-center" required type="password" maxlength = 20 mode="md" oninput="" ></ion-input> <!--handleFirstNameValue(event)-->
         </ion-item>
       </ion-list>
       <div class="ion-padding">
@@ -29,7 +29,7 @@
   <div class="ion-padding" id ="registro">
     <ion-label >¿Aún no tienes cuenta?</ion-label>
     <br><br/>
-    <ion-button expand="block"  class="ion-no-margin">Registrate</ion-button>
+    <ion-button expand="block" routerLink="/registro" class="ion-no-margin">Registrate</ion-button>
   </div>
  
 </ion-content>

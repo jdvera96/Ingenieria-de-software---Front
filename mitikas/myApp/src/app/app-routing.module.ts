@@ -5,8 +5,12 @@ import {
 
 const routes: Routes = [
   {
-      path: 'tabs',
-      loadChildren: () => import('./tabs/tabs.module').then(m => m.TabsPageModule)
+    path: '',
+    loadChildren: () => import('./paginas/inicio/inicio.module').then( m => m.InicioPageModule)
+  },
+  {
+    path: '',
+    loadChildren: () => import('./tabs/tabs.module').then(m => m.TabsPageModule)
   },
   { path: 'detalles/:id', loadChildren: './paginas/detalles/detalles.module#DetallesPageModule' },
   
@@ -26,10 +30,12 @@ const routes: Routes = [
     path: 'asistencias/:id_clase',
     loadChildren: () => import('./paginas/asistencias/asistencias.module').then( m => m.AsistenciasPageModule)
   },
+ 
   {
-    path: '',
-    loadChildren: () => import('./paginas/inicio/inicio.module').then( m => m.InicioPageModule)
+    path: 'registro',
+    loadChildren: () => import('./paginas/registro/registro.module').then( m => m.RegistroPageModule)
   }
+
 
 ];
 
