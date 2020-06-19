@@ -35,3 +35,30 @@ p b {
 .intermedios{
     padding-bottom: 10%;
 }
+
+.centrar{
+    margin-top: 15%;
+    margin-bottom: 20%;
+}
+
+.fecha{
+    padding-left: 34%;
+}
+.fechai{
+    padding-left: 28%;
+}
+
+@media (max-height: 600px) {
+    .intermedios{
+        padding-bottom: 5%;
+    }
+    .reducir{
+        font-size: small;
+    }
+    .reducirTitulo{
+        font-size: large;
+    }
+    .reducirSubtitulo{
+        font-size: medium;
+    }
+}
