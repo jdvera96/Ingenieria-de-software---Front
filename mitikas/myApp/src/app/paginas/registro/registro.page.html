@@ -1,4 +1,3 @@
-
 <ion-content fullscreen class="ion-padding" scroll-y="false">
   <ion-slides pager="true">
 
@@ -8,91 +7,144 @@
         <h5 class="reducirSubtitulo ion-text-left ion-padding-bottom">Datos personales</h5>
         <ion-list lines="full" class="ion-no-margin ion-no-padding ">
           <ion-item>
-            <ion-label class="reducir ion-text-center " position="floating">Nombres:<ion-text color="danger">*</ion-text></ion-label>
-            <ion-input class="reducir ion-text-center" required type="text" maxlength = 50 mode="md" oninput="" pattern = ""></ion-input> <!--handleFirstNameValue(event)-->
+            <ion-label class="reducir ion-text-center " position="floating">Nombres:<ion-text color="danger">*
+              </ion-text>
+            </ion-label>
+            <ion-input class="reducir ion-text-center" [(ngModel)]="nombres" required type="text" maxlength=50 mode="md" 
+              pattern=""></ion-input>
+            <!--handleFirstNameValue(event)-->
           </ion-item>
-          <div class = "intermedios"></div>
+          <div class="intermedios"></div>
           <ion-item>
-            <ion-label class="reducir ion-text-center" position="floating">Apellidos:<ion-text color="danger">*</ion-text></ion-label>
-            <ion-input class="reducir ion-text-center" required type="text" maxlength = 50 mode="md" oninput="" ></ion-input> <!--handleFirstNameValue(event)-->
+            <ion-label class="reducir ion-text-center" position="floating">Apellidos:<ion-text color="danger">*
+              </ion-text>
+            </ion-label>
+            <ion-input class="reducir ion-text-center" [(ngModel)]="apelllidos" required type="text" maxlength=50 mode="md" oninput="">
+            </ion-input>
+            <!--handleFirstNameValue(event)-->
           </ion-item>
-          <div class = "intermedios"></div>
+          <div class="intermedios"></div>
           <ion-item>
-            <ion-label class="reducir ion-text-center fecha" position="stacked">Fecha de nacimiento:<ion-text color="danger">*</ion-text></ion-label>
+            <ion-label class="reducir ion-text-center fecha" position="stacked">Fecha de nacimiento:<ion-text
+                color="danger">*</ion-text>
+            </ion-label>
             <div class="fechai">
-              <ion-datetime value="1990-02-19" ></ion-datetime>
+              <ion-datetime [(ngModel)]="fecha_nacimiento"></ion-datetime>
             </div>
           </ion-item>
-          <div class = "intermedios"></div>
+          <div class="intermedios"></div>
           <ion-item>
-            <ion-label class="reducir ion-text-center" position="floating">Cedula de identidad:<ion-text color="danger">*</ion-text></ion-label>
-            <ion-input class="reducir ion-text-center" required type="tel" maxlength = 10  mode="md" oninput="" ></ion-input> <!--handleFirstNameValue(event)-->
-          </ion-item>     
-          <div class = "intermedios"></div>
+            <ion-label class="reducir ion-text-center" position="floating">Cedula de identidad:<ion-text color="danger">
+                *</ion-text>
+            </ion-label>
+            <ion-input class="reducir ion-text-center" [(ngModel)]="cedula" required type="tel" maxlength=10 mode="md" oninput="">
+            </ion-input>
+            <!--handleFirstNameValue(event)-->
+          </ion-item>
+          <div class="intermedios"></div>
           <ion-item>
-            <ion-label class="reducir ion-text-center fecha" position="stacked">Sexo:<ion-text color="danger">*</ion-text></ion-label>
-            <ion-select class="ion-text-center" >
+            <ion-label class="reducir ion-text-center fecha" position="stacked">Sexo:<ion-text color="danger">*
+              </ion-text>
+            </ion-label>
+            <ion-select class="ion-text-center" [(ngModel)]="sexo">
               <ion-select-option value="f">Femenino</ion-select-option>
               <ion-select-option value="m">Masculino</ion-select-option>
             </ion-select>
-          </ion-item>     
+          </ion-item>
         </ion-list>
       </div>
     </ion-slide>
 
     <ion-slide>
       <h1 class="reducirTitulo ion-padding-bottom">Bienvenido</h1>
-        <h5 class="reducirSubtitulo ion-text-left ion-padding-bottom">Datos de contacto</h5>
-        <ion-list lines="full" class="centrar ion-no-margin ion-no-padding ">
-          <ion-item>
-            <ion-label class=" reducir ion-text-center " position="floating">País:<ion-text color="danger">*</ion-text></ion-label>
-            <ion-input class="reducir ion-text-center" required type="email" maxlength = 50 mode="md" oninput="" pattern = ""></ion-input> <!--handleFirstNameValue(event)-->
-          </ion-item>
-          <div class = "intermedios"></div>
-          <ion-item>
-            <ion-label class="reducir ion-text-center" position="floating">Ciudad:<ion-text color="danger">*</ion-text></ion-label>
-            <ion-input class="reducir ion-text-center" required type="password" maxlength = 20 mode="md" oninput="" ></ion-input> <!--handleFirstNameValue(event)-->
-          </ion-item>
-          <div class = "intermedios"></div>
-          <ion-item>
-            <ion-label class="reducir ion-text-center" position="floating">Dirección:<ion-text color="danger">*</ion-text></ion-label>
-            <ion-input class="reducir ion-text-center" required type="text" maxlength = 75 mode="md" oninput="" ></ion-input> <!--handleFirstNameValue(event)-->
-          </ion-item>
-          <div class = "intermedios"></div>
-          <ion-item>
-            <ion-label class="reducir ion-text-center" position="floating">Teléfono:<ion-text color="danger">*</ion-text></ion-label>
-            <ion-input class="reducir ion-text-center" required type="tel" maxlength = 10 mode="md" oninput="" ></ion-input> <!--handleFirstNameValue(event)-->
-          </ion-item>     
-          <div class = "intermedios"></div>     
-        </ion-list>
+      <h5 class="reducirSubtitulo ion-text-left ion-padding-bottom">Datos de contacto</h5>
+      <ion-list lines="full" class="centrar ion-no-margin ion-no-padding ">
+        <ion-item>
+          <ion-label class=" reducir ion-text-center " position="floating">País:<ion-text color="danger">*</ion-text>
+          </ion-label>
+          <ion-select class="ion-text-center" (ionChange)="setCitiesValues(countrySelected)"
+            [(ngModel)]="countrySelected">
+            <ion-select-option *ngFor="let countrySelected of countryData" [value]="countrySelected">
+              {{countrySelected.name}}</ion-select-option>
+          </ion-select>
+        </ion-item>
+        <div class="intermedios"></div>
+        <ion-item>
+          <!--*ngIf="cities"-->
+          <ion-label class="reducir ion-text-center" position="floating">Ciudad:<ion-text color="danger">*</ion-text>
+          </ion-label>
+          <ion-select class="ion-text-center" [(ngModel)]="citySelected">
+            <ion-select-option *ngFor="let citySelected of cities" [value]="citySelected">{{citySelected.name}}
+            </ion-select-option>
+          </ion-select>
+        </ion-item>
+        <div class="intermedios"></div>
+        <ion-item>
+          <ion-label class="reducir ion-text-center" position="floating">Dirección:<ion-text color="danger">*</ion-text>
+          </ion-label>
+          <ion-input class="reducir ion-text-center" [(ngModel)]="direccion" required type="text" maxlength=75 mode="md" oninput=""></ion-input>
+          <!--handleFirstNameValue(event)-->
+        </ion-item>
+        <div class="intermedios"></div>
+        <ion-item>
+          <ion-label class="reducir ion-text-center" position="floating">Teléfono:<ion-text color="danger">*</ion-text>
+          </ion-label>
+          <ion-input class="reducir ion-text-center" [(ngModel)]="telefono" required type="tel" maxlength=10 mode="md" oninput=""></ion-input>
+          <!--handleFirstNameValue(event)-->
+        </ion-item>
+        <div class="intermedios"></div>
+      </ion-list>
     </ion-slide>
 
     <ion-slide>
       <h1 class="reducirTitulo ion-padding-bottom">Bienvenido</h1>
-        <h5 class="reducirSubtitulo ion-text-left ion-padding-bottom">Datos adicionales</h5>
-        <ion-list lines="full" class="ion-no-margin ion-no-padding ">
-          <ion-item>
-            <ion-label class="reducir ion-text-center " position="floating">Comunidad históricamente excluida:<ion-text color="danger">*</ion-text></ion-label>
-            <ion-input class="reducir ion-text-center" required type="email" maxlength = 50 mode="md" oninput="" pattern = ""></ion-input> <!--handleFirstNameValue(event)-->
-          </ion-item>
-          <div class = "intermedios"></div>
-          <ion-item>
-            <ion-label class="reducir ion-text-center" position="floating">Escolaridad:<ion-text color="danger">*</ion-text></ion-label>
-            <ion-input class="reducir ion-text-center" required type="password" maxlength = 20 mode="md" oninput="" ></ion-input> <!--handleFirstNameValue(event)-->
-          </ion-item>
-          <div class = "intermedios"></div>
-          <ion-item>
-            <ion-label class="reducir ion-text-center" position="floating">Correo eléctronico:<ion-text color="danger">*</ion-text></ion-label>
-            <ion-input class="reducir ion-text-center" required type="email" maxlength = 20 mode="md" oninput="" ></ion-input> <!--handleFirstNameValue(event)-->
-          </ion-item>
-          <div class = "intermedios"></div>
-          <ion-item>
-            <ion-label class="reducir ion-text-center" position="floating">Contraseña:<ion-text color="danger">*</ion-text></ion-label>
-            <ion-input class="reducir ion-text-center" required type="password" maxlength = 20 mode="md" oninput="" ></ion-input> <!--handleFirstNameValue(event)-->
-          </ion-item>     
-        </ion-list>
-        <div class = "intermedios"></div>
-      <ion-button expand="block" routerLink="/tabs/tab1" class="ion-no-margin">Registrar</ion-button>
+      <h5 class="reducirSubtitulo ion-text-left ion-padding-bottom">Datos adicionales</h5>
+      <ion-list lines="full" class="ion-no-margin ion-no-padding ">
+        <ion-item>
+          <ion-label class="reducir ion-text-center " position="floating">Comunidad históricamente excluida:<ion-text
+              color="danger">*</ion-text>
+          </ion-label>
+          <ion-select class="ion-text-center" [(ngModel)]="grupo_excluido">
+            <ion-select-option value="f">Ninguna</ion-select-option>
+            <ion-select-option value="f">Afroamericana</ion-select-option>
+            <ion-select-option value="m">LGBTI</ion-select-option>
+            <ion-select-option value="m">Indigena</ion-select-option>
+          </ion-select>
+        </ion-item>
+        <div class="intermedios"></div>
+        <ion-item>
+          <ion-label class="reducir ion-text-center" position="floating">Escolaridad:<ion-text color="danger">*
+            </ion-text>
+          </ion-label>
+          <ion-select class="ion-text-center" [(ngModel)]="escolaridad" >
+            <ion-select-option value="f">Educación Primaria</ion-select-option>
+            <ion-select-option value="f">Educación Secundaria</ion-select-option>
+            <ion-select-option value="m">Educación Superior</ion-select-option>
+            <ion-select-option value="m">Postgrado</ion-select-option>
+          </ion-select>
+        </ion-item>
+        <div class="intermedios"></div>
+        <ion-item>
+          <ion-label class="reducir ion-text-center" position="floating" >Correo eléctronico:<ion-text color="danger">*
+            </ion-text>
+          </ion-label>
+          <ion-input class="reducir ion-text-center" [(ngModel)]="email" required type="email" maxlength=20 mode="md" oninput="">
+          </ion-input>
+          <!--handleFirstNameValue(event)-->
+        </ion-item>
+        <div class="intermedios"></div>
+        <ion-item>
+          <ion-label class="reducir ion-text-center" position="floating">Contraseña:<ion-text color="danger">*
+            </ion-text>
+          </ion-label>
+          <ion-input class="reducir ion-text-center" [(ngModel)]="password" required type="password" maxlength=20 mode="md" oninput="">
+          </ion-input>
+          <!--handleFirstNameValue(event)-->
+        </ion-item>
+      </ion-list>
+      <div class="intermedios"></div>
+      <ion-button expand="block" (click)="enviarData()" class="ion-no-margin">Registrar</ion-button>
+      <!--routerLink="/tabs/tab1"-->
     </ion-slide>
   </ion-slides>
 </ion-content>

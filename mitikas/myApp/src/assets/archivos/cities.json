@@ -1,0 +1,952 @@
+[
+    {
+        "id": 79,
+        "name": "Kabul",
+        "country_id": 1
+    },
+    {
+        "id": 81,
+        "name": "Kandahār",
+        "country_id": 1
+    },
+    {
+        "id": 77,
+        "name": "Jalālābād",
+        "country_id": 1
+    },
+    {
+        "id": 94,
+        "name": "Markaz-e Woluswalī-ye Āchīn",
+        "country_id": 1
+    },
+    {
+        "id": 86,
+        "name": "Khāsh",
+        "country_id": 1
+    },
+    {
+        "id": 31227,
+        "name": "Adrar",
+        "country_id": 4
+    },
+    {
+        "id": 31234,
+        "name": "Aoulef",
+        "country_id": 4
+    },
+    {
+        "id": 31406,
+        "name": "Reggane",
+        "country_id": 4
+    },
+    {
+        "id": 31450,
+        "name": "Timimoun",
+        "country_id": 4
+    },
+    {
+        "id": 31243,
+        "name": "Aïn Defla",
+        "country_id": 4
+    },
+    {
+        "id": 1,
+        "name": "Andorra la Vella",
+        "country_id": 6
+    },
+    {
+        "id": 3,
+        "name": "Canillo",
+        "country_id": 6
+    },
+    {
+        "id": 4,
+        "name": "El Tarter",
+        "country_id": 6
+    },
+    {
+        "id": 5,
+        "name": "Encamp",
+        "country_id": 6
+    },
+    {
+        "id": 615,
+        "name": "Luanda",
+        "country_id": 7
+    },
+    {
+        "id": 618,
+        "name": "Lucapa",
+        "country_id": 7
+    },
+    {
+        "id": 599,
+        "name": "Cazaji",
+        "country_id": 7
+    },
+    {
+        "id": 144,
+        "name": "Codrington",
+        "country_id": 10
+    },
+    {
+        "id": 148,
+        "name": "Piggotts",
+        "country_id": 10
+    },
+    {
+        "id": 149,
+        "name": "Potters Village",
+        "country_id": 10
+    },
+    {
+        "id": 150,
+        "name": "Saint John’s",
+        "country_id": 10
+    },
+    {
+        "id": 682,
+        "name": "Balvanera",
+        "country_id": 11
+    },
+    {
+        "id": 683,
+        "name": "Barracas",
+        "country_id": 11
+    },
+    {
+        "id": 687,
+        "name": "Belgrano",
+        "country_id": 11
+    },
+    {
+        "id": 697,
+        "name": "Boedo",
+        "country_id": 11
+    },
+    {
+        "id": 704,
+        "name": "Buenos Aires",
+        "country_id": 11
+    },
+    {
+        "id": 581,
+        "name": "Yerevan",
+        "country_id": 12
+    },
+    {
+        "id": 4566,
+        "name": "Canberra",
+        "country_id": 14
+    },
+    {
+        "id": 4621,
+        "name": "Casey",
+        "country_id": 14
+    },
+    {
+        "id": 4662,
+        "name": "Chapman",
+        "country_id": 14
+    },
+    {
+        "id": 3681,
+        "name": "Vienna",
+        "country_id": 15
+    },
+    {
+        "id": 1623,
+        "name": "Alberschwende",
+        "country_id": 15
+    },
+    {
+        "id": 1635,
+        "name": "Altach",
+        "country_id": 15
+    },
+    {
+        "id": 1658,
+        "name": "Andelsbuch",
+        "country_id": 15
+    },
+    {
+        "id": 1701,
+        "name": "Au",
+        "country_id": 15
+    },
+    {
+        "id": 8052,
+        "name": "Baku",
+        "country_id": 16
+    },
+    {
+        "id": 8054,
+        "name": "Balakhani",
+        "country_id": 16
+    },
+    {
+        "id": 8060,
+        "name": "Bilajari",
+        "country_id": 16
+    },
+    {
+        "id": 8061,
+        "name": "Bilajer",
+        "country_id": 16
+    },
+    {
+        "id": 15688,
+        "name": "Arthur’s Town",
+        "country_id": 17
+    },
+    {
+        "id": 15699,
+        "name": "Marsh Harbour",
+        "country_id": 17
+    },
+    {
+        "id": 15691,
+        "name": "Colonel Hill",
+        "country_id": 17
+    },
+    {
+        "id": 15697,
+        "name": "High Rock",
+        "country_id": 17
+    },
+    {
+        "id": 15696,
+        "name": "George Town",
+        "country_id": 17
+    },
+    {
+        "id": 9757,
+        "name": "Jidd Ḩafş",
+        "country_id": 18
+    },
+    {
+        "id": 9760,
+        "name": "Manama",
+        "country_id": 18
+    },
+    {
+        "id": 8486,
+        "name": "Dhaka",
+        "country_id": 19
+    },
+    {
+        "id": 8489,
+        "name": "Dohār",
+        "country_id": 19
+    },
+    {
+        "id": 8490,
+        "name": "Faridpur",
+        "country_id": 19
+    },
+    {
+        "id": 8448,
+        "name": "Bridgetown",
+        "country_id": 20
+    },
+    {
+        "id": 8453,
+        "name": "Speightstown",
+        "country_id": 20
+    },
+    {
+        "id": 8449,
+        "name": "Crane",
+        "country_id": 20
+    },
+    {
+        "id": 15989,
+        "name": "Minsk",
+        "country_id": 21
+    },
+    {
+        "id": 16016,
+        "name": "Partyzanski Rayon",
+        "country_id": 21
+    },
+    {
+        "id": 16050,
+        "name": "Savyetski Rayon",
+        "country_id": 21
+    },
+    {
+        "id": 16087,
+        "name": "Tsentral’ny Rayon",
+        "country_id": 21
+    },
+    {
+        "id": 8693,
+        "name": "Brussels",
+        "country_id": 22
+    },
+    {
+        "id": 8608,
+        "name": "Aalst",
+        "country_id": 22
+    },
+    {
+        "id": 8609,
+        "name": "Aalter",
+        "country_id": 22
+    },
+    {
+        "id": 8610,
+        "name": "Aarschot",
+        "country_id": 22
+    },
+    {
+        "id": 8611,
+        "name": "Aartselaar",
+        "country_id": 22
+    },
+    {
+        "id": 16145,
+        "name": "Valley of Peace",
+        "country_id": 23
+    },
+    {
+        "id": 16136,
+        "name": "Corozal",
+        "country_id": 23
+    },
+    {
+        "id": 16138,
+        "name": "Hopelchén",
+        "country_id": 23
+    },
+    {
+        "id": 16139,
+        "name": "Orange Walk",
+        "country_id": 23
+    },
+    {
+        "id": 16144,
+        "name": "Shipyard",
+        "country_id": 23
+    },
+    {
+        "id": 9809,
+        "name": "Porto-Novo",
+        "country_id": 24
+    },
+    {
+        "id": 9801,
+        "name": "Kétou",
+        "country_id": 24
+    },
+    {
+        "id": 9808,
+        "name": "Pobé",
+        "country_id": 24
+    },
+    {
+        "id": 9810,
+        "name": "Sakété",
+        "country_id": 24
+    },
+    {
+        "id": 15722,
+        "name": "Thimphu",
+        "country_id": 26
+    },
+    {
+        "id": 15724,
+        "name": "Trashigang",
+        "country_id": 26
+    },
+    {
+        "id": 15725,
+        "name": "Trongsa",
+        "country_id": 26
+    },
+    {
+        "id": 15727,
+        "name": "Tsirang",
+        "country_id": 26
+    },
+    {
+        "id": 10031,
+        "name": "Sucre",
+        "country_id": 27
+    },
+    {
+        "id": 10033,
+        "name": "Tarabuco",
+        "country_id": 27
+    },
+    {
+        "id": 9827,
+        "name": "Aiquile",
+        "country_id": 27
+    },
+    {
+        "id": 9829,
+        "name": "Arani",
+        "country_id": 27
+    },
+    {
+        "id": 9836,
+        "name": "Bolivar",
+        "country_id": 27
+    },
+    {
+        "id": 8380,
+        "name": "Sarajevo",
+        "country_id": 28
+    },
+    {
+        "id": 8438,
+        "name": "Šerići",
+        "country_id": 28
+    },
+    {
+        "id": 8440,
+        "name": "Široki Brijeg",
+        "country_id": 28
+    },
+    {
+        "id": 15735,
+        "name": "Gaborone",
+        "country_id": 29
+    },
+    {
+        "id": 15741,
+        "name": "Janeng",
+        "country_id": 29
+    },
+    {
+        "id": 15747,
+        "name": "Kopong",
+        "country_id": 29
+    },
+    {
+        "id": 10774,
+        "name": "Brasiléia",
+        "country_id": 31
+    },
+    {
+        "id": 14309,
+        "name": "Rio de Janeiro",
+        "country_id": 31
+    },
+    {
+        "id": 15374,
+        "name": "Três Coroas",
+        "country_id": 31
+    },
+    {
+        "id": 15384,
+        "name": "Três de Maio",
+        "country_id": 31
+    },
+    {
+        "id": 14556,
+        "name": "Santa Tereza do Tocantins",
+        "country_id": 31
+    },
+    {
+        "id": 15633,
+        "name": "Xambioá",
+        "country_id": 31
+    },
+    {
+        "id": 9820,
+        "name": "Kuala Belait",
+        "country_id": 33
+    },
+    {
+        "id": 9823,
+        "name": "Seria",
+        "country_id": 33
+    },
+    {
+        "id": 9816,
+        "name": "Bandar Seri Begawan",
+        "country_id": 33
+    },
+    {
+        "id": 9818,
+        "name": "Berakas A",
+        "country_id": 33
+    },
+    {
+        "id": 9701,
+        "name": "Sofia",
+        "country_id": 34
+    },
+    {
+        "id": 9707,
+        "name": "Stolichna Obshtina",
+        "country_id": 34
+    },
+    {
+        "id": 9254,
+        "name": "Anton",
+        "country_id": 34
+    },
+    {
+        "id": 9282,
+        "name": "Botevgrad",
+        "country_id": 34
+    },
+    {
+        "id": 9285,
+        "name": "Bozhurishte",
+        "country_id": 34
+    },
+    {
+        "id": 9193,
+        "name": "Ouagadougou",
+        "country_id": 35
+    },
+    {
+        "id": 9174,
+        "name": "Garango",
+        "country_id": 35
+    },
+    {
+        "id": 9187,
+        "name": "Koupéla",
+        "country_id": 35
+    },
+    {
+        "id": 9188,
+        "name": "Kouritenga Province",
+        "country_id": 35
+    },
+    {
+        "id": 9762,
+        "name": "Bubanza",
+        "country_id": 36
+    },
+    {
+        "id": 9763,
+        "name": "Bujumbura",
+        "country_id": 36
+    },
+    {
+        "id": 9764,
+        "name": "Bururi",
+        "country_id": 36
+    },
+    {
+        "id": 9765,
+        "name": "Cankuzo",
+        "country_id": 36
+    },
+    {
+        "id": 9766,
+        "name": "Cibitoke",
+        "country_id": 36
+    },
+    {
+        "id": 64970,
+        "name": "Phnom Penh",
+        "country_id": 37
+    },
+    {
+        "id": 64977,
+        "name": "Sangkom Thmei",
+        "country_id": 37
+    },
+    {
+        "id": 64999,
+        "name": "Srŏk Ch’êh Sên",
+        "country_id": 37
+    },
+    {
+        "id": 19148,
+        "name": "Bankim",
+        "country_id": 38
+    },
+    {
+        "id": 19150,
+        "name": "Banyo",
+        "country_id": 38
+    },
+    {
+        "id": 19162,
+        "name": "Bélel",
+        "country_id": 38
+    },
+    {
+        "id": 19168,
+        "name": "Djohong",
+        "country_id": 38
+    },
+    {
+        "id": 19187,
+        "name": "Kontcha",
+        "country_id": 38
+    },
+    {
+        "id": 16466,
+        "name": "Grande Cache",
+        "country_id": 39
+    },
+    {
+        "id": 16467,
+        "name": "Grande Prairie",
+        "country_id": 39
+    },
+    {
+        "id": 16785,
+        "name": "Ottawa",
+        "country_id": 39
+    },
+    {
+        "id": 17121,
+        "name": "Toronto",
+        "country_id": 39
+    },
+    {
+        "id": 17122,
+        "name": "Toronto county",
+        "country_id": 39
+    },
+    {
+        "id": 17123,
+        "name": "Tottenham",
+        "country_id": 39
+    },
+    {
+        "id": 22007,
+        "name": "São Filipe",
+        "country_id": 40
+    },
+    {
+        "id": 21993,
+        "name": "João Teves",
+        "country_id": 40
+    },
+    {
+        "id": 21988,
+        "name": "Calheta",
+        "country_id": 40
+    },
+    {
+        "id": 21994,
+        "name": "Mindelo",
+        "country_id": 40
+    },
+    {
+        "id": 17329,
+        "name": "Ndélé",
+        "country_id": 42
+    },
+    {
+        "id": 17298,
+        "name": "Bangui",
+        "country_id": 42
+    },
+    {
+        "id": 17294,
+        "name": "Alindao",
+        "country_id": 42
+    },
+    {
+        "id": 17323,
+        "name": "Kembé",
+        "country_id": 42
+    },
+    {
+        "id": 105142,
+        "name": "Kyabé",
+        "country_id": 43
+    },
+    {
+        "id": 105156,
+        "name": "Sarh",
+        "country_id": 43
+    },
+    {
+        "id": 105116,
+        "name": "Abéché",
+        "country_id": 43
+    },
+    {
+        "id": 19062,
+        "name": "Provincia de Malleco",
+        "country_id": 44
+    },
+    {
+        "id": 19080,
+        "name": "Pucón",
+        "country_id": 44
+    },
+    {
+        "id": 19111,
+        "name": "Santiago",
+        "country_id": 44
+    },
+    {
+        "id": 19112,
+        "name": "Talagante",
+        "country_id": 44
+    },
+    {
+        "id": 19128,
+        "name": "Villa Presidente Frei, Ñuñoa, Santiago, Chile",
+        "country_id": 44
+    },
+    {
+        "id": 18989,
+        "name": "Iquique",
+        "country_id": 44
+    },
+    {
+        "id": 19054,
+        "name": "Provincia de Iquique",
+        "country_id": 44
+    },
+    {
+        "id": 19079,
+        "name": "Provincia del Tamarugal",
+        "country_id": 44
+    },
+    {
+        "id": 18955,
+        "name": "Cartagena",
+        "country_id": 44
+    },
+    {
+        "id": 18986,
+        "name": "Hacienda La Calera",
+        "country_id": 44
+    },
+    {
+        "id": 18987,
+        "name": "Hanga Roa",
+        "country_id": 44
+    },
+    {
+        "id": 18992,
+        "name": "La Ligua",
+        "country_id": 44
+    },
+    {
+        "id": 19002,
+        "name": "Limache",
+        "country_id": 44
+    },
+    {
+        "id": 19004,
+        "name": "Llaillay",
+        "country_id": 44
+    },
+    {
+        "id": 19008,
+        "name": "Los Andes",
+        "country_id": 44
+    },
+    {
+        "id": 19025,
+        "name": "Petorca Province",
+        "country_id": 44
+    },
+    {
+        "id": 19055,
+        "name": "Provincia de Isla de Pascua",
+        "country_id": 44
+    },
+    {
+        "id": 19059,
+        "name": "Provincia de Los Andes",
+        "country_id": 44
+    },
+    {
+        "id": 19063,
+        "name": "Provincia de Marga Marga",
+        "country_id": 44
+    },
+    {
+        "id": 19068,
+        "name": "Provincia de Quillota",
+        "country_id": 44
+    },
+    {
+        "id": 19069,
+        "name": "Provincia de San Felipe de Aconcagua",
+        "country_id": 44
+    },
+    {
+        "id": 19076,
+        "name": "Provincia de Valparaíso",
+        "country_id": 44
+    },
+    {
+        "id": 19092,
+        "name": "Quillota",
+        "country_id": 44
+    },
+    {
+        "id": 19093,
+        "name": "Quilpué",
+        "country_id": 44
+    },
+    {
+        "id": 19100,
+        "name": "San Antonio",
+        "country_id": 44
+    },
+    {
+        "id": 19101,
+        "name": "San Antonio Province",
+        "country_id": 44
+    },
+    {
+        "id": 19105,
+        "name": "San Felipe",
+        "country_id": 44
+    },
+    {
+        "id": 19123,
+        "name": "Valparaíso",
+        "country_id": 44
+    },
+    {
+        "id": 19127,
+        "name": "Villa Alemana",
+        "country_id": 44
+    },
+    {
+        "id": 19130,
+        "name": "Viña del Mar",
+        "country_id": 44
+    },
+    {
+        "id": 19332,
+        "name": "Beijing",
+        "country_id": 45
+    },
+    {
+        "id": 20227,
+        "name": "Wubao",
+        "country_id": 45
+    },
+    {
+        "id": 20243,
+        "name": "Wuyishan",
+        "country_id": 45
+    },
+    {
+        "id": 20244,
+        "name": "Wuyucun",
+        "country_id": 45
+    },
+    {
+        "id": 20248,
+        "name": "Xiabaishi",
+        "country_id": 45
+    },
+    {
+        "id": 20249,
+        "name": "Xiahu",
+        "country_id": 45
+    },
+    {
+        "id": 20977,
+        "name": "La Chorrera",
+        "country_id": 48
+    },
+    {
+        "id": 20998,
+        "name": "La Pedrera",
+        "country_id": 48
+    },
+    {
+        "id": 21014,
+        "name": "La Victoria",
+        "country_id": 48
+    },
+    {
+        "id": 21027,
+        "name": "Leticia",
+        "country_id": 48
+    },
+    {
+        "id": 21086,
+        "name": "Miriti - Paraná",
+        "country_id": 48
+    },
+    {
+        "id": 21231,
+        "name": "Puerto Alegría",
+        "country_id": 48
+    },
+    {
+        "id": 21232,
+        "name": "Puerto Arica",
+        "country_id": 48
+    },
+    {
+        "id": 21249,
+        "name": "Puerto Nariño",
+        "country_id": 48
+    },
+    {
+        "id": 21256,
+        "name": "Puerto Santander",
+        "country_id": 48
+    },
+    {
+        "id": 21512,
+        "name": "Tarapacá",
+        "country_id": 48
+    },
+    {
+        "id": 20485,
+        "name": "Abejorral",
+        "country_id": 48
+    },
+    {
+        "id": 20487,
+        "name": "Abriaquí",
+        "country_id": 48
+    },
+    {
+        "id": 20504,
+        "name": "Alejandría",
+        "country_id": 48
+    },
+    {
+        "id": 20512,
+        "name": "Amagá",
+        "country_id": 48
+    },
+    {
+        "id": 20513,
+        "name": "Amalfi",
+        "country_id": 48
+    },
+    {
+        "id": 20520,
+        "name": "Andes",
+        "country_id": 48
+    },
+    {
+        "id": 20521,
+        "name": "Angelópolis",
+        "country_id": 48
+    },
+    {
+        "id": 20522,
+        "name": "Angostura",
+        "country_id": 48
+    },
+    {
+        "id": 20527,
+        "name": "Anza",
+        "country_id": 48
+    },
+    {
+        "id": 20529,
+        "name": "Apartadó",
+        "country_id": 48
+    }
+]

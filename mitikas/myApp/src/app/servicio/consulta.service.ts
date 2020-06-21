@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
-import {HttpClient, HttpParams} from '@angular/common/http'
+import { HttpClient, HttpParams } from '@angular/common/http'
 @Injectable({
-    providedIn: 'root'
+  providedIn: 'root'
 })
 export class ConsultaService {
 
@@ -11,47 +11,65 @@ export class ConsultaService {
       {'id':4,'titulo':'Fundamentos de Redes','short':'Comprende cómo funcionan las dir)ecciones IP y los protocolos de red.','descripcion':'Las redes permiten que las computadoras envíen y reciban datos. Internet, y otras tecnologías, existen gracias a ellas. En este curso aprenderás cómo funcionan las redes, los componentes, dispositivos, protocolos y capas.','imagen':'https://drupal.ed.team/sites/default/files/imagenes-cdn-edteam/2019-03/Redes%20Fundamentos.png','num_sesiones':15,'precio':40}
   ]
   */
- db_base=[];
-  db_calificaciones = [{'id':1,'materia':"Diseño de Software",'titulo':"Diagrama de clases","calificacion":100},
-                        {'id':2,'materia':"Diseño de Software",'titulo':"Diagrama de casos de uso","calificacion":66},
-                        {'id':4,'materia':"Diseño de Software",'titulo':"Diagrama de secuencias","calificacion":40},
-                        {'id':5,'materia':"Diseño de Software",'titulo':"Pruebas unitarias","calificacion":40},
-                        {'id':6,'materia':"Diseño de Software",'titulo':"Patrones de diseño","calificacion":40},
-                        {'id':7,'materia':"Diseño de Software",'titulo':"Diagrama de actividades","calificacion":40},
-                        {'id':8,'materia':"Diseño de Software",'titulo':"Diagrama de despliegue","calificacion":30},
-                        {'id':9,'materia':"Diseño de Software",'titulo':"Proyecto final","calificacion":100},
-                        {'id':10,'materia':"Diseño de Software",'titulo':"Estimación de costos","calificacion":75},
-                        {'id':11,'materia':"Diseño de Software",'titulo':"Diagrama de secuncias","calificacion":90},
-                    ]
+  db_base = [];
+  db_calificaciones = [{ 'id': 1, 'materia': "Diseño de Software", 'titulo': "Diagrama de clases", "calificacion": 100 },
+  { 'id': 2, 'materia': "Diseño de Software", 'titulo': "Diagrama de casos de uso", "calificacion": 66 },
+  { 'id': 4, 'materia': "Diseño de Software", 'titulo': "Diagrama de secuencias", "calificacion": 40 },
+  { 'id': 5, 'materia': "Diseño de Software", 'titulo': "Pruebas unitarias", "calificacion": 40 },
+  { 'id': 6, 'materia': "Diseño de Software", 'titulo': "Patrones de diseño", "calificacion": 40 },
+  { 'id': 7, 'materia': "Diseño de Software", 'titulo': "Diagrama de actividades", "calificacion": 40 },
+  { 'id': 8, 'materia': "Diseño de Software", 'titulo': "Diagrama de despliegue", "calificacion": 30 },
+  { 'id': 9, 'materia': "Diseño de Software", 'titulo': "Proyecto final", "calificacion": 100 },
+  { 'id': 10, 'materia': "Diseño de Software", 'titulo': "Estimación de costos", "calificacion": 75 },
+  { 'id': 11, 'materia': "Diseño de Software", 'titulo': "Diagrama de secuncias", "calificacion": 90 },
+  ]
   // eslint-disable-next-line @typescript-eslint/no-empty-function
-  constructor(public http:HttpClient) { }
+  constructor(public http: HttpClient) { }
 
   // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
-  obtenerCursos(){
-      return this.http.get("https://patricioxavi10.pythonanywhere.com/api/cursos");
+  obtenerCursos() {
+    return this.http.get("https://patricioxavi10.pythonanywhere.com/api/cursos");
   }
 
-  obtenerMisCursos(id: string){    
-    return this.http.get("https://patricioxavi10.pythonanywhere.com/api/getClase/"+id);
+  obtenerMisCursos(id: string) {
+    return this.http.get("https://patricioxavi10.pythonanywhere.com/api/getClase/" + id);
   }
 
-  obtenerCalificaciones(){
+  obtenerCalificaciones() {
     return this.db_calificaciones;
   }
 
-  obtenerClase(idEstudiante:string,idClase:string){
+  obtenerClase(idEstudiante: string, idClase: string) {
     let path = "https://patricioxavi10.pythonanywhere.com/api/getTarea/estudiante/";
-    path = path + `?id_estudiante=`+idEstudiante+"&id_clase="+idClase;
+    path = path + `?id_estudiante=` + idEstudiante + "&id_clase=" + idClase;
     return this.http.get(path);
   }
 
 
 
   // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
-  obtenerCursobyId(id: number){
-      let path="https://patricioxavi10.pythonanywhere.com/api/curso/"+id;
-      return this.http.get(path);
+  obtenerCursobyId(id: number) {
+    let path = "https://patricioxavi10.pythonanywhere.com/api/curso/" + id;
+    return this.http.get(path);
   }
 
+  obtenerDataPaises() {
+    return this.http.get('assets/archivos/countries.json');
+  }
+
+  obtenerDataCiudades() {
+    return this.http.get('assets/archivos/cities.json');
+  }
+
+  enviarRegistro(postData) {
+
+    return this.http.post("https://patricioxavi10.pythonanywhere.com/api/auth/register/user", postData);
+
+  }
+  ingresar(postData) {
+
+    return this.http.post("https://patricioxavi10.pythonanywhere.com/api/auth/login/user", postData);
+
+  }
 }
 
