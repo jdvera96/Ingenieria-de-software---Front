@@ -12,12 +12,17 @@ import { HttpClientModule } from '@angular/common/http';
 
 //fcm
 import { Firebase } from '@ionic-native/firebase/ngx';
+import { ComponentsModule } from './components/components.module';
 
 
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
-  imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule,HttpClientModule],
+  imports: [BrowserModule,
+    IonicModule.forRoot(),
+    AppRoutingModule,
+    HttpClientModule,
+    ComponentsModule],
   providers: [
     Firebase,
     StatusBar,

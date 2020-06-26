@@ -6,24 +6,22 @@ import { StatusBar } from '@ionic-native/status-bar/ngx';
 
 import { Firebase } from '@ionic-native/firebase/ngx';
 import { ConsultarService } from './servicioFCM/consultar.service';
-
+import { MenuController } from '@ionic/angular';
 @Component({
     selector: 'app-root',
     templateUrl: 'app.component.html',
     styleUrls: ['app.component.scss']
 })
 export class AppComponent {
-
-    
     control: number;
     control2: number;
-
     constructor(
         private platform: Platform,
         private splashScreen: SplashScreen,
         private firebase: Firebase,
         private statusBar: StatusBar,
-        private consultar: ConsultarService
+        private consultar: ConsultarService,
+        public menuCtrl: MenuController
     ) {
         this.initializeApp();
     }

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { AlertController, NavController } from '@ionic/angular';
+import { AlertController, NavController, MenuController } from '@ionic/angular';
 import { ActivatedRoute } from '@angular/router';
 import { ConsultaService } from 'src/app/servicio/consulta.service';
 
@@ -13,9 +13,10 @@ export class InicioPage implements OnInit {
   email:string;
   password: string;
 
-  constructor(public alertController: AlertController,public nav: NavController, private activatedRoute: ActivatedRoute, public consulta: ConsultaService) { }
+  constructor(public alertController: AlertController, public nav: NavController, private activatedRoute: ActivatedRoute, public consulta: ConsultaService, private menu: MenuController) { }
 
   ngOnInit() {
+    this.menu.enable(false, 'first');
   }
 
   login(){
