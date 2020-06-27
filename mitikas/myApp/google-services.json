@@ -1,34 +1,34 @@
 {
   "project_info": {
-    "project_number": "588642630175",
-    "firebase_url": "https://firepush-84a6b.firebaseio.com",
-    "project_id": "firepush-84a6b",
-    "storage_bucket": "firepush-84a6b.appspot.com"
+    "project_number": "375869587434",
+    "firebase_url": "https://mitikas-698c7.firebaseio.com",
+    "project_id": "mitikas-698c7",
+    "storage_bucket": "mitikas-698c7.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:588642630175:android:bc861b822fcfa3463c332a",
+        "mobilesdk_app_id": "1:375869587434:android:da37399089e32fd8e73c93",
         "android_client_info": {
-          "package_name": "io.ionic.starterPersonal"
+          "package_name": "com.mitikas.myApp"
         }
       },
       "oauth_client": [
         {
-          "client_id": "588642630175-fasij86i60b2bu03ta2h3caic5j0i4al.apps.googleusercontent.com",
+          "client_id": "375869587434-32okmc7l0iqrccehfdjqobggkle9jshi.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyClmg3PFhzecwzNspZoHcrRIiJW7adRtpE"
+          "current_key": "AIzaSyDi7slKtBINshHUUFv94vKVmkWwrseJXQI"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "588642630175-fasij86i60b2bu03ta2h3caic5j0i4al.apps.googleusercontent.com",
+              "client_id": "375869587434-32okmc7l0iqrccehfdjqobggkle9jshi.apps.googleusercontent.com",
               "client_type": 3
             }
           ]
