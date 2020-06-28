@@ -7,16 +7,18 @@
 </ion-header>
 
 <ion-content>
-  <ion-card>
-    <ion-card-header>
-      <img src="assets/img/Promocion _1_Halloween.PNG" alt="Halloween">
-      <ion-card-subtitle>Descuento hasta el 31 de Octubre</ion-card-subtitle>
-      <ion-card-title>Ionic y Angular</ion-card-title>
-    </ion-card-header>
-    <ion-card-content>
-      Ionic es una plataforma que facilita la creación de aplicaciones móviles con tecnologías web para los programadores web. La plantilla de Ionic permite a los desarrolladores crear aplicaciones móviles en diferentes plataformas que pueden instalarse en teléfonos con Windows, Android e iOS.
-Ionic utiliza otros frameworks como Phonegap, ASS y Angular JS para desarrollar aplicaciones móviles híbridas.
-    </ion-card-content>
-  </ion-card>
+  <div class = "promociones" *ngFor="let promocion of datos">
+    <ion-card id = "promo {{promocion.id_promocion}}">
+      <ion-card-header id = "descuento {{promocion.cod_descuento}}" >
+        <img src={{promocion.imagen}}>
+        <ion-card-subtitle>Descuento hasta el {{promocion.fecha_vencimiento}}</ion-card-subtitle>
+        <ion-card-title>{{promocion.descripcion}}r</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        Obten hasta un {{promocion.porc_descuento}}% de descuento.
+      </ion-card-content>
+    </ion-card>
+  </div>
+  
   
 </ion-content>

@@ -83,7 +83,11 @@ export class ConsultaService {
       }
     );
 
-}
+  }
+
+  obtenerPromociones(){
+    return this.http.get("https://patricioxavi10.pythonanywhere.com/api/getPromo");
+  }
 
 
 }
