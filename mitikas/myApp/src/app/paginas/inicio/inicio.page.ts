@@ -30,6 +30,13 @@ export class InicioPage implements OnInit {
     this.consulta.ingresar(postData).subscribe(data => {
       localStorage.setItem("token", data["token"]);
       this.presentAlert("Bienvenido", "Ingreso exitoso", "");
+      this.consulta.habilitarNotificaciones().subscribe(data => {
+        console.log("Registrado con:"+data);
+      }
+      ,error => {
+          console.log("El error es: ",error);
+      });
+      
       this.openCursos();
     }, error => {
       this, this.presentAlert("Error", "Ingreso fallido.", "Usuario o contraseña incorrecta");
