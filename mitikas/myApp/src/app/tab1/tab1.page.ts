@@ -14,7 +14,7 @@ export class Tab1Page {
   datos: any[];
   constructor(public consultar: ConsultaService, public nav: NavController, private menu: MenuController) { 
     // this.menu.enable(false, 'first');
-    this.menu.swipeEnable(false);
+    // this.menu.swipeEnable(false);
     this.consultar.obtenerCursos().subscribe((data)=>{
         var anydata=<any>data;
         this.datos=anydata;
