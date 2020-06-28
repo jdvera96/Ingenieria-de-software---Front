@@ -69,7 +69,26 @@ export class ConsultaService {
   ingresar(postData) {
 
     return this.http.post("https://patricioxavi10.pythonanywhere.com/api/auth/login/user", postData);
+  }
+
+  habilitarNotificaciones() {
+    return this.http.post("https://patricioxavi10.pythonanywhere.com/api/createtoken",
+      {
+        "registration_id": localStorage.getItem("FCMtoken")
+        ,
+        "type":"android"
+      },
+      {
+        headers: { 'Content-Type': 'application/json', "Authorization": "Token "+localStorage.getItem("token")}
+      }
+    );
 
   }
+
+  obtenerPromociones(){
+    return this.http.get("https://patricioxavi10.pythonanywhere.com/api/getPromo");
+  }
+
+
 }
 

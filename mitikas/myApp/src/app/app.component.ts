@@ -1,18 +1,19 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 import { Platform } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
 
 import { Firebase } from '@ionic-native/firebase/ngx';
-import { ConsultarService } from './servicioFCM/consultar.service';
+/*import { ConsultarService } from './servicioFCM/consultar.service';*/
+
 import { MenuController } from '@ionic/angular';
 @Component({
     selector: 'app-root',
     templateUrl: 'app.component.html',
     styleUrls: ['app.component.scss']
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
     control: number;
     control2: number;
     constructor(
@@ -20,10 +21,13 @@ export class AppComponent {
         private splashScreen: SplashScreen,
         private firebase: Firebase,
         private statusBar: StatusBar,
-        private consultar: ConsultarService,
+        /*private consultar: ConsultarService,*/
         public menuCtrl: MenuController
     ) {
         this.initializeApp();
+    }
+    ngOnInit(): void {
+
     }
 
     // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
@@ -32,6 +36,39 @@ export class AppComponent {
             this.statusBar.styleDefault();
             this.splashScreen.hide();
             this.firebase.hasPermission()
+                .then(result => {
+                    console.log('resultados: ', result);
+                    if (result) {
+                        console.log('tiene permisos aparentemete')
+                    } else {
+                        console.log('no tiene permisos')
+                    }
+
+                })
+                .catch(errPromesa => {
+                    console.log('error al recibir la promesa')
+                })
+
+            this.firebase.grantPermission()
+                .then(dataPermisos => {
+                    console.log('permisos obtenidos');
+                    console.log(dataPermisos);
+                })
+                .catch(errPermisos => {
+                    console.log('error al pedir permisos');
+                    console.log('error: ', errPermisos)
+                })
+            this.firebase.getToken()
+                .then(token => {
+                    localStorage.setItem("FCMtoken",token);
+                    console.log("El token es:", token);
+                });
+            this.firebase.onNotificationOpen()
+                .subscribe(data => console.log(`User opened a notification ${data}`));
+
+            this.firebase.onTokenRefresh()
+                .subscribe((token: string) => console.log(`Got a new token ${token}`));
+            /*this.firebase.hasPermission()
                 .then(result => {
                     console.log('resultados: ', result);
                     if (result) {
@@ -129,7 +166,7 @@ export class AppComponent {
                     console.log('fin de todo')
 
                 }
-                );
+                );*/
         });
     }
 

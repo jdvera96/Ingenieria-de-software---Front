@@ -45,7 +45,6 @@
   font-size: 11px;
   margin-top: 1%;
   margin-right: 2%;
-
   color: green;
 }
 .md {
@@ -53,4 +52,15 @@
 }
 .ios {
   text-transform: none;
+}
+
+.searchBar{
+  margin: 20px 20px 0px 20px;
+  border-radius: 7px;
+  border: #e4e4e4 1px solid;
+  box-shadow: 1px 1px rgb(192, 191, 191);
+}
+
+.menu{
+  margin-top: 10px !important;
 }

@@ -13,13 +13,17 @@ export class Tab1Page {
 
   datos: any[];
   constructor(public consultar: ConsultaService, public nav: NavController, private menu: MenuController) { 
-    this.menu.enable(true, 'first');
+    // this.menu.enable(false, 'first');
+    this.menu.swipeEnable(false);
     this.consultar.obtenerCursos().subscribe((data)=>{
         var anydata=<any>data;
         this.datos=anydata;
       });
   }
 
+  openMenu(){
+    this.menu.toggle();
+  }
 
   // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
   openNavDetailsPage(id: string) { 
