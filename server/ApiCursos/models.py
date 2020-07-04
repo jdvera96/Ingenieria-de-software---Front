@@ -13,11 +13,13 @@ from django.db import models
 from django.contrib.auth.models import AbstractUser
 from django.utils.translation import ugettext_lazy as _
 from django.conf import settings
+from fcm_django.models import FCMDevice
 
 
 class User(AbstractUser):
     username = models.CharField(blank=True, null=True, max_length=10)
     email = models.EmailField(_('email address'), unique=True)
+    rol = models.CharField(blank=True, null=True, max_length=20)
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = ['username']
 
@@ -51,6 +53,26 @@ class Estudiante(models.Model):
 class Profesor(models.Model):
     user = models.OneToOneField(settings.AUTH_USER_MODEL,
                  on_delete=models.CASCADE, related_name='Profesor')
+    nombres = models.CharField(blank=True, null=True, max_length=50)
+    apellidos = models.CharField(blank=True, null=True, max_length=50)
+    cedula = models.CharField(max_length=10,primary_key=True,unique=True)
+    fecha_nacimiento = models.DateField(blank=True, null=True)
+    #photo = models.ImageField(upload_to='uploads', blank=True)
+    #dob = models.DateTimeField(auto_now_add=True)
+    direccion = models.CharField(blank=True, null=True, max_length=255)
+    telefono = models.CharField(blank=True, null=True, max_length=10)
+    escolaridad = models.CharField(blank=True, null=True, max_length=50)
+    pais = models.CharField(blank=True, null=True, max_length=50)
+    ciudad = models.CharField(blank=True, null=True, max_length=50)
+    sexo = models.CharField(blank=True, null=True, max_length=10)
+
+    def __str__(self):
+        return self.nombres + " " + self.apellidos
+
+
+class Supervisor(models.Model):
+    user = models.OneToOneField(settings.AUTH_USER_MODEL,
+                 on_delete=models.CASCADE, related_name='Supervisor')
     nombres = models.CharField(blank=True, null=True, max_length=50)
     apellidos = models.CharField(blank=True, null=True, max_length=50)
     cedula = models.CharField(max_length=10,primary_key=True,unique=True)
@@ -125,5 +147,15 @@ class IndividualUserProfile(Estudiante):
 def create_auth_token(sender, instance=None, created=False, **kwargs):
     if created:
         Token.objects.create(user=instance)
+
+@receiver(post_save, sender=Promociones)
+def update_stock(sender, instance, **kwargs):
+
+    devices = FCMDevice.objects.all()
+
+    devices.send_message(title="Nueva Promocion", body="Se agrego una nueva Promo, No te la pierdas")
+    #devices.send_message(title="Title", body="Message", data={"test": "test"})
+
+    #print("se ejecuto el token")
 
 

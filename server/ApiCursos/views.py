@@ -17,6 +17,9 @@ from django.dispatch import receiver
 from rest_framework.authtoken.models import Token
 from rest_framework.permissions import *
 from rest_framework.authtoken.views import ObtainAuthToken
+from rest_framework.views import APIView
+
+from fcm_django.models import FCMDevice
 
 
 
@@ -27,11 +30,39 @@ class CustomAuthToken(ObtainAuthToken):
                                            context={'request': request})
         serializer.is_valid(raise_exception=True)
         user = serializer.validated_data['user']
+        cedula = None
+        nombre = None
+        apellido = None
+
+        try:
+            profesor = Profesor.objects.get(user=user)
+        except Profesor.DoesNotExist:
+            profesor = None
+        try:
+            estudiante = Estudiante.objects.get(user=user)
+        except Estudiante.DoesNotExist:
+            estudiante = None
+        if profesor:
+            cedula = profesor.cedula
+            nombre = profesor.nombres
+            apellido = profesor.apellidos
+        if estudiante:
+            cedula = estudiante.cedula
+            nombre = estudiante.nombres
+            apellido = estudiante.apellidos
+
+
+
+
         token, created = Token.objects.get_or_create(user=user)
         return Response({
             'token': token.key,
-            'isAdmin': user.is_superuser
-            ,
+            'isAdmin': user.is_superuser,
+            'cedula': cedula,
+            'rol': user.rol,
+            'nombre' : nombre ,
+            'apellido' : apellido
+
 
         })
 
@@ -62,6 +93,21 @@ class RegisterProfesorAPI(generics.GenericAPIView):
             "user": UserSerializerProfesor(user, context=self.get_serializer_context()).data,
 
         })
+
+
+class RegisterSupervisorAPI(generics.GenericAPIView):
+    permission_classes = (AllowAny,)
+    serializer_class = UserSerializerSupervisor
+
+    def post(self, request, *args, **kwargs):
+        serializer = self.get_serializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        user = serializer.save()
+        return Response({
+            "user": UserSerializerSupervisor(user, context=self.get_serializer_context()).data,
+
+        })
+
 
 
 
@@ -124,3 +170,22 @@ class CreateClase(generics.CreateAPIView):
     permission_classes = (AllowAny,)
     queryset = Clase.objects.all()
     serializer_class = ClaseSerializer2
+
+class PromoSave(generics.CreateAPIView):
+    permission_classes = (AllowAny,)
+    queryset = Promociones.objects.all()
+    serializer_class = PromoSerializer
+
+
+class SendNotificacion(APIView):
+    permission_classes =(AllowAny,)
+    def post(self, request,format='json'):
+        if(request.method=='POST'):
+            titulo = request.data['titulo']
+            body = request.data['body']
+
+            devices = FCMDevice.objects.all()
+
+            devices.send_message(title=titulo, body=body)
+
+            return Response(request.data)

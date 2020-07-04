@@ -17,12 +17,40 @@ class ProfesorProfileSerializer(serializers.ModelSerializer):
         model = Profesor
         fields = ('nombres','apellidos','cedula','fecha_nacimiento','direccion', 'telefono',
                             'escolaridad', 'pais', 'ciudad','sexo')
+
+
+
+class SupervisorProfileSerializer(serializers.ModelSerializer):
+    class Meta:
+        # model = Estudiante
+        model = Supervisor
+        fields = ('nombres','apellidos','cedula','fecha_nacimiento','direccion', 'telefono',
+                            'escolaridad', 'pais', 'ciudad','sexo')
+
+
+class UserSerializerSupervisor(serializers.ModelSerializer):
+    profile = SupervisorProfileSerializer(required=True)
+    #url = serializers.HyperlinkedIdentityField(view_name="ApiCursos:user-detail")
+    class Meta:
+        model = User
+        fields = ('email', 'password','rol','profile')
+        extra_kwargs = {'password': {'write_only': True}}
+
+    def create(self, validated_data):
+        profile_data = validated_data.pop('profile')
+        password = validated_data.pop('password')
+        user = User(**validated_data)
+        user.set_password(password)
+        user.save()
+        Supervisor.objects.create(user=user, **profile_data)
+        return user
+
 class UserSerializerProfesor(serializers.ModelSerializer):
     profile = ProfesorProfileSerializer(required=True)
     #url = serializers.HyperlinkedIdentityField(view_name="ApiCursos:user-detail")
     class Meta:
         model = User
-        fields = ('email', 'password','profile')
+        fields = ('email', 'password','rol','profile')
         extra_kwargs = {'password': {'write_only': True}}
 
     def create(self, validated_data):
@@ -40,7 +68,7 @@ class UserSerializer(serializers.ModelSerializer):
     #url = serializers.HyperlinkedIdentityField(view_name="ApiCursos:user-detail")
     class Meta:
         model = User
-        fields = ('email', 'password','profile')
+        fields = ('email', 'password','rol','profile')
         extra_kwargs = {'password': {'write_only': True}}
 
     def create(self, validated_data):

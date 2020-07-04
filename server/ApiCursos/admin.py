@@ -9,6 +9,6 @@ admin.site.register(Pago)
 admin.site.register(Promociones)
 admin.site.register(Inscripcion)
 admin.site.register(Curso)
-
+admin.site.register(Supervisor)
 admin.site.register(Compra)
 admin.site.register(Tarea)

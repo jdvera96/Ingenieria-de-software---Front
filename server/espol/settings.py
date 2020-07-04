@@ -41,7 +41,21 @@ INSTALLED_APPS = [
     'corsheaders',
     'rest_framework',
     'rest_framework.authtoken',
+    "fcm_django",
 ]
+
+FCM_DJANGO_SETTINGS = {
+        "APP_VERBOSE_NAME": "notificaciones",
+         # default: _('FCM Django')
+        "FCM_SERVER_KEY": "AAAAey5nZQI:APA91bEWmjwuIablcRZQR6jXJXNitV5uGiOrNyrrzQpFxIF720A3WkWJ9DFtPG8xQoDsAEm1MLvlkGMbceIdMuf0R62Rqq_ViYYnfK5bd4UOpq8np5989VTfm-ng9wwQ6kGeIZjgxHNe",
+         # true if you want to have only one active device per registered user at a time
+         # default: False
+        "ONE_DEVICE_PER_USER": True,
+         # devices to which notifications cannot be sent,
+         # are deleted upon receiving error response from FCM
+         # default: False
+        "DELETE_INACTIVE_DEVICES": True,
+}
 
 REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': (
