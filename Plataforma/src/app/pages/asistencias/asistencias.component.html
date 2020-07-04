@@ -1,0 +1,33 @@
+<div class="form-group">
+    <label for="exampleFormControlSelect1">Seleccione una Sesion</label>
+    <select class="form-control" id="exampleFormControlSelect1">
+      <option></option>
+      <option>Codigo HTML</option>
+      <option>Investigacion Bootstrap</option>
+      <option>Reporte de rendimiento PHP</option>
+      
+    </select>
+</div>
+
+<table class="table">
+    <thead class="thead-dark">
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Nombre</th>
+        <th scope="col">Fecha</th>
+        <th scope="col">Estado</th>
+        <th scope="col">Asistencia</th>
+        <th scope="col">Accion</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor='let estudiante of objectEstudiantes' id="{{estudiante.id}}">
+            <th scope="row">{{estudiante.num}}</th>
+            <td>{{estudiante.nombre}}</td>
+            <td>{{estudiante.fecha}}</td>
+            <td>{{estudiante.estado}}</td>
+            <td><input type="checkbox" class="form-check-input" id="exampleCheck1"></td>
+            <td><button (click)="gotoCalificar()">Guardar</button></td> 
+      </tr>
+    </tbody>
+</table>
