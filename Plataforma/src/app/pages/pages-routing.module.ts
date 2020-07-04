@@ -25,7 +25,25 @@ import {NotificacionesSPComponent} from './notificaciones-sp/notificaciones-sp.c
 import {LoginComponent} from './auth/login/login.component';
 
 var login=localStorage.getItem('login-mitikas');
-var routesMenu: Routes;
+var routesMenu: Routes =[{
+  path: '',
+  component: PagesComponent,
+  children: [
+    {
+      path: 'auth/login',
+      component: LoginComponent,
+    },
+    {
+      path: '',
+      redirectTo: 'auth/login',
+      pathMatch: 'full',
+    },
+    {
+      path: '**',
+      component: NotFoundComponent,
+    },
+  ],
+}];;
 
 if(login!=null){
   let array=login.split('-');
@@ -178,6 +196,7 @@ if(login!=null){
 
 }else{
   console.log('no hay nadie logeado');
+  
 }
 
 /* const routes: Routes = [{

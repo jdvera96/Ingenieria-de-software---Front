@@ -40,6 +40,7 @@ export class LoginComponent implements OnInit {
 
           let valor=response["rol"]+"-"+response["nombre"]+" "+response["apellido"];
           localStorage.setItem('login-mitikas',valor);
+          location.href="http://localhost:4200/";
         }else{
           console.log('credenciales invalidas');
         }

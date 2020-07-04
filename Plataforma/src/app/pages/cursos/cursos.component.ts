@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
+import {CursosService} from '../../servicios/cursos/cursos.service'
+
 @Component({
   selector: 'ngx-cursos',
   templateUrl: './cursos.component.html',
@@ -8,15 +10,24 @@ import { Router } from '@angular/router';
 })
 export class CursosComponent implements OnInit {
 
-  constructor(private router: Router) { }
+  objetoCursos;
+  constructor(private router: Router, private servicioCursos: CursosService) { 
+
+    this.cargarCursos();
+  }
 
   ngOnInit(): void {
   }
 
   gotoCurso(codigo: string): void{
-    console.log('hola')
     this.router.navigate(['/pages/curso',codigo]);
+  }
 
+  cargarCursos(){
+   this.servicioCursos.obtenerCursos().subscribe(result=>{
+     this.objetoCursos=result;
+     console.log(this.objetoCursos);
+   }) 
   }
 
 }

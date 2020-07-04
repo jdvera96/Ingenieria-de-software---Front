@@ -296,6 +296,8 @@ if(login!=null){
   }else{
     menuDinamico=menu_errorCredenciales;
   }
+}else{
+  menuDinamico=menu_errorCredenciales;
 }
 
 export var MENU_ITEMS: NbMenuItem[] = menuDinamico;
