@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { NavController } from '@ionic/angular';
 
 @Component({
   selector: 'app-menu',
@@ -7,8 +8,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MenuComponent implements OnInit {
 
-  constructor() { }
+  constructor(private nav:NavController) { }
 
   ngOnInit() {}
+
+  cerrarSesion(){
+    localStorage.removeItem("token");
+    this.nav.navigateForward("");
+  }
 
 }

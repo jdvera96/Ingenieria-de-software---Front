@@ -25,8 +25,8 @@
       <ion-item>
         <ion-icon class="iconMenu" name="settings" item-left color="medium"></ion-icon>Ajustes
       </ion-item>
-      <ion-item>
-        <ion-icon class="iconMenu" name="log-out" item-left color="medium"></ion-icon>Cerrar Sesión
+      <ion-item (click)="cerrarSesion()">
+        <ion-icon class="iconMenu" name="log-out" item-left color="medium" ></ion-icon>Cerrar Sesión
       </ion-item>
     </ion-list>
   </ion-content>
