@@ -12,32 +12,12 @@
       </ion-input>
     </ion-col>
   </ion-row>
-  <!-- <div style="background: #e4e4e4; margin:20px;">
-    <div style="float: left; background:#e4e4e4; 
-      width: 14%; height: 5vh; border-top-left-radius: 10px; 
-      border-bottom-left-radius: 10px; padding: 4px 0px 0px 4px;">
-      <ion-buttons slot="start">
-        <ion-menu-button color="medium" menu="first">
-        </ion-menu-button>
-      </ion-buttons>
-    </div>
-    <div style="float: left; background:#e4e4e4; width: 86%;
-      height: 5vh; padding-left: 10px; border-top-right-radius: 10px;
-      border-bottom-right-radius: 10px;">
-      <ion-input placeholder="Buscar curso">
-
-      </ion-input>
-    </div>
-  </div> -->
-    <ion-segment scrollable mode="md">
-      <ion-segment-button mode="md" *ngFor="let categoria of categorias" [value]="categoria">
-        <ion-label>{{ categoria }}</ion-label>
-      </ion-segment-button>
-    </ion-segment>
+  <ion-segment scrollable mode="md">
+    <ion-segment-button mode="md" *ngFor="let categoria of categorias" [value]="categoria">
+      <ion-label>{{ categoria }}</ion-label>
+    </ion-segment-button>
+  </ion-segment>
 </ion-header>
-<!-- <ion-searchbar class="search" placeholder="Buscar curso" [(ngModel)]="miBuscador"
-  [showCancelButton]="miStringDeCancell" (ionInput)="onInput($event)" (ionCancel)="onCancel($event)">
-</ion-searchbar> -->
 
 <ion-content class="main-container">
   <div *ngFor="let item of datos" (click)="openNavDetailsPage(item.id_curso)" class="contenedor">
