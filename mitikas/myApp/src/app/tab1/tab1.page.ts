@@ -23,6 +23,7 @@ export class Tab1Page {
     this.menu.toggle();
     this.menu.enable(true, 'first');
     console.log("Prueba");
+    console.log("HOLA MUNDO");
   }
 
   // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
