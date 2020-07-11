@@ -14,6 +14,7 @@ export class MenuComponent implements OnInit {
 
   cerrarSesion(){
     localStorage.removeItem("token");
+    localStorage.removeItem("id");
     this.nav.navigateForward("");
   }
 

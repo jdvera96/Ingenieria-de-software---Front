@@ -7,11 +7,11 @@
 </ion-header>
 
 <ion-content class="main-container">
-  <div *ngFor="let item of datosa" (click)="openMyCourse(item.id_curso.id_curso)" class="contenedor">
+  <div *ngFor="let item of datosa" (click)="openMyCourse(item.id_curso.id)" class="contenedor">
     <img class="imagen" src="{{item.id_curso.imagen}}" alt="">
     <div class="contenido">
       <h3 class="titulo">{{ item.id_curso.titulo_curso }}</h3>
-      <p class="descripcion">{{ item.id_curso.short }}</p>        
+      <p class="descripcion">{{ item.id_curso.descripcion }}</p>        
     </div>
   </div>
 

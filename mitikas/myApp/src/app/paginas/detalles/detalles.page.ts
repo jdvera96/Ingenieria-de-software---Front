@@ -54,7 +54,7 @@ export class DetallesPage implements AfterViewChecked {
         };*/
 
         this.consulta.crearPago("PayPal").subscribe(data=>{
-          this.consulta.crearCompra(data["id"],"2222222222",(this.id).toString()).subscribe(data=>{
+          this.consulta.crearCompra(data["id"],localStorage.getItem("id"),(this.id).toString()).subscribe(data=>{
 
           },error=>{
             console.log(error);

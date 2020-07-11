@@ -94,7 +94,7 @@ export class ConsultaService {
   }
 
   crearPago(tipoPago:string){
-    return this.http.post("https://patricioxavi10.pythonanywhere.com/api/getPromo",
+    return this.http.post("https://patricioxavi10.pythonanywhere.com/api/crearPago",
     {
       "tipo_pago": tipoPago
     }
