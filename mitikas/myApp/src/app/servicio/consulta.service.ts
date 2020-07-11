@@ -89,6 +89,28 @@ export class ConsultaService {
     return this.http.get("https://patricioxavi10.pythonanywhere.com/api/getPromo");
   }
 
+  obtenerMisCompras(idEstudiante: string){
+    return this.http.get("https://patricioxavi10.pythonanywhere.com/api/getcompras/"+idEstudiante);
+  }
+
+  crearPago(tipoPago:string){
+    return this.http.post("https://patricioxavi10.pythonanywhere.com/api/getPromo",
+    {
+      "tipo_pago": tipoPago
+    }
+    );
+  }
+
+  crearCompra(idPago: string ,idEstudiante : string,idCurso:string){
+    return this.http.post("https://patricioxavi10.pythonanywhere.com/api/crearcompra",
+    {
+      "id_pago": idPago,
+      "id_estudiante": idEstudiante,
+      "id_curso": idCurso
+    }
+    );
+  }
+
 
 }
 

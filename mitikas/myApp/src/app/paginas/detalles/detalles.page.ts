@@ -4,6 +4,7 @@ import { HttpClient } from '@angular/common/http';
 //importamos el servicio 
 import { ConsultaService } from '../../servicio/consulta.service';
 import { NavController, AlertController } from '@ionic/angular';
+import { error } from 'protractor';
 //declare const pay: any;
 declare var paypal: any;
 @Component({
@@ -35,7 +36,7 @@ export class DetallesPage implements AfterViewChecked {
     onAuthorize: (data, actions) => {
       return actions.payment.execute().then((payment) => {
         //Do something when payment is successful.
-        console.log(this.id)
+        /*console.log(this.id)
         var idString = this.id.toString();
         let datos = {
           "asistencia": "false",
@@ -50,15 +51,25 @@ export class DetallesPage implements AfterViewChecked {
             'Content-Type': 'application/json'
           }
 
-        };
+        };*/
 
-        this.http.post("https://patricioxavi10.pythonanywhere.com/api/crearClase", datos, options)
+        this.consulta.crearPago("PayPal").subscribe(data=>{
+          this.consulta.crearCompra(data["id"],"2222222222",(this.id).toString()).subscribe(data=>{
+
+          },error=>{
+            console.log(error);
+          })
+        },error=>{
+          console.log(error);
+        });
+
+        /*this.http.post("https://patricioxavi10.pythonanywhere.com/api/crearClase", datos, options)
           .subscribe(data => {
             console.log(data);
 
           }, error => {
             console.log(error);
-          });
+          });*/
 
 
         this.presentAlertConfirm();
