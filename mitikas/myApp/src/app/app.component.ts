@@ -7,7 +7,7 @@ import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { Firebase } from '@ionic-native/firebase/ngx';
 /*import { ConsultarService } from './servicioFCM/consultar.service';*/
 
-import { MenuController } from '@ionic/angular';
+import { MenuController,NavController } from '@ionic/angular';
 @Component({
     selector: 'app-root',
     templateUrl: 'app.component.html',
@@ -21,13 +21,17 @@ export class AppComponent implements OnInit {
         private splashScreen: SplashScreen,
         private firebase: Firebase,
         private statusBar: StatusBar,
-        /*private consultar: ConsultarService,*/
+        private nav: NavController,
         public menuCtrl: MenuController
     ) {
         this.initializeApp();
     }
-    ngOnInit(): void {
 
+    ngOnInit(): void {
+        let token = localStorage.getItem("token");
+        if(token != null && token!="" ){
+            this.nav.navigateForward(`tabs/tab1`);
+        }
     }
 
     // eslint-disable-next-line @typescript-eslint/explicit-function-return-type

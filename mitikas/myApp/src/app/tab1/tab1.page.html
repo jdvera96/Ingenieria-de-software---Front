@@ -20,14 +20,14 @@
 </ion-header>
 
 <ion-content class="main-container">
-  <div *ngFor="let item of datos" (click)="openNavDetailsPage(item.id_curso)" class="contenedor">
-    <img class="imagen" src="{{item.imagen}}" alt="">
+  <div *ngFor="let item of datos" (click)="openNavDetailsPage(item.id)" class="contenedor">
+    <img width="80" height="120" class="imagen" src="{{item.imagen}}" alt="">
     <div class="contenido">
-      <h3 class="titulo">{{ item.titulo_curso }}</h3>
-      <p class="descripcion">{{ item.short }}</p>
+      <h3 style="font-size:16px;" class="titulo">{{ item.titulo_curso }}</h3>
+      <p style="font-size:14px;"class="descripcion">{{ item.descripcion }}</p>
       <div class="containter-price">
-        <p class="text-price">{{item.precio}} USD</p>
-        <ion-icon class="icono-price" name="cart"></ion-icon>
+        <p style="font-size:14px;"class="text-price">{{item.precio}} USD</p>
+        <ion-icon style="font-size:14px;"class="icono-price" name="cart"></ion-icon>
       </div>
     </div>
   </div>

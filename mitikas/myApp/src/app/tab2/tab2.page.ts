@@ -23,10 +23,12 @@ export class Tab2Page {
 
     constructor(public alertController: AlertController, public nav: NavController, private activatedRoute: ActivatedRoute, public consulta: ConsultaService, private menu: MenuController) {
 
+    }
+
+    ionViewWillEnter(){
         this.consulta.obtenerPromociones().subscribe(data=>{
             var anydata=<any>data;
             this.datos = anydata;
-
         }
         ,error=>{
             console.log("No se pudo consultar las promociones");
