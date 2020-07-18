@@ -6,11 +6,13 @@ import { NavController } from '@ionic/angular';
   templateUrl: './menu.component.html',
   styleUrls: ['./menu.component.scss'],
 })
-export class MenuComponent implements OnInit {
+export class MenuComponent  {
 
   constructor(private nav:NavController) { }
 
-  ngOnInit() {}
+  ngOnInit() {
+    
+  }
 
   cerrarSesion(){
     localStorage.removeItem("token");
