@@ -1,62 +1,34 @@
 <ion-header>
-  <ion-row color="primary" class="searchBar">
-    <ion-col size="2" size-md>
-      <ion-buttons>
+  <ion-row class="searchBar">
+    <ion-col size="2">
+      <ion-buttons class="menu">
         <ion-button (click)="openMenu()">
-          <ion-icon slot="icon-only" name="menu" color="medium" class="menu"></ion-icon>
+          <ion-icon slot="icon-only" name="menu" color="medium"></ion-icon>
         </ion-button>
       </ion-buttons>
     </ion-col>
-    <ion-col size="10" size-md>
-      <ion-input placeholder="Buscar curso">
+    <ion-col size="10">
+      <ion-input placeholder="Buscar curso" class="inputSearch">
       </ion-input>
     </ion-col>
   </ion-row>
-  <!-- <div style="background: #e4e4e4; margin:20px;">
-    <div style="float: left; background:#e4e4e4; 
-      width: 14%; height: 5vh; border-top-left-radius: 10px; 
-      border-bottom-left-radius: 10px; padding: 4px 0px 0px 4px;">
-      <ion-buttons slot="start">
-        <ion-menu-button color="medium" menu="first">
-        </ion-menu-button>
-      </ion-buttons>
-    </div>
-    <div style="float: left; background:#e4e4e4; width: 86%;
-      height: 5vh; padding-left: 10px; border-top-right-radius: 10px;
-      border-bottom-right-radius: 10px;">
-      <ion-input placeholder="Buscar curso">
-
-      </ion-input>
-    </div>
-  </div> -->
-    <ion-segment scrollable mode="md">
-      <ion-segment-button mode="md" *ngFor="let categoria of categorias" [value]="categoria">
-        <ion-label>{{ categoria }}</ion-label>
-      </ion-segment-button>
-    </ion-segment>
+  <ion-segment scrollable mode="md">
+    <ion-segment-button mode="md" *ngFor="let categoria of categorias" [value]="categoria">
+      <ion-label>{{ categoria }}</ion-label>
+    </ion-segment-button>
+  </ion-segment>
 </ion-header>
-<!-- <ion-searchbar class="search" placeholder="Buscar curso" [(ngModel)]="miBuscador"
-  [showCancelButton]="miStringDeCancell" (ionInput)="onInput($event)" (ionCancel)="onCancel($event)">
-</ion-searchbar> -->
 
 <ion-content class="main-container">
-  <div *ngFor="let item of datos" (click)="openNavDetailsPage(item.id_curso)" class="contenedor">
-    <img class="imagen" src="{{item.imagen}}" alt="">
+  <div *ngFor="let item of datos" (click)="openNavDetailsPage(item.id)" class="contenedor">
+    <img width="80" height="120" class="imagen" src="{{item.imagen}}" alt="">
     <div class="contenido">
-      <h3 class="titulo">{{ item.titulo_curso }}</h3>
-      <p class="descripcion">{{ item.short }}</p>
+      <h3 style="font-size:16px;" class="titulo">{{ item.titulo_curso }}</h3>
+      <p style="font-size:14px;"class="descripcion">{{ item.descripcion }}</p>
       <div class="containter-price">
-        <p class="text-price">{{item.precio}} USD</p>
-        <ion-icon class="icono-price" name="cart"></ion-icon>
+        <p style="font-size:14px;"class="text-price">{{item.precio}} USD</p>
+        <ion-icon style="font-size:14px;"class="icono-price" name="cart"></ion-icon>
       </div>
     </div>
   </div>
-
-  <ion-list>
-
-    <!--
-    <ion-item *ngFor="let item of datos" icon-start> {{ item.titulo }} 
-    </ion-item> 
-    -->
-  </ion-list>
 </ion-content>

@@ -29,6 +29,7 @@ export class InicioPage implements OnInit {
 
     this.consulta.ingresar(postData).subscribe(data => {
       localStorage.setItem("token", data["token"]);
+      localStorage.setItem("id",data["cedula"]);
       this.presentAlert("Bienvenido", "Ingreso exitoso", "");
       this.consulta.habilitarNotificaciones().subscribe(data => {
         console.log("Registrado con:"+data);
