@@ -82,7 +82,7 @@
         <ion-item>
           <ion-label class="reducir ion-text-center" position="floating">Dirección:<ion-text color="danger">*</ion-text>
           </ion-label>
-          <ion-input class="reducir ion-text-center" [(ngModel)]="direccion" required type="text" maxlength=75 mode="md" oninput=""></ion-input>
+          <ion-input class="reducir ion-text-center" [(ngModel)]="direccion" required type="text" maxlength=100 mode="md" oninput=""></ion-input>
           <!--handleFirstNameValue(event)-->
         </ion-item>
         <div class="intermedios"></div>
@@ -143,7 +143,7 @@
         </ion-item>
       </ion-list>
       <div class="intermedios"></div>
-      <ion-button expand="block" (click)="enviarData()" class="ion-no-margin">Registrar</ion-button>
+      <ion-button expand="block" (click)="validarData()" class="ion-no-margin">Registrar</ion-button>
       <!--routerLink="/tabs/tab1"-->
     </ion-slide>
   </ion-slides>
