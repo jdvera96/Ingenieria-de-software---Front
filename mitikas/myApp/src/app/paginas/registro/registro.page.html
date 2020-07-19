@@ -1,150 +1,238 @@
 <ion-content fullscreen class="ion-padding" scroll-y="false">
-  <ion-slides pager="true">
-
-    <ion-slide>
-      <div class="slide">
-        <h1 class="reducirTitulo ion-padding-bottom">Crea tu cuenta</h1>
-        <h5 class="reducirSubtitulo ion-text-left ion-padding-bottom">Datos personales</h5>
-        <ion-list lines="full" class="ion-no-margin ion-no-padding ">
-          <ion-item>
-            <ion-label class="reducir ion-text-center " position="floating">Nombres:<ion-text color="danger">*
-              </ion-text>
-            </ion-label>
-            <ion-input class="reducir ion-text-center" [(ngModel)]="nombres" required type="text" maxlength=50 mode="md" 
-              pattern=""></ion-input>
-            <!--handleFirstNameValue(event)-->
-          </ion-item>
-          <div class="intermedios"></div>
-          <ion-item>
-            <ion-label class="reducir ion-text-center" position="floating">Apellidos:<ion-text color="danger">*
-              </ion-text>
-            </ion-label>
-            <ion-input class="reducir ion-text-center" [(ngModel)]="apelllidos" required type="text" maxlength=50 mode="md" oninput="">
-            </ion-input>
-            <!--handleFirstNameValue(event)-->
-          </ion-item>
-          <div class="intermedios"></div>
-          <ion-item>
-            <ion-label class="reducir ion-text-center fecha" position="stacked">Fecha de nacimiento:<ion-text
-                color="danger">*</ion-text>
-            </ion-label>
-            <div class="fechai">
-              <ion-datetime [(ngModel)]="fecha_nacimiento"></ion-datetime>
+  <form [formGroup]="registrationForm" (ngSubmit)="submit()">
+    <ion-slides pager="true">
+      <ion-slide>
+        <div class="slide">
+          <h1 class="reducirTitulo ion-padding-bottom">Crea tu cuenta</h1>
+          <h5 class="reducirSubtitulo ion-text-left ion-padding-bottom">Datos personales</h5>
+          <ion-list lines="full" class="ion-no-margin ion-no-padding">
+            <ion-item>
+              <ion-label class="reducir" position="floating">Nombres:<ion-text color="danger">*
+                </ion-text>
+              </ion-label>
+              <ion-input class="reducir" [(ngModel)]="nombres" formControlName="name" type="text"
+                mode="md"></ion-input>
+            </ion-item>
+            <div *ngFor="let error of errorMessages.name">
+              <ng-container *ngIf="name.hasError(error.type) && (name.dirty || name.touched)">
+                <small class="error-message">
+                  {{error.message}}
+                </small>
+              </ng-container>
             </div>
-          </ion-item>
-          <div class="intermedios"></div>
+            <div class="intermedios"></div>
+            <ion-item>
+              <ion-label class="reducir" position="floating">Apellidos:<ion-text color="danger">*
+                </ion-text>
+              </ion-label>
+              <ion-input class="reducir" [(ngModel)]="apelllidos" formControlName="lastName" type="text" mode="md">
+              </ion-input>
+            </ion-item>
+            <div *ngFor="let error2 of errorMessages.lastName">
+              <ng-container *ngIf="lastName.hasError(error2.type) && (lastName.dirty || lastName.touched)">
+                <small class="error-message">
+                  {{error2.message}}
+                </small>
+              </ng-container>
+            </div>
+            <div class="intermedios"></div>
+            <ion-item>
+              <ion-label class="reducir" position="floating">Fecha de nacimiento:<ion-text color="danger">*</ion-text>
+              </ion-label>
+              <div class="fechai">
+                <ion-datetime [(ngModel)]="fecha_nacimiento" formControlName="fechaNac"></ion-datetime>
+              </div>
+            </ion-item>
+            <div *ngFor="let error3 of errorMessages.fechaNac">
+              <ng-container *ngIf="fechaNac.hasError(error3.type) && (fechaNac.dirty || fechaNac.touched)">
+                <small class="error-message">
+                  {{error3.message}}
+                </small>
+              </ng-container>
+            </div>
+            <div class="intermedios"></div>
+            <ion-item>
+              <ion-label class="reducir" position="floating">Cédula de Identidad / RUC / Pasaporte:<ion-text
+                  color="danger">*</ion-text>
+              </ion-label>
+              <ion-input class="reducir" [(ngModel)]="cedula" formControlName="cedulaValid" type="tel" mode="md">
+              </ion-input>
+            </ion-item>
+            <div *ngFor="let error4 of errorMessages.cedulaValid">
+              <ng-container *ngIf="cedulaValid.hasError(error4.type) && (cedulaValid.dirty || cedulaValid.touched)">
+                <small class="error-message">
+                  {{error4.message}}
+                </small>
+              </ng-container>
+            </div>
+            <div class="intermedios"></div>
+            <ion-item>
+              <ion-label class="reducir" position="floating">Sexo:<ion-text color="danger">*</ion-text>
+              </ion-label>
+              <ion-select class="reducir" [(ngModel)]="sexo" formControlName="sexValid">
+                <ion-select-option value="f">Femenino</ion-select-option>
+                <ion-select-option value="m">Masculino</ion-select-option>
+              </ion-select>
+            </ion-item>
+            <div *ngFor="let error5 of errorMessages.sexValid">
+              <ng-container *ngIf="sexValid.hasError(error5.type) && (sexValid.dirty || sexValid.touched)">
+                <small class="error-message">
+                  {{error5.message}}
+                </small>
+              </ng-container>
+            </div>
+            <div class="intermedios"></div>
+          </ion-list>
+        </div>
+      </ion-slide>
+      <ion-slide>
+        <h1 class="reducirTitulo ion-padding-bottom">Crea tu cuenta</h1>
+        <h5 class="reducirSubtitulo ion-text-left ion-padding-bottom">Datos de contacto</h5>
+        <ion-list lines="full" class="centrar ion-no-margin ion-no-padding">
           <ion-item>
-            <ion-label class="reducir ion-text-center" position="floating">Cedula de identidad:<ion-text color="danger">
-                *</ion-text>
+            <ion-label class="reducir" position="floating">País:<ion-text color="danger">*</ion-text>
             </ion-label>
-            <ion-input class="reducir ion-text-center" [(ngModel)]="cedula" required type="tel" maxlength=10 mode="md" oninput="">
-            </ion-input>
-            <!--handleFirstNameValue(event)-->
-          </ion-item>
-          <div class="intermedios"></div>
-          <ion-item>
-            <ion-label class="reducir ion-text-center fecha" position="stacked">Sexo:<ion-text color="danger">*
-              </ion-text>
-            </ion-label>
-            <ion-select class="ion-text-center" [(ngModel)]="sexo">
-              <ion-select-option value="f">Femenino</ion-select-option>
-              <ion-select-option value="m">Masculino</ion-select-option>
+            <ion-select class="reducir" (ionChange)="setCitiesValues(countrySelected)" [(ngModel)]="countrySelected"
+              formControlName="countryValid">
+              <ion-select-option *ngFor="let countrySelected of countryData" [value]="countrySelected">
+                {{countrySelected.name}}</ion-select-option>
             </ion-select>
           </ion-item>
+          <div *ngFor="let error6 of errorMessages.countryValid">
+            <ng-container *ngIf="countryValid.hasError(error6.type) && (countryValid.dirty || countryValid.touched)">
+              <small class="error-message">
+                {{error6.message}}
+              </small>
+            </ng-container>
+          </div>
+          <div class="intermedios"></div>
+          <ion-item>
+            <ion-label class="reducir" position="floating">Ciudad:<ion-text color="danger">*</ion-text>
+            </ion-label>
+            <ion-select class="reducir" [(ngModel)]="citySelected" formControlName="cityValid">
+              <ion-select-option *ngFor="let citySelected of cities" [value]="citySelected">{{citySelected.name}}
+              </ion-select-option>
+            </ion-select>
+          </ion-item>
+          <div *ngFor="let error7 of errorMessages.cityValid">
+            <ng-container *ngIf="cityValid.hasError(error7.type) && (cityValid.dirty || cityValid.touched)">
+              <small class="error-message">
+                {{error7.message}}
+              </small>
+            </ng-container>
+          </div>
+          <div class="intermedios"></div>
+          <ion-item>
+            <ion-label class="reducir" position="floating">Dirección:<ion-text color="danger">*
+              </ion-text>
+            </ion-label>
+            <ion-input class="reducir" [(ngModel)]="direccion" formControlName="dirValid" type="text" mode="md">
+            </ion-input>
+          </ion-item>
+          <div *ngFor="let error8 of errorMessages.dirValid">
+            <ng-container *ngIf="dirValid.hasError(error8.type) && (dirValid.dirty || dirValid.touched)">
+              <small class="error-message">
+                {{error8.message}}
+              </small>
+            </ng-container>
+          </div>
+          <div class="intermedios"></div>
+          <ion-item>
+            <ion-label class="reducir" position="floating">Teléfono:<ion-text color="danger">*
+              </ion-text>
+            </ion-label>
+            <ion-input class="reducir" [(ngModel)]="telefono" formControlName="telValid" type="tel" mode="md">
+            </ion-input>
+          </ion-item>
+          <div *ngFor="let error9 of errorMessages.telValid">
+            <ng-container *ngIf="telValid.hasError(error9.type) && (telValid.dirty || telValid.touched)">
+              <small class="error-message">
+                {{error9.message}}
+              </small>
+            </ng-container>
+          </div>
+          <div class="intermedios"></div>
         </ion-list>
-      </div>
-    </ion-slide>
+      </ion-slide>
 
-    <ion-slide>
-      <h1 class="reducirTitulo ion-padding-bottom">Bienvenido</h1>
-      <h5 class="reducirSubtitulo ion-text-left ion-padding-bottom">Datos de contacto</h5>
-      <ion-list lines="full" class="centrar ion-no-margin ion-no-padding ">
-        <ion-item>
-          <ion-label class=" reducir ion-text-center " position="floating">País:<ion-text color="danger">*</ion-text>
-          </ion-label>
-          <ion-select class="ion-text-center" (ionChange)="setCitiesValues(countrySelected)"
-            [(ngModel)]="countrySelected">
-            <ion-select-option *ngFor="let countrySelected of countryData" [value]="countrySelected">
-              {{countrySelected.name}}</ion-select-option>
-          </ion-select>
-        </ion-item>
+      <ion-slide>
+        <h1 class="reducirTitulo ion-padding-bottom">Bienvenido</h1>
+        <h5 class="reducirSubtitulo ion-text-left ion-padding-bottom">Datos adicionales</h5>
+        <ion-list lines="full" class="ion-no-margin ion-no-padding ">
+          <ion-item>
+            <ion-label class="reducir" position="floating">Comunidad históricamente excluida:<ion-text color="danger">*
+              </ion-text>
+            </ion-label>
+            <ion-select class="reducir" [(ngModel)]="grupo_excluido" formControlName="comunidadValid">
+              <ion-select-option>Ninguna</ion-select-option>
+              <ion-select-option>Afroamericana</ion-select-option>
+              <ion-select-option>LGBTI</ion-select-option>
+              <ion-select-option>Indigena</ion-select-option>
+            </ion-select>
+          </ion-item>
+          <div *ngFor="let error10 of errorMessages.comunidadValid">
+            <ng-container
+              *ngIf="comunidadValid.hasError(error10.type) && (comunidadValid.dirty || comunidadValid.touched)">
+              <small class="error-message">
+                {{error10.message}}
+              </small>
+            </ng-container>
+          </div>
+          <div class="intermedios"></div>
+          <ion-item>
+            <ion-label class="reducir" position="floating">Escolaridad:<ion-text color="danger">*
+              </ion-text>
+            </ion-label>
+            <ion-select class="reducir" [(ngModel)]="escolaridad" formControlName="escolaridadValid">
+              <ion-select-option>Educación Primaria</ion-select-option>
+              <ion-select-option>Educación Secundaria</ion-select-option>
+              <ion-select-option>Educación Superior</ion-select-option>
+              <ion-select-option>Postgrado</ion-select-option>
+            </ion-select>
+          </ion-item>
+          <div *ngFor="let error11 of errorMessages.escolaridadValid">
+            <ng-container
+              *ngIf="escolaridadValid.hasError(error11.type) && (escolaridadValid.dirty || escolaridadValid.touched)">
+              <small class="error-message">
+                {{error11.message}}
+              </small>
+            </ng-container>
+          </div>
+          <div class="intermedios"></div>
+          <ion-item>
+            <ion-label class="reducir" position="floating">Correo eléctronico:<ion-text color="danger">*
+              </ion-text>
+            </ion-label>
+            <ion-input class="reducir" [(ngModel)]="email" formControlName="emailValid" type="email" mode="md">
+            </ion-input>
+          </ion-item>
+          <div *ngFor="let error12 of errorMessages.emailValid">
+            <ng-container *ngIf="emailValid.hasError(error12.type) && (emailValid.dirty || emailValid.touched)">
+              <small class="error-message">
+                {{error12.message}}
+              </small>
+            </ng-container>
+          </div>
+          <div class="intermedios"></div>
+          <ion-item>
+            <ion-label class="reducir" position="floating">Contraseña:<ion-text color="danger">*
+              </ion-text>
+            </ion-label>
+            <ion-input class="reducir" [(ngModel)]="password" formControlName="passValid" type="password" mode="md">
+            </ion-input>
+          </ion-item>
+        </ion-list>
+        <div *ngFor="let error13 of errorMessages.passValid">
+          <ng-container *ngIf="passValid.hasError(error13.type) && (passValid.dirty || passValid.touched)">
+            <small class="error-message">
+              {{error13.message}}
+            </small>
+          </ng-container>
+        </div>
         <div class="intermedios"></div>
-        <ion-item>
-          <!--*ngIf="cities"-->
-          <ion-label class="reducir ion-text-center" position="floating">Ciudad:<ion-text color="danger">*</ion-text>
-          </ion-label>
-          <ion-select class="ion-text-center" [(ngModel)]="citySelected">
-            <ion-select-option *ngFor="let citySelected of cities" [value]="citySelected">{{citySelected.name}}
-            </ion-select-option>
-          </ion-select>
-        </ion-item>
-        <div class="intermedios"></div>
-        <ion-item>
-          <ion-label class="reducir ion-text-center" position="floating">Dirección:<ion-text color="danger">*</ion-text>
-          </ion-label>
-          <ion-input class="reducir ion-text-center" [(ngModel)]="direccion" required type="text" maxlength=75 mode="md" oninput=""></ion-input>
-          <!--handleFirstNameValue(event)-->
-        </ion-item>
-        <div class="intermedios"></div>
-        <ion-item>
-          <ion-label class="reducir ion-text-center" position="floating">Teléfono:<ion-text color="danger">*</ion-text>
-          </ion-label>
-          <ion-input class="reducir ion-text-center" [(ngModel)]="telefono" required type="tel" maxlength=10 mode="md" oninput=""></ion-input>
-          <!--handleFirstNameValue(event)-->
-        </ion-item>
-        <div class="intermedios"></div>
-      </ion-list>
-    </ion-slide>
-
-    <ion-slide>
-      <h1 class="reducirTitulo ion-padding-bottom">Bienvenido</h1>
-      <h5 class="reducirSubtitulo ion-text-left ion-padding-bottom">Datos adicionales</h5>
-      <ion-list lines="full" class="ion-no-margin ion-no-padding ">
-        <ion-item>
-          <ion-label class="reducir ion-text-center " position="floating">Comunidad históricamente excluida:<ion-text
-              color="danger">*</ion-text>
-          </ion-label>
-          <ion-select class="ion-text-center" [(ngModel)]="grupo_excluido">
-            <ion-select-option >Ninguna</ion-select-option>
-            <ion-select-option >Afroamericana</ion-select-option>
-            <ion-select-option >LGBTI</ion-select-option>
-            <ion-select-option >Indigena</ion-select-option>
-          </ion-select>
-        </ion-item>
-        <div class="intermedios"></div>
-        <ion-item>
-          <ion-label class="reducir ion-text-center" position="floating">Escolaridad:<ion-text color="danger">*
-            </ion-text>
-          </ion-label>
-          <ion-select class="ion-text-center" [(ngModel)]="escolaridad" >
-            <ion-select-option >Educación Primaria</ion-select-option>
-            <ion-select-option >Educación Secundaria</ion-select-option>
-            <ion-select-option >Educación Superior</ion-select-option>
-            <ion-select-option >Postgrado</ion-select-option>
-          </ion-select>
-        </ion-item>
-        <div class="intermedios"></div>
-        <ion-item>
-          <ion-label class="reducir ion-text-center" position="floating" >Correo eléctronico:<ion-text color="danger">*
-            </ion-text>
-          </ion-label>
-          <ion-input class="reducir ion-text-center" [(ngModel)]="email" required type="email" maxlength=20 mode="md" oninput="">
-          </ion-input>
-          <!--handleFirstNameValue(event)-->
-        </ion-item>
-        <div class="intermedios"></div>
-        <ion-item>
-          <ion-label class="reducir ion-text-center" position="floating">Contraseña:<ion-text color="danger">*
-            </ion-text>
-          </ion-label>
-          <ion-input class="reducir ion-text-center" [(ngModel)]="password" required type="password" maxlength=20 mode="md" oninput="">
-          </ion-input>
-          <!--handleFirstNameValue(event)-->
-        </ion-item>
-      </ion-list>
+        <ion-button [disabled]="!registrationForm.valid" expand="block" type="submit" class="ion-no-margin">Registrar</ion-button>
+      </ion-slide>
       <div class="intermedios"></div>
-      <ion-button expand="block" (click)="enviarData()" class="ion-no-margin">Registrar</ion-button>
-      <!--routerLink="/tabs/tab1"-->
-    </ion-slide>
-  </ion-slides>
+    </ion-slides>
+  </form>
 </ion-content>
