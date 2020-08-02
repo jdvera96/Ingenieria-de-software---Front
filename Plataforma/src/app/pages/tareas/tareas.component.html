@@ -1,0 +1,22 @@
+
+<h1>Seccion tareas</h1>
+
+<button type="button" (click)="nuevaTarea()" class="btn btn-success">Nueva Tarea</button>
+<table class="table">
+    <thead class="thead-dark">
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Titulo</th>
+        <th scope="col">Fecha Entrega</th>
+        <th scope="col">Calificacion</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor='let tarea of objectTareas' id="{{tarea.id}}">
+            <th scope="row">{{tarea.num}}</th>
+            <td>{{tarea.titulo}}</td>
+            <td>{{tarea.fecha}}</td>
+            <td>{{tarea.calificacion}}</td>
+      </tr>
+    </tbody>
+</table>

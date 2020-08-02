@@ -13,8 +13,11 @@
     },
     "parser": "@typescript-eslint/parser",
     "parserOptions": {
-        "ecmaVersion": 2018,
-        "sourceType": "module"
+        "ecmaVersion": 6,
+        "sourceType": "module",
+        "ecmaFeatures": {
+        "modules": true
+        }
     },
     "plugins": [
         "@typescript-eslint"

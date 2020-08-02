@@ -82,7 +82,7 @@
         <ion-item>
           <ion-label class="reducir ion-text-center" position="floating">Dirección:<ion-text color="danger">*</ion-text>
           </ion-label>
-          <ion-input class="reducir ion-text-center" [(ngModel)]="direccion" required type="text" maxlength=75 mode="md" oninput=""></ion-input>
+          <ion-input class="reducir ion-text-center" [(ngModel)]="direccion" required type="text" maxlength=100 mode="md" oninput=""></ion-input>
           <!--handleFirstNameValue(event)-->
         </ion-item>
         <div class="intermedios"></div>
@@ -105,10 +105,10 @@
               color="danger">*</ion-text>
           </ion-label>
           <ion-select class="ion-text-center" [(ngModel)]="grupo_excluido">
-            <ion-select-option value="f">Ninguna</ion-select-option>
-            <ion-select-option value="f">Afroamericana</ion-select-option>
-            <ion-select-option value="m">LGBTI</ion-select-option>
-            <ion-select-option value="m">Indigena</ion-select-option>
+            <ion-select-option >Ninguna</ion-select-option>
+            <ion-select-option >Afroamericana</ion-select-option>
+            <ion-select-option >LGBTI</ion-select-option>
+            <ion-select-option >Indigena</ion-select-option>
           </ion-select>
         </ion-item>
         <div class="intermedios"></div>
@@ -117,10 +117,10 @@
             </ion-text>
           </ion-label>
           <ion-select class="ion-text-center" [(ngModel)]="escolaridad" >
-            <ion-select-option value="f">Educación Primaria</ion-select-option>
-            <ion-select-option value="f">Educación Secundaria</ion-select-option>
-            <ion-select-option value="m">Educación Superior</ion-select-option>
-            <ion-select-option value="m">Postgrado</ion-select-option>
+            <ion-select-option >Educación Primaria</ion-select-option>
+            <ion-select-option >Educación Secundaria</ion-select-option>
+            <ion-select-option >Educación Superior</ion-select-option>
+            <ion-select-option >Postgrado</ion-select-option>
           </ion-select>
         </ion-item>
         <div class="intermedios"></div>
@@ -143,7 +143,7 @@
         </ion-item>
       </ion-list>
       <div class="intermedios"></div>
-      <ion-button expand="block" (click)="enviarData()" class="ion-no-margin">Registrar</ion-button>
+      <ion-button expand="block" (click)="validarData()" class="ion-no-margin">Registrar</ion-button>
       <!--routerLink="/tabs/tab1"-->
     </ion-slide>
   </ion-slides>

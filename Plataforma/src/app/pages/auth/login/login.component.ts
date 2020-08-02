@@ -23,8 +23,13 @@ export class LoginComponent implements OnInit {
 
 
   logearse(){
+<<<<<<< HEAD
     this.correo=$('#correo').val().toString();
     this.password=$('#password').val().toString();
+=======
+    this.correo=$('#correo').val();
+    this.password=$('#password').val();
+>>>>>>> Vera_Web
     console.log('valor del correo: ',this.correo);
     console.log('valor del pass: ',this.password);
 
