@@ -3,7 +3,9 @@ import { Component, OnInit } from '@angular/core';
 import {Router, ActivatedRoute} from '@angular/router';
 import { Location } from '@angular/common'; 
 import {TareaService} from '../../servicios/profesor/tareas/tarea.service'
+
 import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap'
+import Swal from 'sweetalert2'
 
 import * as $ from 'jquery';
 
@@ -33,13 +35,26 @@ export class TareasComponent implements OnInit {
     this.obtenerTareas();
   }
 
-  open(content) {
+  openCrear(content) {
 
     //cargando las sesiones cuando el modal se abre
     this.obtenerSesionesPorClase();
 
     this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
       console.log('dio click en crear');
+      
+      //this.closeResult = `Closed with: ${result}`;
+    }, (reason) => {
+      
+      this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+    });
+  }
+
+  openView(content) {
+
+    
+    this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title-view'}).result.then((result) => {
+      console.log('dio click en Cerrar');
       
       //this.closeResult = `Closed with: ${result}`;
     }, (reason) => {
@@ -88,18 +103,17 @@ export class TareasComponent implements OnInit {
     let array=dataStorage.split("-")
     let id_profesor=array[3]
 
-
-    console.log('titulo: ',titulo);
-    console.log('descripcion: ',descripcion);
-    console.log('sesion: ',sesion);
-    console.log('id profesor: ',id_profesor);
-
-
     this.servicioTareas.registrarTarea(id_profesor,sesion,titulo,descripcion).subscribe(result=>{
       console.log('result: ',result);
 
       if(result){
         console.log("tarea creada exitosamente");
+        Swal.fire(
+          'Exito',
+          'Tarea creada exitosamente',
+          'success'
+        )
+        this.obtenerTareas();
         this.modalService.dismissAll();
       }else{
         console.log("error");
@@ -107,6 +121,68 @@ export class TareasComponent implements OnInit {
     })
     
 
+  }
+
+
+  tareaInfoView(content,id_tarea){
+    this.servicioTareas.obtenerInfoTarea(id_tarea).subscribe(data=>{
+      if(data){
+        console.log(data)
+        
+        this.openView(content)
+        
+        this.servicioTareas.obtenerInfoSesion(data["id_sesion"]).subscribe(dataSesion=>{
+            //asignando informacion a los input del modal detalles
+            $("#view_input_sesion").val(dataSesion["titulo"]);
+            $("#view_input_titulo").val(data['nombre_tarea']);
+            $("#view_input_descripcion").val(data['descripcion_tarea']);
+
+        })
+
+
+      }else{
+        console.log('error en obtener tarea')
+      }
+    })
+  }
+
+  deleteTarea(id_tarea){
+
+    this.servicioTareas.obtenerInfoTarea(id_tarea).subscribe(infoTarea=>{
+
+      Swal.fire({
+        title: `Eliminar tarea ${infoTarea["nombre_tarea"]}?`,
+        text: "Esta acción no se podrá revertir",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Confirmar'
+      }).then((result) => {
+        if (result.value) {
+          
+          this.servicioTareas.eliminarTarea(id_tarea).subscribe(result=>{
+            if(result){
+              console.log('tarea eliminada');
+              
+              Swal.fire(
+                'Tarea eliminada!',
+                `Tarea ${infoTarea["nombre_tarea"]} ha sido eliminada`,
+                'success'
+              )
+
+              this.obtenerTareas();
+            }
+          })
+
+          
+        }
+      })
+
+    })
+    
+
+    
   }
 
   goToBack(){

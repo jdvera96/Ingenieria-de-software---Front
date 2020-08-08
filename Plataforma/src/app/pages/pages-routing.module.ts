@@ -70,13 +70,13 @@ if(login!=null){
           component: NuevaTareaComponent
         },
         {
-          path: 'calificaciones',
+          path: ':id/calificaciones',
           component: CalificacionesComponent
         },{
           path: 'calificar-tarea',
           component: CalificarTareaComponent
         },{
-          path: 'asistencias',
+          path: ':id/asistencias',
           component: AsistenciasComponent
         },{
           path: 'notificaciones',

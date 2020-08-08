@@ -8,7 +8,7 @@ export class CursosService {
  
   constructor(private http : HttpClient) { }
 
-  obtenerCursos(){
-    return this.http.get("https://patricioxavi10.pythonanywhere.com/api/cursos")
+  obtenerCursos(id_profesor){
+    return this.http.get("https://patricioxavi10.pythonanywhere.com/api/getcursosprofesor/"+id_profesor)
   }
 }

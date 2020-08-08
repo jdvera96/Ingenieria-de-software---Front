@@ -1,33 +1,41 @@
 <div class="form-group">
     <label for="exampleFormControlSelect1">Seleccione una Tarea</label>
-    <select class="form-control" id="exampleFormControlSelect1">
-      <option></option>
-      <option>Codigo HTML</option>
-      <option>Investigacion Bootstrap</option>
-      <option>Reporte de rendimiento PHP</option>
-      
+    
+    <select class="form-control" id="tarea_select" (click)="cargarEstudiantes()" >
+      <option value="" selected disabled>Elige una tarea</option>
+      <option *ngFor='let tarea of objectTareas' value="{{tarea.id}}">{{tarea.nombre_tarea}}</option>
     </select>
+
 </div>
 
 <table class="table">
     <thead class="thead-dark">
       <tr>
         <th scope="col">#</th>
-        <th scope="col">Nombre</th>
-        <th scope="col">Fecha</th>
+        <th scope="col">Nombres</th>
+        <th scope="col">Apellidos</th>
         <th scope="col">Estado</th>
         <th scope="col">Calificacion</th>
         <th scope="col">Accion</th>
       </tr>
     </thead>
     <tbody>
-        <tr *ngFor='let estudiante of objectEstudiantes' id="{{estudiante.id}}">
+        <tr *ngFor='let estudiante of objectEstudiantes' id="{{estudiante.id_estudiante.cedula}}">
             <th scope="row">{{estudiante.num}}</th>
-            <td>{{estudiante.nombre}}</td>
-            <td>{{estudiante.fecha}}</td>
-            <td>{{estudiante.estado}}</td>
-            <td>{{estudiante.calificacion}}</td>
-            <td><button (click)="gotoCalificar()">Abrir</button></td> 
+            <td>{{estudiante.id_estudiante.nombres}}</td>
+            <td>{{estudiante.id_estudiante.apellidos}}</td>
+            
+            <td *ngIf="estudiante.estado; else elseBlock">Calificado</td>
+            <ng-template #elseBlock><td>No calificado</td></ng-template>
+
+            <td *ngIf="estudiante.calificacion!=null; else elseBlock2">
+              <input type="text" class="form-control col-4 nota" value="{{estudiante.calificacion}}" />
+            </td>
+            <ng-template #elseBlock2><td>
+              <input type="text" class="form-control col-4 nota" value="0" />
+            </td></ng-template>
+            
+            <td><button (click)="guardarCalificacion(estudiante.id_estudiante.cedula)">Guardar</button></td> 
       </tr>
     </tbody>
 </table>

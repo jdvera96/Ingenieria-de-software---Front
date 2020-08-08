@@ -25,11 +25,11 @@ export class CursoComponent implements OnInit {
   }
 
   goToCalificaciones(){
-    this.router.navigate(['/pages/calificaciones']);
+    this.router.navigate([`/pages/${this.id}/calificaciones`]);
   }
 
   gotToAsistencias(){
-    this.router.navigate(['/pages/asistencias']);
+    this.router.navigate([`/pages/${this.id}/asistencias`]);
   }
 
 
