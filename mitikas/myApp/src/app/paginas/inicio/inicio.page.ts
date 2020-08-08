@@ -3,6 +3,10 @@ import { AlertController, NavController, MenuController } from '@ionic/angular';
 import { ActivatedRoute } from '@angular/router';
 import { ConsultaService } from 'src/app/servicio/consulta.service';
 //import { Firebase } from '@ionic-native/firebase/ngx';
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+@NgModule({
+  schemas: [ CUSTOM_ELEMENTS_SCHEMA ]
+})
 
 @Component({
   selector: 'app-inicio',
