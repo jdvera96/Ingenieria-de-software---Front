@@ -2,6 +2,8 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { IonicModule } from '@ionic/angular';
 
 import { MenuComponent } from './menu.component';
+import {Location} from "@angular/common";
+import {UrlSerializer} from '@angular/router';
 
 describe('MenuComponent', () => {
   let component: MenuComponent;
@@ -10,7 +12,11 @@ describe('MenuComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [ MenuComponent ],
-      imports: [IonicModule.forRoot()]
+      imports: [IonicModule.forRoot()],
+      providers: [
+        { provide:Location},
+        {provide: UrlSerializer}
+      ],
     }).compileComponents();
 
     fixture = TestBed.createComponent(MenuComponent);
