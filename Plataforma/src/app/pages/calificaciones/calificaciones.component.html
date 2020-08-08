@@ -1,3 +1,4 @@
+<button type="button" class="btn btn-secondary" (click)="goToBack()">Volver</button>
 <div class="form-group">
     <label for="exampleFormControlSelect1">Seleccione una Tarea</label>
     
@@ -6,7 +7,7 @@
       <option *ngFor='let tarea of objectTareas' value="{{tarea.id}}">{{tarea.nombre_tarea}}</option>
     </select>
 
-</div>
+</div> 
 
 <table class="table">
     <thead class="thead-dark">

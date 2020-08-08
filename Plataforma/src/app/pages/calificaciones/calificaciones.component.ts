@@ -68,13 +68,21 @@ export class CalificacionesComponent implements OnInit {
       this.servicioCalificacion.asignarCalificacion(calificacion,id_tarea,id_estudiante).subscribe(result=>{
         if(result){
           console.log("calificacion asignada");
+
           Swal.fire(
             'Exito',
             'Calificacion asignada exitosamente',
             'success'
           )
+
+          this.cargarEstudiantes();
         }
       })
+  }
+
+
+  goToBack(){
+    this.location.back();
   }
 
 }
