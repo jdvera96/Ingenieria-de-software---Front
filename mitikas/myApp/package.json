@@ -10,8 +10,6 @@
     "lint": "ng lint",
     "e2e": "ng e2e",
     "clean": "ionic-app-scripts clean",
-    "ionic:build": "ionic-app-scripts build",
-    "ionic:serve": "ionic-app-scripts serve",
     "test": "karma start ./testing/karma.conf.js"
   },
   "private": true,
