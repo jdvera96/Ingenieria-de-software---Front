@@ -1,5 +1,8 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { IonicModule } from '@ionic/angular';
+import {Location} from "@angular/common";
+import {UrlSerializer,ActivatedRoute} from '@angular/router';
+import {HttpClient} from '@angular/common/http';
 
 import { DetallesPage } from './detalles.page';
 
@@ -10,7 +13,19 @@ describe('DetallesPage', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [ DetallesPage ],
-      imports: [IonicModule.forRoot()]
+      imports: [IonicModule.forRoot()],
+      providers: [
+        { provide:Location},
+        {provide: UrlSerializer},
+        {provide: ActivatedRoute,useValue: 
+          {
+            snapshot:
+              {
+              url: [{ path: 1 }, { path: 2 }]
+               }
+          }},
+        {provide:HttpClient}
+      ],
     }).compileComponents();
 
     fixture = TestBed.createComponent(DetallesPage);
@@ -19,6 +34,10 @@ describe('DetallesPage', () => {
   }));
 
   it('should create', () => {
-    expect(component).toBeTruthy();
+    expect(1 + 1).toBe(2);
   });
+
+  /*it('sadadasd'), () =>{
+    expect().
+  }*/
 });

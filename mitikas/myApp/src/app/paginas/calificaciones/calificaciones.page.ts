@@ -3,13 +3,15 @@ import { ActivatedRoute } from '@angular/router';
 import {ConsultaService} from '../../servicio/consulta.service';
 import {NavController } from '@ionic/angular';
 
+
 @Component({
   selector: 'app-calificaciones',
   templateUrl: './calificaciones.page.html',
   styleUrls: ['./calificaciones.page.scss'],
 })
-export class CalificacionesPage implements OnInit {
 
+export class CalificacionesPage implements OnInit {
+  prueba: boolean = false;
   id: number;
   materia: String;
   titulo: String;
@@ -21,7 +23,12 @@ export class CalificacionesPage implements OnInit {
   reload: boolean = false;
   
   constructor(public nav: NavController,private activatedRoute: ActivatedRoute, public consulta: ConsultaService) {
-    const num=this.activatedRoute.snapshot.paramMap.get('id_clase');
+    //var num = '1';
+    //if(this.prueba){
+      const num=this.activatedRoute.snapshot.paramMap.get('id_clase');
+      //num = number;
+    //}
+   
     this.id=parseInt(num, 10);
     consulta.obtenerClase("0911111111",num).subscribe((data)=>{
       var anydata=<any>data;
