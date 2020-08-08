@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
 import {Router, ActivatedRoute} from '@angular/router';
-import {MENU_ITEMS} from '../pages-menu'
-import { NbMenuItem } from '@nebular/theme';
 
 @Component({
   selector: 'ngx-curso',
@@ -17,13 +15,26 @@ export class CursoComponent implements OnInit {
 
 
   ngOnInit(): void {
-    this.ActualizarMenu();
     this.id=this.activador.snapshot.paramMap.get('id');
 
 
   }
 
-  ActualizarMenu(): void{
+  goToTareas(){
+    this.router.navigate([`/pages/${this.id}/tareas`]);
+  }
+
+  goToCalificaciones(){
+    this.router.navigate(['/pages/calificaciones']);
+  }
+
+  gotToAsistencias(){
+    this.router.navigate(['/pages/asistencias']);
+  }
+
+
+
+  /* ActualizarMenu(): void{
       if(MENU_ITEMS.length==3)
       //agregando opciones al menu cuando esta en un curso
       MENU_ITEMS.push({
@@ -39,6 +50,6 @@ export class CursoComponent implements OnInit {
         icon: 'home-outline',
         link: '/pages/asistencias',
       })
-  }
+  } */
 
 }

@@ -5,7 +5,7 @@ import {HttpClient, HttpClientModule} from '@angular/common/http'
   providedIn: 'root'
 })
 export class CursosService {
-
+ 
   constructor(private http : HttpClient) { }
 
   obtenerCursos(){

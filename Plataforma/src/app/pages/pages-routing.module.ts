@@ -47,7 +47,7 @@ var routesMenu: Routes =[{
 if(login!=null){
   let array=login.split('-');
 
-  if(array[0]=='profesor'){
+  if(array[0]=='Profesor'){
 
     console.log('profesor logeado');
     console.log('cargando menu para profesor');
@@ -63,7 +63,7 @@ if(login!=null){
           path: 'curso/:id',
           component: CursoComponent
         },{
-          path: 'tareas',
+          path: ':id/tareas',
           component: TareasComponent
         },{
           path: 'nuevaTarea',
@@ -145,7 +145,7 @@ if(login!=null){
     }];
     
   
-  }else if(array[0]=='supervisor'){
+  }else if(array[0]=='Supervisor'){
     console.log('supervisor logeado')
     console.log('cargando menu del supervisor');
 
