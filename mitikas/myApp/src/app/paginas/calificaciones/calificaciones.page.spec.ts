@@ -1,6 +1,5 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { IonicModule } from '@ionic/angular';
-import { RouterTestingModule } from '@angular/router/testing';
 import {Location} from "@angular/common";
 import {UrlSerializer} from '@angular/router';
 import {ActivatedRoute} from '@angular/router';
@@ -19,7 +18,14 @@ describe('CalificacionesPage', () => {
       providers: [
         { provide:Location},
         {provide: UrlSerializer},
-        {provide: ActivatedRoute},
+        {provide: ActivatedRoute,
+          useValue: 
+          {
+            snapshot:
+              {
+              url: [{ path: 1 }, { path: 2 }]
+               }
+          }},
         {provide:HttpClient}
       ],
     }).compileComponents();

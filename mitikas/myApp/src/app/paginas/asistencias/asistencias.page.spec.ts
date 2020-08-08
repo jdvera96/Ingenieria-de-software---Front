@@ -4,9 +4,8 @@ import { IonicModule } from '@ionic/angular';
 import { AsistenciasPage } from './asistencias.page';
 import {Location} from "@angular/common";
 import {UrlSerializer} from '@angular/router';
-import {ActivatedRoute} from '@angular/router';
+import {ActivatedRoute,ActivatedRouteSnapshot} from '@angular/router';
 import {HttpClient} from '@angular/common/http';
-//import {ActivatedRouteSnapshot} from '';
 
 describe('AsistenciasPage', () => {
   let component: AsistenciasPage;
@@ -19,8 +18,17 @@ describe('AsistenciasPage', () => {
       providers: [
         { provide:Location},
         {provide: UrlSerializer},
-        {provide: ActivatedRoute},
-        {provide:HttpClient}
+        {provide: ActivatedRoute,
+          useValue: 
+          {
+            snapshot:
+              {
+              url: [{ path: 1 }, { path: 2 }]
+               }
+          }
+        },
+        {provide:HttpClient},
+        {provide:ActivatedRouteSnapshot}
       ],
     }).compileComponents();
 

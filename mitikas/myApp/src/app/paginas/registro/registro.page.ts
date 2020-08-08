@@ -87,7 +87,7 @@ export class RegistroPage implements OnInit {
 
     for(let i=0;i<arregloInvalidos.length;i+=1){
       let elemento=arregloInvalidos[i];
-      if(elemento.indexOf('correcto')==-1){
+      if(elemento.indexOf('correct')==-1){
         resultados.push(elemento);
       }
     }
@@ -332,6 +332,7 @@ export class RegistroPage implements OnInit {
     let postData = {
       "email": this.email,
       "password": this.password,
+      "rol": "estudiante",
       "profile": {
         "nombres": this.nombres,
         "apellidos": this.apelllidos,

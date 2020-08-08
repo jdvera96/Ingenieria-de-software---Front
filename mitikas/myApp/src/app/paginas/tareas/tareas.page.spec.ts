@@ -18,7 +18,13 @@ describe('TareasPage', () => {
       providers: [
         { provide:Location},
         {provide: UrlSerializer},
-	      {provide: ActivatedRoute},
+	      {provide: ActivatedRoute,useValue: 
+          {
+            snapshot:
+              {
+              url: [{ path: 1 }, { path: 2 }]
+               }
+          }},
         {provide:HttpClient}
       ],
     }).compileComponents();
