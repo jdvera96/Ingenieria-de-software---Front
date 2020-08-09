@@ -38,7 +38,7 @@ export class LoginComponent implements OnInit {
         
         if(response["rol"]){
 
-          let valor=response["rol"]+"-"+response["nombre"]+" "+response["apellido"];
+          let valor=response["rol"]+"-"+response["nombre"]+"-"+response["apellido"]+"-"+response["cedula"];
           localStorage.setItem('login-mitikas',valor);
           location.href="http://localhost:4200/";
         }else{

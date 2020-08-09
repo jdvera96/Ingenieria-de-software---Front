@@ -10,27 +10,42 @@ import {UrlSerializer} from '@angular/router';
 
 import { AppComponent } from './app.component';
 
-/*describe('AppComponent', () => {
+class MockPlatform {
+  ready: jasmine.Spy<any>;
+  backButton: any;
+}
+class MockBackButton {
+  subscribeWithPriority: jasmine.Spy<any>;
+}
 
-  let statusBarSpy, splashScreenSpy, platformReadySpy, platformSpy;
+describe('AppComponent', () => {
+
+  let statusBarSpy, splashScreenSpy, platformReadySpy, platformSpy, mockPlatform,mockBackButton;
   
 
   beforeEach(async(() => {
     statusBarSpy = jasmine.createSpyObj('StatusBar', ['styleDefault']);
     splashScreenSpy = jasmine.createSpyObj('SplashScreen', ['hide']);
     platformReadySpy = Promise.resolve();
-    platformSpy = jasmine.createSpyObj('Platform', { ready: platformReadySpy });
-
+    platformSpy = jasmine.createSpyObj('Platform', { ready: platformReadySpy});
+    mockPlatform = new MockPlatform();
+    mockPlatform.ready = platformReadySpy;
+    mockBackButton = new MockBackButton();
+    mockBackButton.subscribeWithPriority = jasmine.createSpy('subscribeWithPriority', (priority, fn) => {});
+    mockPlatform.backButton = mockBackButton;
+ 
+    
     TestBed.configureTestingModule({
       declarations: [AppComponent],
       schemas: [CUSTOM_ELEMENTS_SCHEMA],
       providers: [
         { provide: StatusBar, useValue: statusBarSpy },
         { provide: SplashScreen, useValue: splashScreenSpy },
-        { provide: Platform, useValue: platformSpy },
+       
         { provide:Firebase},
         { provide:Location},
-        {provide: UrlSerializer}
+        {provide: UrlSerializer},
+        {provide: MockPlatform, useValue: mockPlatform}
       ],
     }).compileComponents();
   }));
@@ -43,13 +58,13 @@ import { AppComponent } from './app.component';
 
   it('should initialize the app', async () => {
     TestBed.createComponent(AppComponent);
-    expect(platformSpy.ready).toHaveBeenCalled();
-    await platformReadySpy;
+    /*expect(mockPlatform).toHaveBeenCalled();
+    await mockPlatform;
     expect(statusBarSpy.styleDefault).toHaveBeenCalled();
-    expect(splashScreenSpy.hide).toHaveBeenCalled();
+    expect(splashScreenSpy.hide).toHaveBeenCalled();*/
   });
 
   // TODO: add more tests!
   
 
-});*/
+});

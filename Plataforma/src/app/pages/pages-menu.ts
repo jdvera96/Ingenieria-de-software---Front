@@ -289,9 +289,9 @@ var login=localStorage.getItem('login-mitikas');
 if(login!=null){
   let array=login.split('-');
 
-  if(array[0]=='profesor'){
+  if(array[0]=='Profesor'){
     menuDinamico=menu_profesor;
-  }else if(array[0]=='supervisor'){
+  }else if(array[0]=='Supervisor'){
     menuDinamico=menu_supervisor;
   }else{
     menuDinamico=menu_errorCredenciales;
