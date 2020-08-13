@@ -247,10 +247,20 @@ const menu_general: NbMenuItem[]=[
 ];
 
 var menu_profesor: NbMenuItem[]=[
-  {
+  /*{
     title: 'Principal',
     icon: 'home-outline',
     link: '/pages/iot-dashboard',
+  },
+  {
+    title: 'Notificaciones',
+    icon: 'home-outline',
+    link: '/pages/notificaciones',
+  },*/
+  {
+    title: 'Principal',
+    icon: 'home-outline',
+    link: '/pages/cursos',
   },
   {
     title: 'Notificaciones',
@@ -260,7 +270,7 @@ var menu_profesor: NbMenuItem[]=[
   {
     title: 'Cursos',
     icon: 'home-outline',
-    link: '/pages/cursos',
+    children:[]
   }
 ];
 

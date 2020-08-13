@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 import {Router, ActivatedRoute} from '@angular/router';
+import { CursosService } from '../../servicios/cursos/cursos.service';
 
 @Component({
   selector: 'ngx-curso',
@@ -10,14 +11,15 @@ import {Router, ActivatedRoute} from '@angular/router';
 export class CursoComponent implements OnInit {
   
   id: string= '';
-  constructor(private router: Router, private activador: ActivatedRoute) {}
+  curso: string="";
+  constructor(private router: Router, private activador: ActivatedRoute, private servicioCursos: CursosService) {}
 
 
 
   ngOnInit(): void {
     this.id=this.activador.snapshot.paramMap.get('id');
 
-
+    this.cargarCursos(this.id);
   }
 
   goToTareas(){
@@ -32,6 +34,24 @@ export class CursoComponent implements OnInit {
     this.router.navigate([`/pages/${this.id}/asistencias`]);
   }
 
+  cargarCursos(_id:string){
+    let infoCredenciales=localStorage.getItem('login-mitikas');
+    let array=infoCredenciales.split("-");
+    let id_profesor=array[3];
+
+   this.servicioCursos.obtenerCursos(id_profesor).subscribe(result=>{
+    for(var i=0;i<result["length"];i++){
+      console.log("Result: "+result[i]["id_curso"]["id"]);
+      console.log("id: "+_id);
+      if(result[i]["id_curso"]["id"]==_id){
+        this.curso= result[i]["id_curso"]["titulo_curso"];
+        return;
+      }
+    }
+    this.curso= "Error";
+   })
+   
+  }
 
 
   /* ActualizarMenu(): void{

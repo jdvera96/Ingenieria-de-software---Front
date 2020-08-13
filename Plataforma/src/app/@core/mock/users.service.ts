@@ -6,7 +6,7 @@ import { Contacts, RecentUsers, UserData } from '../data/users';
 export class UserService extends UserData {
 
   private time: Date = new Date;
-
+  
   private users = {
     profile: { name: '', picture: 'assets/images/Profile.png' },
     profile_log: { name: '', picture: 'assets/images/profileLoged.png' },    

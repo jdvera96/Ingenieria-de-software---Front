@@ -1,32 +1,40 @@
 
-<h1>Seccion tareas</h1>
+<button class="btn btn-cool-blues btn-rounded" (click)="goToBack()"><i class="fas fa-arrow-left"></i>&nbsp;Atras</button>
+<h1 class="text-center">Tareas</h1>
 
-<button type="button" class="btn btn-secondary" (click)="goToBack()">Volver</button>
-
-<button type="button" (click)="openCrear(content)" class="btn btn-success">Nueva Tarea</button>
-<table class="table">
+<button (click)="openCrear(content)" class="float-right btn btn-green-moon btn-rounded"><i class="fas fa-plus"></i>&nbsp;Nueva Tarea </button>
+<table class="table-responsive">
     <thead class="thead-dark">
       <tr>
-        <th scope="col">#</th>
+        <!--<th scope="col">#</th>-->
         <th scope="col">Titulo</th>
         <th scope="col">Fecha Entrega</th>
         <th scope="col">Calificacion</th>
-        <th scope="col">Acciones</th>
+        <th scope="col">Acción</th>
       </tr>
     </thead>
     <tbody>
         <tr *ngFor='let tarea of objectTareas' id="{{tarea.id}}">
-            <th scope="row">{{tarea.id}}</th>
+            <!--<th scope="row">{{tarea.id}}</th>-->
             <td>{{tarea.nombre_tarea}}</td>
             <td>{{tarea.fecha}}</td>
             <td>{{tarea.calificacion}}</td>
             <td>
-              <i class="fa fa-eye mr-2" aria-hidden="true" (click)="tareaInfoView(content2,tarea.id)" id="{{tarea.id}}"></i>
-              <i class="fa fa-trash ml-2" aria-hidden="true" id="{{tarea.id}}" (click)="deleteTarea(tarea.id)"></i>
+              <button class="btn btn-sm btn-success seeButton" (click)="tareaInfoView(content2,tarea.id)" id="{{tarea.id}}"><i class="far fa-eye"></i>&nbsp; Ver</button>
+              <button class="btn btn-sm btn-danger deleteButton" (click)="deleteTarea(tarea.id)" id="{{tarea.id}}"><i class="fas fa-times"></i>&nbsp;Borrar</button>                            
             </td>
       </tr>
     </tbody>
 </table>
+
+
+
+
+
+
+
+
+
 
 <ng-template #content let-modal>
   <div class="modal-header">
@@ -57,11 +65,6 @@
   </div>
 </ng-template>
 
-<hr>
-
-<pre>{{ closeResult }}</pre>
-
-
 <!-- Modal para visualizar detalle de la tarea -->
 <ng-template #content2 let-modal>
   <div class="modal-header">
@@ -85,11 +88,8 @@
       </div>
     </form>
   </div>
+  
   <div class="modal-footer">
     <button type="button" class="btn btn-outline-dark" (click)="modal.close('cerrar')">Cerrar</button>
   </div>
 </ng-template>
-
-<hr>
-
-<pre>{{ closeResult }}</pre>

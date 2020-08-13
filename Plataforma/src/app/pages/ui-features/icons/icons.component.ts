@@ -26,7 +26,7 @@ export class IconsComponent {
       'ionic', 'arrow-right-b', 'arrow-down-b', 'arrow-left-b', 'arrow-up-c', 'arrow-right-c',
       'arrow-down-c', 'arrow-left-c', 'arrow-return-right', 'arrow-return-left', 'arrow-swap',
       'arrow-shrink', 'arrow-expand', 'arrow-move', 'arrow-resize', 'chevron-up',
-      'chevron-right', 'chevron-down', 'chevron-left', 'navicon-round', 'navicon',
+      'chevron-right', 'chevron-down', 'navicon-round', 'navicon',
       'drag', 'log-in', 'log-out', 'checkmark-round', 'checkmark', 'checkmark-circled',
       'close-round', 'plus-round', 'minus-round', 'information', 'help',
       'backspace-outline', 'help-buoy', 'asterisk', 'alert', 'alert-circled',
