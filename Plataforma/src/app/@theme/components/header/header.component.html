@@ -1,11 +1,10 @@
 <div class="header-container">
-  <div class="logo-container">
+  <div class="logo-container">        
     <a *ngIf="show" (click)="toggleSidebar()" href="#" class="sidebar-toggle">
       <nb-icon icon="menu-2-outline"></nb-icon>
     </a>
-
-    <a class="logo" href="#" (click)="navigateHome()">Mitikas</a>
-  </div>
+    <img src="assets/mitikas_svg/isolated-monochrome-white.svg" alt="" class="logo image-logo" (click)="navigateHome()">
+  </div>  
   <!--<nb-select [selected]="currentTheme" (selectedChange)="changeTheme($event)" status="primary">
     <nb-option *ngFor="let theme of themes" [value]="theme.value"> {{ theme.name }}</nb-option>
   </nb-select>-->

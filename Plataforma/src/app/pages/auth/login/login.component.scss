@@ -11,10 +11,13 @@ html {
   }
   
   a {
-    color: #92badd;
+    color: #e0eefa;
     display:inline-block;
     text-decoration: none;
     font-weight: 400;
+  }
+  a:hover{
+    text-decoration: none;
   }
   
   h2 {
@@ -44,7 +47,8 @@ html {
   #formContent {
     -webkit-border-radius: 10px 10px 10px 10px;
     border-radius: 10px 10px 10px 10px;
-    background: #fff;
+    background: rgb(23,46,62);
+    background: linear-gradient(153deg, rgba(23,46,62,1) 0%, rgba(110,230,199,1) 52%); 
     padding: 30px;
     width: 90%;
     max-width: 450px;
@@ -56,12 +60,13 @@ html {
   }
   
   #formFooter {
-    background-color: #f6f6f6;
-    border-top: 1px solid #dce8f1;
+    background-color: #3b7a76;
+    border-top: 1px solid #254b48;
     padding: 25px;
     text-align: center;
     -webkit-border-radius: 0 0 10px 10px;
     border-radius: 0 0 10px 10px;
+
   }
   
   
@@ -115,7 +120,7 @@ html {
     transform: scale(0.95);
   }
   
-  input[type=text] {
+  input[type=text],input[type=password] {
     background-color: #f6f6f6;
     border: none;
     color: #0d0d0d;
@@ -136,12 +141,12 @@ html {
     border-radius: 5px 5px 5px 5px;
   }
   
-  input[type=text]:focus {
+  input[type=text]:focus,input[type=password]:focus {
     background-color: #fff;
     border-bottom: 2px solid #5fbae9;
   }
   
-  input[type=text]:placeholder {
+  input[type=text]:placeholder,input[type=password]::placeholder  {
     color: #cccccc;
   }
   
@@ -236,20 +241,23 @@ html {
     bottom: -10px;
     width: 0;
     height: 2px;
-    background-color: #56baed;
+    background-color: #ffffff;
     content: "";
     transition: width 0.2s;
   }
   
   .underlineHover:hover {
-    color: #0d0d0d;
+    color: #ffffff;
   }
   
   .underlineHover:hover:after{
     width: 100%;
   }
   
-  
+  .logo{
+    margin-top: 15%;
+    margin-bottom: 10%;
+  }
   
   /* OTHERS */
   
@@ -259,4 +267,9 @@ html {
   
   #icon {
     width:60%;
+  }
+
+  .button-login{
+    margin-top: 20px;
+    margin-bottom: 20px;
   }

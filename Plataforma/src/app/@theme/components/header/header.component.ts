@@ -1,10 +1,11 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { NbMediaBreakpointsService, NbMenuService, NbSidebarService, NbThemeService } from '@nebular/theme';
+import { NbMediaBreakpointsService, NbSidebarService, NbThemeService } from '@nebular/theme';
 
 import { UserData } from '../../../@core/data/users';
 import { LayoutService } from '../../../@core/utils';
 import { map, takeUntil } from 'rxjs/operators';
 import { Subject } from 'rxjs';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'ngx-header',
@@ -39,12 +40,12 @@ export class HeaderComponent implements OnInit, OnDestroy {
     },
   ];
 
-  currentTheme = 'default';
+  currentTheme = 'corporate';
 
   userMenu = [ { title: 'Profile' }, { title: 'Cerrar Sesion' } ];
 
   constructor(private sidebarService: NbSidebarService,
-              private menuService: NbMenuService,
+              private router: Router,
               private themeService: NbThemeService,
               private userService: UserData,
               private layoutService: LayoutService,
@@ -111,7 +112,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
   }
 
   navigateHome() {
-    this.menuService.navigateHome();
+    this.router.navigateByUrl("./");
     return false;
   }
 
@@ -120,6 +121,8 @@ export class HeaderComponent implements OnInit, OnDestroy {
     if(login!=null){
       localStorage.removeItem('login-mitikas');
       location.href="http://localhost:4200/";
+    }else{
+      this.router.navigateByUrl("./");
     }
   }
 }
