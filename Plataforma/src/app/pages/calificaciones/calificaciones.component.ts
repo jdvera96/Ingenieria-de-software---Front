@@ -31,11 +31,6 @@ export class CalificacionesComponent implements OnInit {
     this.obtenerTareas();
   }
 
-  gotoCalificar(): void{
-    console.log('hola')
-    this.router.navigate(['/pages/calificar-tarea']);
-
-  }
 
   obtenerTareas(){
     this.servicioCalificacion.obtenerTareas(this.id_clase).subscribe(result=>{

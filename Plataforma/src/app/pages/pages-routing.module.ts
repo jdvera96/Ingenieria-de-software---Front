@@ -19,7 +19,13 @@ import {AsistenciasComponent} from './asistencias/asistencias.component'
 import {NotificacionesComponent} from './notificaciones/notificaciones.component'
 
 
+
 import {NotificacionesSPComponent} from './notificaciones-sp/notificaciones-sp.component';
+import {CursosSpComponent} from './supervisor/cursos-sp/cursos-sp.component';
+import {CalificacionesSpComponent} from './supervisor/calificaciones-sp/calificaciones-sp.component';
+import {AsistenciasSpComponent} from './supervisor/asistencias-sp/asistencias-sp.component';
+
+
 
 import {LoginComponent} from './auth/login/login.component';
 
@@ -75,7 +81,7 @@ if(login!=null){
         },{
           path: 'calificar-tarea',
           component: CalificarTareaComponent
-        },{
+        },{ 
           path: ':id/asistencias',
           component: AsistenciasComponent
         },{
@@ -156,6 +162,9 @@ if(login!=null){
         {
           path: 'notificacionesSP',
           component: NotificacionesSPComponent,
+        },{
+          path: 'cursosSp',
+          component: CursosSpComponent
         },
         {
           path: '',

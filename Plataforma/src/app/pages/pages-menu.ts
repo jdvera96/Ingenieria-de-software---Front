@@ -280,6 +280,11 @@ var menu_supervisor: NbMenuItem[]=[
     title: 'NotifiacionesSP',
     icon: 'home-outline',
     link: '/pages/notificacionesSP',
+  },
+  {
+    title: 'Consultar',
+    icon: 'home-outline',
+    link: '/pages/cursosSp',
   }
 ];
 

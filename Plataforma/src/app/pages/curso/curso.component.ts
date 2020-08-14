@@ -42,7 +42,8 @@ export class CursoComponent implements OnInit {
    this.servicioCursos.obtenerCursos(id_profesor).subscribe(result=>{
     for(var i=0;i<result["length"];i++){
       console.log("Result: "+result[i]["id_curso"]["id"]);
-      console.log("id: "+_id);
+      console.log("id: "+ result[i]["id_curso"]["titulo_curso"]);
+      console.log('curso: ',)
       if(result[i]["id_curso"]["id"]==_id){
         this.curso= result[i]["id_curso"]["titulo_curso"];
         return;

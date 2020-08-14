@@ -17,7 +17,7 @@ export class CursosComponent implements OnInit {
   }
 
   ngOnInit(): void {
-  }
+  } 
 
   gotoCurso(codigo: string): void{
     this.router.navigate(['/pages/curso',codigo]);
