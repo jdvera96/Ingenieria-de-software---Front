@@ -20,10 +20,14 @@ export class CursosSpComponent implements OnInit {
 
   id_supervisor: string; 
   objectCursos: any;
+  objectSesiones: any;
   
+  closeResult = '';
+
   constructor(private servicioCurso: CursosService,private servicioTarea: TareasSpService,
               private servicioCalificaciones: CalificacionService,
-              private servicioAsistencias: AsistenciaService
+              private servicioAsistencias: AsistenciaService,
+              private modalService: NgbModal
     ) { }
 
   ngOnInit(): void {
@@ -35,6 +39,7 @@ export class CursosSpComponent implements OnInit {
 
     //cargamos los cursos asignados al supervisor
     this.cargarCursos();
+    
 
     this.detectarSelect();
 
@@ -60,8 +65,25 @@ export class CursosSpComponent implements OnInit {
     
   }
 
+  cargarSesiones(id_clase){
+    this.servicioTarea.obtenerSesiones(id_clase).subscribe(result=>{
+      this.objectSesiones=result;
+      
+      this.consultarTareas(id_clase);
+
+    })
+  }
+
+  myFunction(){
+    console.log('hola');
+  }
+
   detectarSelect(){
       
+    //limpiando div de selectores tareas y asistencias
+    $('#div_tareas').html(" ")
+    $('#div_sesiones').html(" ")
+
       let select_accion=$('#accion_select').val();
       let select_cursos=$('#curso_select').val();
 
@@ -74,8 +96,7 @@ export class CursosSpComponent implements OnInit {
         })
 
       }else{
-        $('#div_tareas').html(" ")
-
+        
         if(select_accion==3){
           this.servicioAsistencias.obtenerSesiones(select_cursos).subscribe(result=>{
             this.mostrarSelectorSesiones(result);
@@ -86,6 +107,8 @@ export class CursosSpComponent implements OnInit {
 
   }
   
+
+  //-------- accion del button CONSULTAR------------
   accionConsultar(){
     let select_cursos=$('#curso_select').val()
     let select_accion=$('#accion_select').val()
@@ -96,8 +119,11 @@ export class CursosSpComponent implements OnInit {
       console.log('puede consultar')
 
       if(select_accion=='1'){
-        console.log('consultar tareas')
-        this.consultarTareas(select_cursos)
+        //cargo las sessiones y dentro hago la consulta de las tareas
+        this.cargarSesiones(select_cursos);
+
+        
+
       }else if(select_accion=='2'){
         console.log('consultar calificaciones');
 
@@ -142,6 +168,17 @@ export class CursosSpComponent implements OnInit {
   }
 
 
+  //--------- funciones de utilidad -------------------
+
+  encontrarSesionByID(id_sesion){
+    for(let i=0;i<this.objectSesiones.length;i+=1){
+      if(this.objectSesiones[i].id==id_sesion){
+        return this.objectSesiones[i].titulo;
+      }
+    }
+
+    return null;
+  }
 
   //--------- seccion de mostrar tablas  --------------
 
@@ -154,22 +191,30 @@ export class CursosSpComponent implements OnInit {
                         <th scope="col">#</th>
                         <th scope="col">Nombre</th>
                         <th scope="col">Sesion</th>
-                        <th scope="col">Estado</th>
-                        <th scope="col">Accion</th>
+                        <th scope="col">Fecha Creación</th>
+                        <th scope="col">Acción</th>
                       </tr>
                     </thead>`);
     
     let body=$(`<tbody></tbody>`);
 
+
+
     for(let i=0;i<data.length;i+=1){
+
+      //obtengo el nombre de la sesion mediante el id_sesion
+      let nombre_sesion=this.encontrarSesionByID(data[i].id_sesion);
+
       let fila=$(`<tr>
                     <th scope="row">${i+1}</th>
                     <td>${data[i].nombre_tarea}</td>
-                    <td>${data[i].id_sesion}</td>
+                    <td>${nombre_sesion}</td>
                     <td>${data[i].estado}</td>
                     
                     <td>
-                    <button class="btn btn-sm btn-success seeButton" ><i class="far fa-eye"></i>&nbsp;</button>
+                      <button onclick="document.getElementById('id01').style.display='block'" class="btn btn-sm btn-success seeButton" id="${data[i].id}">
+                        <i class="far fa-eye"></i>&nbsp; Ver
+                      </button>
                     </td>
                   </tr>`)
       
@@ -184,6 +229,30 @@ export class CursosSpComponent implements OnInit {
     $('#show_data').html(" ")
     $('#show_data').append(table);
 
+    $('.seeButton').click(function(){
+
+      console.log('dio click')
+
+      //obteniendo datos de la tarea
+      
+      $.get("https://patricioxavi10.pythonanywhere.com/api/getTarea/18", function(data, status){
+        console.log(data);
+
+        
+        //asignando al modal
+        $("#campo_titulo").text(data['nombre_tarea']);
+        $("#campo_sesion").text(data['id_sesion']);
+        $("#campo_descripcion").text(data['descripcion_tarea']);
+        $("#campo_fecha").text('pendiente');
+        $("#campo_url").text('pendiente');
+      });
+
+      
+      
+    })
+
+    
+
   }
 
   mostrarTablaCalificaciones(data){
@@ -192,25 +261,37 @@ export class CursosSpComponent implements OnInit {
     let cabecera=$(`<thead class="thead-dark">
                       <tr>
                         <th scope="col">#</th>
-                        <th scope="col">Nombre</th>
+                        <th scope="col">Apellidos y Nombres</th>
                         <th scope="col">Estado</th>
                         <th scope="col">Calificacion</th>
-                        <th scope="col">Accion</th>
+                        
                       </tr>
                     </thead>`);
     
     let body=$(`<tbody></tbody>`);
 
+    console.log(data)
+
     for(let i=0;i<data.length;i+=1){
+
+      if(data[i].estado==false){
+        data[i].estado='sin calificar'
+      }
+
+      if(data[i].calificacion==null){
+        data[i].calificacion=0
+      }
+
+      //formateando nombres y apellidos
+      let nombre=data[i].id_estudiante.nombres.split(' ')[0]
+      
+
       let fila=$(`<tr>
                     <th scope="row">${i+1}</th>
-                    <td>${data[i].id_estudiante.nombres}</td>
+                    <td>${data[i].id_estudiante.apellidos} ${data[i].id_estudiante.nombres}</td>
                     <td>${data[i].estado}</td>
                     <td>${data[i].calificacion}</td>
-                    
-                    <td>
-                    <button class="btn btn-sm btn-success seeButton" ><i class="far fa-eye"></i>&nbsp;</button>
-                    </td>
+                   
                   </tr>`)
       
       body.append(fila);
@@ -232,10 +313,9 @@ export class CursosSpComponent implements OnInit {
     let cabecera=$(`<thead class="thead-dark">
                       <tr>
                         <th scope="col">#</th>
-                        <th scope="col">Nombre</th>
-                        <th scope="col">Estado</th>
+                        <th scope="col">Apellidos y Nombres</th>
+                        <th scope="col">Asistencias</th>
     
-                        <th scope="col">Accion</th>
                       </tr>
                     </thead>`);
     
@@ -244,13 +324,10 @@ export class CursosSpComponent implements OnInit {
     for(let i=0;i<data.length;i+=1){
       let fila=$(`<tr>
                     <th scope="row">${i+1}</th>
-                    <td>${data[i].id_estudiante.nombres}</td>
-                    <td>${data[i].asisteencia}</td>
+                    <td>${data[i].id_estudiante.apellidos} ${data[i].id_estudiante.nombres}</td>
+                    <td>${data[i].asistencia}</td>
                    
-                    
-                    <td>
-                    <button class="btn btn-sm btn-success seeButton" ><i class="far fa-eye"></i>&nbsp;</button>
-                    </td>
+                   
                   </tr>`)
       
       body.append(fila);
@@ -297,9 +374,56 @@ export class CursosSpComponent implements OnInit {
         selector.append(opcion);
     }
     
-    $('#div_sesionees').html(" ")
+    $('#div_sesiones').html(" ")
     $('#div_sesiones').append(p);                    
     $('#div_sesiones').append(selector);
-}
+  }
+
+  //---------------funciones para modales ----------------
+
+  openView(content) {
+
+    
+    this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title-view'}).result.then((result) => {
+      console.log('dio click en Cerrar');
+      
+      //this.closeResult = `Closed with: ${result}`;
+    }, (reason) => {
+      
+      this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+    });
+  }
+
+  private getDismissReason(reason: any): string {
+    if (reason === ModalDismissReasons.ESC) {
+      return 'by pressing ESC';
+    } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
+      return 'by clicking on a backdrop';
+    } else {
+      return `with: ${reason}`;
+    }
+  }
+
+  tareaInfoView(content,id_tarea){
+    this.servicioTarea.obtenerInfoTarea(id_tarea).subscribe(data=>{
+      if(data){
+        console.log(data)
+        
+        this.openView(content)
+        
+        this.servicioTarea.obtenerInfoSesion(data["id_sesion"]).subscribe(dataSesion=>{
+            //asignando informacion a los input del modal detalles
+            $("#view_input_sesion").val(dataSesion["titulo"]);
+            $("#view_input_titulo").val(data['nombre_tarea']);
+            $("#view_input_descripcion").val(data['descripcion_tarea']);
+
+        })
+
+
+      }else{
+        console.log('error en obtener tarea')
+      }
+    })
+  }
 
 }
