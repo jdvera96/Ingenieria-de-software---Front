@@ -18,4 +18,12 @@ export class GestionPersonasComponent implements OnInit {
     this.router.navigate([`/pages/gestionPersonas/estudiantes`]);
   }
 
+  goToProfesores(){
+    this.router.navigate([`/pages/gestionPersonas/profesores`]);
+  }
+
+  goToSupervisores(){
+    this.router.navigate([`/pages/gestionPersonas/supervisores`]);
+  }
+
 }

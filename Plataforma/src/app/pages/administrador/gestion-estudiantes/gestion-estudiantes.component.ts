@@ -4,7 +4,6 @@ import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap'
 import Swal from 'sweetalert2'
 import * as $ from 'jquery';
 
-import { timer } from 'rxjs';
 
 import {EstudianteService} from '../../../servicios/administrador/estudiantes/estudiante.service'
 
@@ -16,7 +15,9 @@ import {EstudianteService} from '../../../servicios/administrador/estudiantes/es
 export class GestionEstudiantesComponent implements OnInit {
 
   estudiantesObject: any;
+  respaldoEstudiantesObject: any;
   closeResult = '';
+  texto: string;
 
   constructor(private modalService: NgbModal,
               private estudianteService: EstudianteService
@@ -24,6 +25,7 @@ export class GestionEstudiantesComponent implements OnInit {
 
   ngOnInit(): void {
      this.obtenerTodos();
+     
   }
 
   openView(content) {
@@ -51,6 +53,7 @@ export class GestionEstudiantesComponent implements OnInit {
   obtenerTodos(){
     this.estudianteService.obtenerTodosEstudiantes().subscribe(result=>{
         this.estudiantesObject=result;
+        this.respaldoEstudiantesObject=result;
     })
   }
 
@@ -62,7 +65,7 @@ export class GestionEstudiantesComponent implements OnInit {
     let nombres=$('#view_inputCrear_nombres').val();
     let apellidos=$('#view_inputCrear_apellidos').val();
     let cedula=$('#view_inputCrear_cedula').val()
-    let fecha=null;
+    let fecha=$('#view_inputCrear_fecha').val();
     let direccion=$('#view_inputCrear_direccion').val();
     let telefono=$('#view_inputCrear_telefono').val();
     let escolaridad=$('#view_inputCrear_escolaridad').val();
@@ -79,7 +82,7 @@ export class GestionEstudiantesComponent implements OnInit {
           "nombres": nombres,
           "apellidos": apellidos,
           "cedula": cedula,
-          "fecha_nacimiento": null,
+          "fecha_nacimiento": fecha,
           "direccion": direccion,
           "telefono": telefono,
           "escolaridad": escolaridad,
@@ -131,6 +134,8 @@ export class GestionEstudiantesComponent implements OnInit {
         $("#view_input_direccion").val(data['direccion']);
         $("#view_input_telefono").val(data['telefono']);
         $("#view_input_escolaridad").val(data['escolaridad']);
+        $("#view_input_fecha").val(data['fecha_nacimiento']);
+        
         $("#view_input_pais").val(data['pais']);
         $("#view_input_ciudad").val(data['ciudad']);
         $("#view_input_sexo").val(data['sexo']);
@@ -148,7 +153,6 @@ export class GestionEstudiantesComponent implements OnInit {
     //bloqueo el button de habilitar edicion
     $("#btn_habilitar").attr('disabled','disabled');
 
-    $("#view_input_cedula").removeAttr('disabled');
     $("#view_input_nombres").removeAttr('disabled');
     $("#view_input_telefono").removeAttr('disabled');
     $("#view_input_direccion").removeAttr('disabled');
@@ -161,7 +165,6 @@ export class GestionEstudiantesComponent implements OnInit {
 
    
   }
-
   
   guardarCambios(){
     let nombres_apelllidos=$("#view_input_nombres").val();
@@ -175,6 +178,7 @@ export class GestionEstudiantesComponent implements OnInit {
     let direccion=$("#view_input_direccion").val();
     let telefono=$("#view_input_telefono").val();
     let escolaridad=$("#view_input_escolaridad").val();
+    let fecha=$("#view_input_fecha").val();
     let pais=$("#view_input_pais").val();
     let ciudad=$("#view_input_ciudad").val();
     let sexo=$("#view_input_sexo").val();
@@ -184,7 +188,7 @@ export class GestionEstudiantesComponent implements OnInit {
               "nombres": nombres,
               "apellidos": apellidos,
               "cedula": cedula,
-              "fecha_nacimiento": null,
+              "fecha_nacimiento": fecha,
               "direccion": direccion,
               "telefono": telefono,
               "escolaridad": escolaridad,
@@ -192,7 +196,7 @@ export class GestionEstudiantesComponent implements OnInit {
               "ciudad": ciudad,
               "sexo": sexo,
               "grupo_excluido": grupo,
-              "estado": false
+              "estado": true
   }
 
     this.estudianteService.actualizarInfoEstudiante(cedula,data).subscribe(result=>{
@@ -214,7 +218,6 @@ export class GestionEstudiantesComponent implements OnInit {
 
   }
   
-
   deleteEstudiante(id_estudiante){
     this.estudianteService.eliminarEstudiante(id_estudiante).subscribe(result=>{
 
@@ -253,6 +256,30 @@ export class GestionEstudiantesComponent implements OnInit {
       })
 
     })
+  }
+
+  onKey(event){
+    //capturo lo que el usuario escribe 
+    console.log(event.target.value)
+    let texto=event.target.value;
+    
+    let coincidencias=[]
+
+    for(let i=0;i<this.respaldoEstudiantesObject.length;i+=1){
+        let objeto=this.respaldoEstudiantesObject[i]
+
+       
+        let nombreEncontrado=objeto.nombres.toLowerCase().indexOf(texto);
+        let apellidoEncontrado= objeto.apellidos.toLowerCase().indexOf(texto);
+        let cedulaEncontrada= objeto.cedula.toLowerCase().indexOf(texto);
+
+        if(nombreEncontrado!=-1 || apellidoEncontrado!=-1 || cedulaEncontrada!=-1){
+          coincidencias.push(objeto);
+        }
+    }
+
+    this.estudiantesObject=coincidencias;
+    
   }
 
 }
