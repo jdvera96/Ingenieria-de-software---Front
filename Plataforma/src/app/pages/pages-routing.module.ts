@@ -22,8 +22,13 @@ import {NotificacionesComponent} from './notificaciones/notificaciones.component
 
 import {NotificacionesSPComponent} from './notificaciones-sp/notificaciones-sp.component';
 import {CursosSpComponent} from './supervisor/cursos-sp/cursos-sp.component';
-import {CalificacionesSpComponent} from './supervisor/calificaciones-sp/calificaciones-sp.component';
-import {AsistenciasSpComponent} from './supervisor/asistencias-sp/asistencias-sp.component';
+
+
+
+import {GestionPersonasComponent} from './administrador/gestion-personas/gestion-personas.component'
+import {GestionEstudiantesComponent} from './administrador/gestion-estudiantes/gestion-estudiantes.component';
+import {GestionProfesoresComponent} from './administrador/gestion-profesores/gestion-profesores.component';
+import {GestionSupervisoresComponent} from './administrador/gestion-supervisores/gestion-supervisores.component';
 
 
 
@@ -177,8 +182,36 @@ if(login!=null){
         },
       ],
     }];
-  }else if(array[0]=='administrador'){
+  }else if(array[0]=='Administrador'){
     console.log('administrador logeado');
+    routesMenu=[{
+      path: '',
+      component: PagesComponent,
+      children: [
+        {
+          path: 'gestionPersonas',
+          component: GestionPersonasComponent
+        },{
+          path: 'gestionPersonas/estudiantes',
+          component: GestionEstudiantesComponent
+        },{
+          path: 'gestionPersonas/profesores',
+          component: GestionProfesoresComponent
+        },{
+          path: 'gestionPersonas/supervisores',
+          component: GestionSupervisoresComponent
+        },
+        {
+          path: '',
+          redirectTo: 'notificacionesSP',
+          pathMatch: 'full',
+        },
+        {
+          path: '**',
+          component: NotFoundComponent,
+        },
+      ],
+    }];
   }else{
     console.log('error en credenciales');
     routesMenu=[{

@@ -21,6 +21,7 @@ export class CursosSpComponent implements OnInit {
   id_supervisor: string; 
   objectCursos: any;
   objectSesiones: any;
+
   
   closeResult = '';
 
@@ -74,9 +75,6 @@ export class CursosSpComponent implements OnInit {
     })
   }
 
-  myFunction(){
-    console.log('hola');
-  }
 
   detectarSelect(){
       
@@ -133,6 +131,10 @@ export class CursosSpComponent implements OnInit {
         console.log('consultar asistencias')
         let select_sesion=$('#sesion_select').val()
         this.consultarAsistencias(select_sesion);
+      
+      }else if(select_accion=='4'){
+        console.log('mostrar Listado del curso');
+        this.consultarListado(select_cursos);
       }
 
     }
@@ -140,7 +142,6 @@ export class CursosSpComponent implements OnInit {
 
 
   //----- seccion consultas principales
-
   consultarTareas(id_clase){
     this.servicioTarea.obtenerTareas(id_clase).subscribe(result=>{
       console.log('tareas: ',result);
@@ -165,11 +166,15 @@ export class CursosSpComponent implements OnInit {
       this.mostrarTablaAsistencias(result);
     })
     
+  } 
+
+  consultarListado(id_curso){
+    this.servicioCurso.obtenerListado(id_curso).subscribe(result=>{
+      this.mostrarTablaListado(result);
+    });
   }
 
-
   //--------- funciones de utilidad -------------------
-
   encontrarSesionByID(id_sesion){
     for(let i=0;i<this.objectSesiones.length;i+=1){
       if(this.objectSesiones[i].id==id_sesion){
@@ -343,6 +348,57 @@ export class CursosSpComponent implements OnInit {
 
   }
 
+  mostrarTablaListado(listaCurso){
+    console.log(listaCurso);
+    let table=$(`<table class="table"></table>`);
+
+    let cabecera=$(`<thead class="thead-dark">
+                      <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Apellidos y Nombres</th>
+                        <th scope="col">Rol</th>
+    
+                      </tr>
+                    </thead>`);
+    
+    let body=$(`<tbody></tbody>`);
+
+    let fila_profesor=$(`<tr>
+                          <th scope="row">1</th>
+                          <td>${listaCurso.id_profesor.apellidos} ${listaCurso.id_profesor.nombres}</td>
+                          <td>Profesor</td>
+                        </tr>`)
+
+    //agrego la primera fila a la tabla de datos
+    body.append(fila_profesor);
+    
+    //recorro la lista de alumnos y agrego al body de la tabla
+    let listaEstudiantes=listaCurso.id_estudiante
+    
+    for(let i=0;i<listaEstudiantes.length;i+=1){
+      let fila=$(`<tr>
+                    <th scope="row">${i+2}</th>
+                    <td>${listaEstudiantes[i].apellidos} ${listaEstudiantes[i].nombres}</td>
+                    <td>Alumno</td>
+                   
+                   
+                  </tr>`)
+      
+      body.append(fila);
+    }
+    
+    table.append(cabecera);
+    table.append(body);
+
+
+    //agregando al html
+    $('#show_data').html(" ")
+    $('#show_data').append(table);
+
+  }
+
+
+
   mostrarSelectorTareas(tareas){
 
       //cargando el selector con tareas al html
@@ -379,8 +435,8 @@ export class CursosSpComponent implements OnInit {
     $('#div_sesiones').append(selector);
   }
 
-  //---------------funciones para modales ----------------
 
+  //---------------funciones para modales ----------------
   openView(content) {
 
     

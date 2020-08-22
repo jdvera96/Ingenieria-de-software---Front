@@ -11,4 +11,9 @@ export class CursosService {
   obtenerCursos(id_supervisor){
     return this.http.get("https://patricioxavi10.pythonanywhere.com/api/getclasessupervisor/"+id_supervisor)
   }
+
+  obtenerListado(id_curso){
+    return this.http.get("https://patricioxavi10.pythonanywhere.com/api/getclase/"+id_curso)
+  }
+
 }

@@ -247,16 +247,7 @@ const menu_general: NbMenuItem[]=[
 ];
 
 var menu_profesor: NbMenuItem[]=[
-  /*{
-    title: 'Principal',
-    icon: 'home-outline',
-    link: '/pages/iot-dashboard',
-  },
-  {
-    title: 'Notificaciones',
-    icon: 'home-outline',
-    link: '/pages/notificaciones',
-  },*/
+  
   {
     title: 'Principal',
     icon: 'home-outline',
@@ -288,6 +279,15 @@ var menu_supervisor: NbMenuItem[]=[
   }
 ];
 
+var menu_administrador: NbMenuItem[]=[
+  
+  {
+    title: 'Gestionar',
+    icon: 'home-outline',
+    link: '/pages/gestionPersonas',
+  }
+];
+
 var menu_errorCredenciales: NbMenuItem[]=[
   
   {
@@ -308,6 +308,9 @@ if(login!=null){
     menuDinamico=menu_profesor;
   }else if(array[0]=='Supervisor'){
     menuDinamico=menu_supervisor;
+  }else if(array[0]=='Administrador'){
+    menuDinamico=menu_administrador;
+  
   }else{
     menuDinamico=menu_errorCredenciales;
   }
