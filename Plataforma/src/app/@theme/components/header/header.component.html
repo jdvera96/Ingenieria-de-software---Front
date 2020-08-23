@@ -1,10 +1,10 @@
 <div class="header-container">
-  <div class="logo-container">
-    <a (click)="toggleSidebar()" href="#" class="sidebar-toggle">
+  <div class="logo-container">        
+    <a *ngIf="show" (click)="toggleSidebar()" href="#" class="sidebar-toggle">
       <nb-icon icon="menu-2-outline"></nb-icon>
     </a>
-    <a class="logo" href="#" (click)="navigateHome()">Mitikas</a>
-  </div>
+    <img src="assets/mitikas_svg/isolated-monochrome-white.svg" alt="" class="logo image-logo" (click)="navigateHome()">
+  </div>  
   <!--<nb-select [selected]="currentTheme" (selectedChange)="changeTheme($event)" status="primary">
     <nb-option *ngFor="let theme of themes" [value]="theme.value"> {{ theme.name }}</nb-option>
   </nb-select>-->
@@ -22,7 +22,7 @@
                [name]="user?.name"
                [picture]="user?.picture">
       </nb-user>
-      <button type="button" id="btn_cerrar_sesion" class="btn btn-light" (click)="cerrarSesion()">Iniciar sesion</button>
+      <button type="button" id="btn_sesion" class="btn btn-light" (click)="cerrarSesion()">{{buttonSessionTxt}}</button>
     </nb-action>
   </nb-actions>
 </div>

@@ -247,10 +247,11 @@ const menu_general: NbMenuItem[]=[
 ];
 
 var menu_profesor: NbMenuItem[]=[
+  
   {
     title: 'Principal',
     icon: 'home-outline',
-    link: '/pages/iot-dashboard',
+    link: '/pages/cursos',
   },
   {
     title: 'Notificaciones',
@@ -260,7 +261,7 @@ var menu_profesor: NbMenuItem[]=[
   {
     title: 'Cursos',
     icon: 'home-outline',
-    link: '/pages/cursos',
+    children:[]
   }
 ];
 
@@ -270,6 +271,20 @@ var menu_supervisor: NbMenuItem[]=[
     title: 'NotifiacionesSP',
     icon: 'home-outline',
     link: '/pages/notificacionesSP',
+  },
+  {
+    title: 'Consultar',
+    icon: 'home-outline',
+    link: '/pages/cursosSp',
+  }
+];
+
+var menu_administrador: NbMenuItem[]=[
+  
+  {
+    title: 'Gestionar',
+    icon: 'home-outline',
+    link: '/pages/gestionPersonas',
   }
 ];
 
@@ -289,10 +304,13 @@ var login=localStorage.getItem('login-mitikas');
 if(login!=null){
   let array=login.split('-');
 
-  if(array[0]=='profesor'){
+  if(array[0]=='Profesor'){
     menuDinamico=menu_profesor;
-  }else if(array[0]=='supervisor'){
+  }else if(array[0]=='Supervisor'){
     menuDinamico=menu_supervisor;
+  }else if(array[0]=='Administrador'){
+    menuDinamico=menu_administrador;
+  
   }else{
     menuDinamico=menu_errorCredenciales;
   }

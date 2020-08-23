@@ -17,14 +17,18 @@ export class CursosComponent implements OnInit {
   }
 
   ngOnInit(): void {
-  }
+  } 
 
   gotoCurso(codigo: string): void{
     this.router.navigate(['/pages/curso',codigo]);
   }
 
   cargarCursos(){
-   this.servicioCursos.obtenerCursos().subscribe(result=>{
+    let infoCredenciales=localStorage.getItem('login-mitikas');
+    let array=infoCredenciales.split("-");
+    let id_profesor=array[3];
+
+   this.servicioCursos.obtenerCursos(id_profesor).subscribe(result=>{
      this.objetoCursos=result;
      console.log(this.objetoCursos);
    }) 
