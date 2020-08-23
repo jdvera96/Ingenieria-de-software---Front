@@ -6,6 +6,7 @@ import { RegistroPage } from './registro.page';
 import {UrlSerializer} from '@angular/router';
 import {ActivatedRoute,Router} from '@angular/router';
 import {HttpClient} from '@angular/common/http';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 describe('RegistroPage', () => {
@@ -14,11 +15,11 @@ describe('RegistroPage', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ RegistroPage ],
-      imports: [IonicModule.forRoot()],
+      declarations: [ RegistroPage],
+      imports: [IonicModule.forRoot(),ReactiveFormsModule],
       schemas:[CUSTOM_ELEMENTS_SCHEMA],
       providers: [
-        { provide:Location},
+        {provide:Location},
         {provide: UrlSerializer},
 	      {provide: ActivatedRoute},
         {provide:HttpClient},

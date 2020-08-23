@@ -5,6 +5,7 @@ import { HttpClient } from '@angular/common/http';
 import { ConsultaService } from '../../servicio/consulta.service';
 import { NavController, AlertController } from '@ionic/angular';
 import { error } from 'protractor';
+import { environment } from '../../../environments/environment';
 //declare const pay: any;
 declare var paypal: any;
 @Component({
@@ -15,7 +16,7 @@ declare var paypal: any;
 export class DetallesPage implements AfterViewChecked {
   addScript: boolean = false;
   paypalLoad: boolean = true;
-
+  env = environment;
   finalAmount: number = 1;
   paypalConfig = {
     env: 'sandbox',
@@ -127,7 +128,11 @@ export class DetallesPage implements AfterViewChecked {
 
   // eslint-disable-next-line @typescript-eslint/no-empty-function
   constructor(public nav: NavController, private activatedRoute: ActivatedRoute, public consulta: ConsultaService, public http: HttpClient, public alertController: AlertController) {
-    const num = this.activatedRoute.snapshot.paramMap.get('id');
+    var num = '1';
+    if(this.env.production){
+      const number=this.activatedRoute.snapshot.paramMap.get('id');
+      num = number;
+    }
     this.id = parseInt(num, 10);
     this.consulta.obtenerCursobyId(this.id).subscribe((data) => {
       var anydata = <any>data;

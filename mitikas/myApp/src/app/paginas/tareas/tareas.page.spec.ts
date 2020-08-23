@@ -37,4 +37,8 @@ describe('TareasPage', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('should create', () => {
+    expect(component.datos == null).toBeFalse();
+  });
 });

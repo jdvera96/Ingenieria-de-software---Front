@@ -21,7 +21,8 @@
 
 <ion-content class="main-container">
   <div *ngFor="let item of datos" (click)="openNavDetailsPage(item.id)" class="contenedor">
-    <img width="80" height="120" class="imagen" src="{{item.imagen}}" alt="">
+    
+    <img width="70" height="120" class="imagen" src="{{item.imagen}}" alt="">
     <div class="contenido">
       <h3 style="font-size:16px;" class="titulo">{{ item.titulo_curso }}</h3>
       <p style="font-size:14px;"class="descripcion">{{ item.descripcion }}</p>

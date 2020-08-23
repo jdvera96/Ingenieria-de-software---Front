@@ -38,4 +38,14 @@ describe('CalificacionesPage', () => {
   it('should create', () => {
     expect(component).toBeTruthy(CalificacionesPage);
   });
+
+  it('should create', () => {
+    expect(component.calcularPromedio([])).toBe(1);
+  });
+
+  it('should create', () => {
+    expect(component.datos == null).toBeFalse();
+  });
+
+
 });

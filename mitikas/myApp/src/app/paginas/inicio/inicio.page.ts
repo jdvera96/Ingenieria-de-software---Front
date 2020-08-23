@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { AlertController, NavController, MenuController } from '@ionic/angular';
+import { AlertController, NavController, MenuController, Platform  } from '@ionic/angular';
 import { ActivatedRoute } from '@angular/router';
 import { ConsultaService } from 'src/app/servicio/consulta.service';
 //import { Firebase } from '@ionic-native/firebase/ngx';
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { Variable } from '@angular/compiler/src/render3/r3_ast';
 @NgModule({
   schemas: [ CUSTOM_ELEMENTS_SCHEMA ]
 })
@@ -17,8 +18,9 @@ export class InicioPage implements OnInit {
 
   email: string;
   password: string;
+  subscription: boolean;
 
-  constructor(public alertController: AlertController, public nav: NavController, private activatedRoute: ActivatedRoute, public consulta: ConsultaService, private menu: MenuController) { }
+  constructor(public alertController: AlertController, public nav: NavController, private activatedRoute: ActivatedRoute, public consulta: ConsultaService, private menu: MenuController,public platform: Platform) { }
 
   ngOnInit() {
     this.menu.enable(false, 'first');
@@ -65,5 +67,14 @@ export class InicioPage implements OnInit {
     await alert.present();
   }
 
+  ionViewDidEnter() {
+    this.platform.backButton.subscribeWithPriority(9999, () => {
+      // do nothing
+    });
+  }
+  
+  ionViewWillLeave() {
+    this.platform.backButton.unsubscribe();
+  }
 
 }

@@ -1,6 +1,6 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>Materia</ion-title>
+    <ion-title>{{titulo}}</ion-title>
     <ion-buttons slot="start">
       <ion-back-button text="Atrás" defaultHref="/tabs/tab3" ></ion-back-button>
     </ion-buttons>
@@ -11,17 +11,17 @@
 <ion-content>  
 
   <!-- Icon top -->
-  <ion-segment color="primary" (ionChange)="segmentChanged($event)">
+  <ion-segment color="primary" class="tab" (ionChange)="segmentChanged($event)">
       
     <ion-segment-button value="Tareas" checked="true">
       <ion-label>Tareas</ion-label>
       <ion-icon name="md-clipboard"></ion-icon>
     </ion-segment-button>
-    <ion-segment-button value="Calificaciones">
+    <ion-segment-button class="element" value="Calificaciones">
       <ion-label>Calificaciones</ion-label>
       <ion-icon name="md-checkmark-circle"></ion-icon>
     </ion-segment-button>
-    <ion-segment-button value="Asistencias">
+    <ion-segment-button class="element" value="Asistencias">
       <ion-label>Asistencias</ion-label>
       <ion-icon name="md-clock"></ion-icon>
     </ion-segment-button>
@@ -35,7 +35,7 @@
 
     <div *ngFor="let item of datos" class="contenedor">
       <ion-item>
-        <ion-label>{{ item.nombre_tarea }}:<br>{{ item.descripcion_tarea }}</ion-label>        
+        <ion-label>{{item.id_tarea.nombre_tarea}}:<br>descripción</ion-label>        
       </ion-item>          
       </div>    
   </ion-list>

@@ -242,7 +242,7 @@ export class RegistroPage implements OnInit {
       this.openCursos();
 
     }, error => {
-      this.presentAlert("Error", "Registro fallido", "Los datos ingresados son incorrectos");
+      this.presentAlert("Error", "Registro fallido", "Los datos ingresados son incorrectos o el usuario ya existe");
     });
 
 

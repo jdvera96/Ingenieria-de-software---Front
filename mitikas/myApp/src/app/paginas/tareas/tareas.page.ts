@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { NavController } from '@ionic/angular';
 import { ConsultaService } from 'src/app/servicio/consulta.service';
 import { ActivatedRoute } from '@angular/router';
+import { environment } from '../../../environments/environment';
 
 @Component({
     selector: 'app-tareas',
@@ -12,13 +13,22 @@ export class TareasPage implements OnInit {
 
   id: number;
   datos: any[];
+  titulo: String;
+  env = environment;
+
   constructor(public nav: NavController,private activatedRoute: ActivatedRoute,public consulta: ConsultaService) {
-      const num=this.activatedRoute.snapshot.paramMap.get('id_clase');
-      this.id=parseInt(num, 10);
-      consulta.obtenerClase('0911111111',num).subscribe(data=>{
-          const anydata=<any>data;
-          this.datos = anydata;
-      });
+
+    var num = '1';
+    if(this.env.production){
+      const number=this.activatedRoute.snapshot.paramMap.get('id_clase');
+      num = number;
+    }
+    this.id=parseInt(num, 10);
+    consulta.obtenerClase(localStorage.getItem("id"),num).subscribe((data)=>{
+        const anydata=<any>data;
+        this.datos = anydata;
+        this.titulo =data[0]["id_tarea"]["id_sesion"]["id_clase"]["titulo"];
+    });
   }
 
   ngOnInit() {

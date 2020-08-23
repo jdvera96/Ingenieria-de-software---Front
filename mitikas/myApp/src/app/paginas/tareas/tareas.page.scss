@@ -1,0 +1,18 @@
+.tab{
+    margin: 1% 0% 1% 1%;
+}
+
+.element{
+    margin: 0% 0% 0% -4%;
+}
+
+#bannerTab {
+    display: block;
+    position: fixed;
+    width: 100%;
+    height: 66px;
+    bottom: 0!important;
+    left: 0!important;
+    opacity: 1;
+    transition: all .3s linear;
+}

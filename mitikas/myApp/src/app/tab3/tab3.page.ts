@@ -15,7 +15,7 @@ export class Tab3Page {
 
 
     ionViewWillEnter() {
-        this.consultar.obtenerMisCompras(localStorage.getItem("id")).subscribe((data) => {
+        this.consultar.obtenerMisClases(localStorage.getItem("id")).subscribe((data) => {
             var anydata = <any>data;
             this.datosa = anydata;
         });

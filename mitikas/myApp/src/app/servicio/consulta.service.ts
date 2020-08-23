@@ -31,20 +31,25 @@ export class ConsultaService {
     return this.http.get("https://patricioxavi10.pythonanywhere.com/api/cursos");
   }
 
-  obtenerMisCursos(id: string) {
+  /*obtenerMisCursos(id: string) {
     return this.http.get("https://patricioxavi10.pythonanywhere.com/api/getClase/" + id);
-  }
+  }*/
 
-  obtenerCalificaciones() {
+  /*obtenerCalificaciones() {
     return this.db_calificaciones;
-  }
+  }*/
 
   obtenerClase(idEstudiante: string, idClase: string) {
-    let path = "https://patricioxavi10.pythonanywhere.com/api/getTarea/estudiante/";
-    path = path + `?id_estudiante=` + idEstudiante + "&id_clase=" + idClase;
+    let path = "https://patricioxavi10.pythonanywhere.com/api/gettareas/";
+    path = path + idEstudiante + "/" + idClase;
     return this.http.get(path);
   }
 
+  obtenerAsistencias(idEstudiante: string, idClase: string) {
+    let path = "https://patricioxavi10.pythonanywhere.com/api/gettasistencias/";
+    path = path + idEstudiante + "/" + idClase;
+    return this.http.get(path);
+  }
 
 
   // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
@@ -89,7 +94,11 @@ export class ConsultaService {
     return this.http.get("https://patricioxavi10.pythonanywhere.com/api/getPromo");
   }
 
-  obtenerMisCompras(idEstudiante: string){
+  /*obtenerMisCompras(idEstudiante: string){
+    return this.http.get("https://patricioxavi10.pythonanywhere.com/api/getcompras/"+idEstudiante);
+  }*/
+
+  obtenerMisClases(idEstudiante: string){
     return this.http.get("https://patricioxavi10.pythonanywhere.com/api/getcompras/"+idEstudiante);
   }
 

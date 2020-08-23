@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import {ConsultaService} from '../../servicio/consulta.service';
 import {NavController } from '@ionic/angular';
+import { environment } from '../../../environments/environment';
 
 
 @Component({
@@ -21,27 +22,10 @@ export class CalificacionesPage implements OnInit {
   datos: any[];
   tam:number
   reload: boolean = false;
+  env = environment;
   
   constructor(public nav: NavController,private activatedRoute: ActivatedRoute, public consulta: ConsultaService) {
-    //var num = '1';
-    //if(this.prueba){
-      const num=this.activatedRoute.snapshot.paramMap.get('id_clase');
-      //num = number;
-    //}
-   
-    this.id=parseInt(num, 10);
-    consulta.obtenerClase("0911111111",num).subscribe((data)=>{
-      var anydata=<any>data;
-      this.datos = anydata;
-      this.titulo =data[0]["id_clase"]["id_curso"]["titulo_curso"];
-      this.promedio = this.calcularPromedio(this.datos);
-      /*if(!this.reload){
-        console.log("aqui");
-        location.reload();
-        this.reload = true;
-        console.log(this.reload);
-      }*/
-    });
+    this.obtenerCalificaciones();
    }
 
   ngOnInit() {
@@ -78,6 +62,27 @@ export class CalificacionesPage implements OnInit {
       this.nav.navigateRoot(`tareas/${this.id}`);
     else if(ev.detail.value == "Asistencias")
       this.nav.navigateRoot(`asistencias/${this.id}`);
+  }
+
+  obtenerCalificaciones(){
+    var num = '1';
+    if(this.env.production){
+      const number=this.activatedRoute.snapshot.paramMap.get('id_clase');
+      num = number;
+    }
+    this.id=parseInt(num, 10);
+    this.consulta.obtenerClase(localStorage.getItem("id"),num).subscribe((data)=>{
+      var anydata=<any>data;
+      this.datos = anydata;
+      this.titulo =data[0]["id_tarea"]["id_sesion"]["id_clase"]["titulo"];
+      this.promedio = this.calcularPromedio(this.datos);
+      /*if(!this.reload){
+        console.log("aqui");
+        location.reload();
+        this.reload = true;
+        console.log(this.reload);
+      }*/
+    });
   }
   
 }
