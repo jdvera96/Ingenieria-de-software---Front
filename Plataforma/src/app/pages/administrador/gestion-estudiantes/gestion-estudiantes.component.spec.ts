@@ -1,6 +1,6 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { GestionEstudiantesComponent } from './gestion-estudiantes.component';
+import {HttpClientTestingModule,} from '@angular/common/http/testing';
 
 describe('GestionEstudiantesComponent', () => {
   let component: GestionEstudiantesComponent;
@@ -8,7 +8,11 @@ describe('GestionEstudiantesComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ GestionEstudiantesComponent ]
+      declarations: [ GestionEstudiantesComponent ],
+
+      imports:[
+        HttpClientTestingModule
+      ]
     })
     .compileComponents();
   }));
@@ -19,7 +23,13 @@ describe('GestionEstudiantesComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it('should create ', () => {
     expect(component).toBeTruthy();
   });
+
+  it('Obtener todos los estudiantes - administrador', () => {
+    console.log(component.obtenerTodos());
+    expect(component.estudiantesObject).not.toBe(null);
+  });
+
 });

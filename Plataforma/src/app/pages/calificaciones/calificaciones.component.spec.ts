@@ -1,5 +1,6 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
+import {RouterTestingModule} from '@angular/router/testing';
+import {HttpClientTestingModule,} from '@angular/common/http/testing';
 import { CalificacionesComponent } from './calificaciones.component';
 
 describe('CalificacionesComponent', () => {
@@ -8,7 +9,11 @@ describe('CalificacionesComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ CalificacionesComponent ]
+      declarations: [ CalificacionesComponent ],
+      imports: [
+        RouterTestingModule,
+        HttpClientTestingModule
+      ],
     })
     .compileComponents();
   }));
@@ -22,4 +27,13 @@ describe('CalificacionesComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('Obtener todass las tareas correspondientes a una clase que no existe', () => {
+    expect(component.objectTareas).toBeUndefined();
+  });
+
+  it('Obtener todos las estudiantes que realizaron una tarea que no existe', () => {
+    expect(component.objectEstudiantes).toBeUndefined();
+  });
+
 });

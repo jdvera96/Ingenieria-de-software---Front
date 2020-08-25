@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-
+import { environment } from '../../../environments/environment';
 import {Router, ActivatedRoute} from '@angular/router';
 import { CursosService } from '../../servicios/cursos/cursos.service';
 
@@ -9,7 +9,8 @@ import { CursosService } from '../../servicios/cursos/cursos.service';
   styleUrls: ['./curso.component.scss']
 })
 export class CursoComponent implements OnInit {
-  
+
+  env = environment;
   id: string= '';
   curso: string="";
   constructor(private router: Router, private activador: ActivatedRoute, private servicioCursos: CursosService) {}
@@ -35,7 +36,11 @@ export class CursoComponent implements OnInit {
   }
 
   cargarCursos(_id:string){
-    let infoCredenciales=localStorage.getItem('login-mitikas');
+
+    let infoCredenciales = "a-b-c";
+    if(this.env.production){
+      infoCredenciales=localStorage.getItem('login-mitikas');
+    }
     let array=infoCredenciales.split("-");
     let id_profesor=array[3];
 
@@ -51,7 +56,7 @@ export class CursoComponent implements OnInit {
     }
     this.curso= "Error";
    })
-   
+
   }
 
 

@@ -1,5 +1,6 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
+import {RouterTestingModule} from '@angular/router/testing';
+import {HttpClientTestingModule,} from '@angular/common/http/testing';
 import { CursosComponent } from './cursos.component';
 
 describe('CursosComponent', () => {
@@ -8,7 +9,11 @@ describe('CursosComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ CursosComponent ]
+      declarations: [ CursosComponent ],
+      imports: [
+        RouterTestingModule,
+        HttpClientTestingModule
+      ],
     })
     .compileComponents();
   }));
@@ -21,5 +26,9 @@ describe('CursosComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+
+  it('Obtener todos los cursos asignados a un profesor que no existe', () => {
+    expect(component.objetoCursos).toBeUndefined();
   });
 });

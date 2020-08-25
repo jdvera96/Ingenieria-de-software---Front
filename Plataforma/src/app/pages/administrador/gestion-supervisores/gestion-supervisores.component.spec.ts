@@ -1,6 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
+import {HttpClientTestingModule,} from '@angular/common/http/testing';
 import { GestionSupervisoresComponent } from './gestion-supervisores.component';
+
 
 describe('GestionSupervisoresComponent', () => {
   let component: GestionSupervisoresComponent;
@@ -8,7 +9,10 @@ describe('GestionSupervisoresComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ GestionSupervisoresComponent ]
+      declarations: [ GestionSupervisoresComponent ],
+      imports: [
+        HttpClientTestingModule
+      ],
     })
     .compileComponents();
   }));
@@ -21,5 +25,9 @@ describe('GestionSupervisoresComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+
+  it('Obtener todos los supervisores - administrador', () => {
+    expect(component.supervisorObject).not.toBe(null);
   });
 });

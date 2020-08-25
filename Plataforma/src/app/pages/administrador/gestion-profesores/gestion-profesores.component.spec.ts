@@ -1,5 +1,5 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
+import {HttpClientTestingModule,} from '@angular/common/http/testing';
 import { GestionProfesoresComponent } from './gestion-profesores.component';
 
 describe('GestionProfesoresComponent', () => {
@@ -8,7 +8,10 @@ describe('GestionProfesoresComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ GestionProfesoresComponent ]
+      declarations: [ GestionProfesoresComponent ],
+      imports:[
+        HttpClientTestingModule
+      ]
     })
     .compileComponents();
   }));
@@ -21,5 +24,10 @@ describe('GestionProfesoresComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+
+  it('Obtener todos los profesores - administrador', () => {
+    console.log(component.obtenerTodos());
+    expect(component.profesoresObject).not.toBe(null);
   });
 });

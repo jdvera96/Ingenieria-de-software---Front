@@ -25,7 +25,7 @@ describe('CalificacionesPage', () => {
               {
               url: [{ path: 1 }, { path: 2 }]
                }
-          }},
+        }},
         {provide:HttpClient}
       ],
     }).compileComponents();

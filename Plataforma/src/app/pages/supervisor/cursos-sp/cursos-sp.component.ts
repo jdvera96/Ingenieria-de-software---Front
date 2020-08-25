@@ -4,7 +4,7 @@ import {CursosService} from '../../../servicios/supervisor/cursos/cursos.service
 import {TareasSpService} from '../../../servicios/supervisor/tareas/tareas-sp.service'
 import {CalificacionService} from '../../../servicios/supervisor/calificaciones/calificacion.service'
 import {AsistenciaService} from '../../../servicios/supervisor/asistencias/asistencia.service'
-
+import { environment } from '../../../../environments/environment';
 
 import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap'
 import Swal from 'sweetalert2'
@@ -18,11 +18,11 @@ import * as $ from 'jquery';
 })
 export class CursosSpComponent implements OnInit {
 
-  id_supervisor: string; 
+  id_supervisor: string;
   objectCursos: any;
   objectSesiones: any;
+  env = environment;
 
-  
   closeResult = '';
 
   constructor(private servicioCurso: CursosService,private servicioTarea: TareasSpService,
@@ -34,13 +34,17 @@ export class CursosSpComponent implements OnInit {
   ngOnInit(): void {
 
     //obtener datos del local storage
-    let data=localStorage.getItem('login-mitikas');
+    let data = "a-b-c";
+    if(this.env.production){
+      data=localStorage.getItem('login-mitikas');
+    }
+
     let arreglo=data.split('-');
     this.id_supervisor=arreglo[3];
 
     //cargamos los cursos asignados al supervisor
     this.cargarCursos();
-    
+
 
     this.detectarSelect();
 
@@ -58,18 +62,18 @@ export class CursosSpComponent implements OnInit {
     if(this.verificarIDsupervisor){
       this.servicioCurso.obtenerCursos(this.id_supervisor).subscribe(result=>{
         console.log('cursos: ',result);
-        this.objectCursos=result; 
+        this.objectCursos=result;
       });
     }else{
       console.log('error con id supervisor');
     }
-    
+
   }
 
   cargarSesiones(id_clase){
     this.servicioTarea.obtenerSesiones(id_clase).subscribe(result=>{
       this.objectSesiones=result;
-      
+
       this.consultarTareas(id_clase);
 
     })
@@ -77,7 +81,7 @@ export class CursosSpComponent implements OnInit {
 
 
   detectarSelect(){
-      
+
     //limpiando div de selectores tareas y asistencias
     $('#div_tareas').html(" ")
     $('#div_sesiones').html(" ")
@@ -94,7 +98,7 @@ export class CursosSpComponent implements OnInit {
         })
 
       }else{
-        
+
         if(select_accion==3){
           this.servicioAsistencias.obtenerSesiones(select_cursos).subscribe(result=>{
             this.mostrarSelectorSesiones(result);
@@ -104,13 +108,13 @@ export class CursosSpComponent implements OnInit {
       }
 
   }
-  
+
 
   //-------- accion del button CONSULTAR------------
   accionConsultar(){
     let select_cursos=$('#curso_select').val()
     let select_accion=$('#accion_select').val()
-    
+
     if(select_cursos==null || select_accion==null){
       console.log('no ha seleccionado');
     }else{
@@ -120,7 +124,7 @@ export class CursosSpComponent implements OnInit {
         //cargo las sessiones y dentro hago la consulta de las tareas
         this.cargarSesiones(select_cursos);
 
-        
+
 
       }else if(select_accion=='2'){
         console.log('consultar calificaciones');
@@ -131,7 +135,7 @@ export class CursosSpComponent implements OnInit {
         console.log('consultar asistencias')
         let select_sesion=$('#sesion_select').val()
         this.consultarAsistencias(select_sesion);
-      
+
       }else if(select_accion=='4'){
         console.log('mostrar Listado del curso');
         this.consultarListado(select_cursos);
@@ -153,10 +157,10 @@ export class CursosSpComponent implements OnInit {
   consultarCalificaciones(id_tarea){
 
     this.servicioCalificaciones.obtenerCalificaciones_Estudiantes(id_tarea).subscribe(result=>{
-      
+
       this.mostrarTablaCalificaciones(result);
     })
-    
+
   }
 
   consultarAsistencias(id_sesion){
@@ -165,8 +169,8 @@ export class CursosSpComponent implements OnInit {
       console.log('asistencias: ',result);
       this.mostrarTablaAsistencias(result);
     })
-    
-  } 
+
+  }
 
   consultarListado(id_curso){
     this.servicioCurso.obtenerListado(id_curso).subscribe(result=>{
@@ -200,7 +204,7 @@ export class CursosSpComponent implements OnInit {
                         <th scope="col">Acción</th>
                       </tr>
                     </thead>`);
-    
+
     let body=$(`<tbody></tbody>`);
 
 
@@ -215,17 +219,17 @@ export class CursosSpComponent implements OnInit {
                     <td>${data[i].nombre_tarea}</td>
                     <td>${nombre_sesion}</td>
                     <td>${data[i].estado}</td>
-                    
+
                     <td>
                       <button onclick="document.getElementById('id01').style.display='block'" class="btn btn-sm btn-success seeButton" id="${data[i].id}">
                         <i class="far fa-eye"></i>&nbsp; Ver
                       </button>
                     </td>
                   </tr>`)
-      
+
       body.append(fila);
     }
-    
+
     table.append(cabecera);
     table.append(body);
 
@@ -239,11 +243,11 @@ export class CursosSpComponent implements OnInit {
       console.log('dio click')
 
       //obteniendo datos de la tarea
-      
+
       $.get("https://patricioxavi10.pythonanywhere.com/api/getTarea/18", function(data, status){
         console.log(data);
 
-        
+
         //asignando al modal
         $("#campo_titulo").text(data['nombre_tarea']);
         $("#campo_sesion").text(data['id_sesion']);
@@ -252,11 +256,11 @@ export class CursosSpComponent implements OnInit {
         $("#campo_url").text('pendiente');
       });
 
-      
-      
+
+
     })
 
-    
+
 
   }
 
@@ -269,10 +273,10 @@ export class CursosSpComponent implements OnInit {
                         <th scope="col">Apellidos y Nombres</th>
                         <th scope="col">Estado</th>
                         <th scope="col">Calificacion</th>
-                        
+
                       </tr>
                     </thead>`);
-    
+
     let body=$(`<tbody></tbody>`);
 
     console.log(data)
@@ -289,19 +293,19 @@ export class CursosSpComponent implements OnInit {
 
       //formateando nombres y apellidos
       let nombre=data[i].id_estudiante.nombres.split(' ')[0]
-      
+
 
       let fila=$(`<tr>
                     <th scope="row">${i+1}</th>
                     <td>${data[i].id_estudiante.apellidos} ${data[i].id_estudiante.nombres}</td>
                     <td>${data[i].estado}</td>
                     <td>${data[i].calificacion}</td>
-                   
+
                   </tr>`)
-      
+
       body.append(fila);
     }
-    
+
     table.append(cabecera);
     table.append(body);
 
@@ -320,10 +324,10 @@ export class CursosSpComponent implements OnInit {
                         <th scope="col">#</th>
                         <th scope="col">Apellidos y Nombres</th>
                         <th scope="col">Asistencias</th>
-    
+
                       </tr>
                     </thead>`);
-    
+
     let body=$(`<tbody></tbody>`);
 
     for(let i=0;i<data.length;i+=1){
@@ -331,13 +335,13 @@ export class CursosSpComponent implements OnInit {
                     <th scope="row">${i+1}</th>
                     <td>${data[i].id_estudiante.apellidos} ${data[i].id_estudiante.nombres}</td>
                     <td>${data[i].asistencia}</td>
-                   
-                   
+
+
                   </tr>`)
-      
+
       body.append(fila);
     }
-    
+
     table.append(cabecera);
     table.append(body);
 
@@ -357,10 +361,10 @@ export class CursosSpComponent implements OnInit {
                         <th scope="col">#</th>
                         <th scope="col">Apellidos y Nombres</th>
                         <th scope="col">Rol</th>
-    
+
                       </tr>
                     </thead>`);
-    
+
     let body=$(`<tbody></tbody>`);
 
     let fila_profesor=$(`<tr>
@@ -371,22 +375,22 @@ export class CursosSpComponent implements OnInit {
 
     //agrego la primera fila a la tabla de datos
     body.append(fila_profesor);
-    
+
     //recorro la lista de alumnos y agrego al body de la tabla
     let listaEstudiantes=listaCurso.id_estudiante
-    
+
     for(let i=0;i<listaEstudiantes.length;i+=1){
       let fila=$(`<tr>
                     <th scope="row">${i+2}</th>
                     <td>${listaEstudiantes[i].apellidos} ${listaEstudiantes[i].nombres}</td>
                     <td>Alumno</td>
-                   
-                   
+
+
                   </tr>`)
-      
+
       body.append(fila);
     }
-    
+
     table.append(cabecera);
     table.append(body);
 
@@ -411,9 +415,9 @@ export class CursosSpComponent implements OnInit {
           let opcion=$(`<option value="${tareas[i].id}" >${tareas[i].nombre_tarea}</option>`)
           selector.append(opcion);
       }
-      
+
       $('#div_tareas').html(" ")
-      $('#div_tareas').append(p);                    
+      $('#div_tareas').append(p);
       $('#div_tareas').append(selector);
   }
 
@@ -429,9 +433,9 @@ export class CursosSpComponent implements OnInit {
         let opcion=$(`<option value="${sesiones[i].id}" >${sesiones[i].titulo}</option>`)
         selector.append(opcion);
     }
-    
+
     $('#div_sesiones').html(" ")
-    $('#div_sesiones').append(p);                    
+    $('#div_sesiones').append(p);
     $('#div_sesiones').append(selector);
   }
 
@@ -439,13 +443,13 @@ export class CursosSpComponent implements OnInit {
   //---------------funciones para modales ----------------
   openView(content) {
 
-    
+
     this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title-view'}).result.then((result) => {
       console.log('dio click en Cerrar');
-      
+
       //this.closeResult = `Closed with: ${result}`;
     }, (reason) => {
-      
+
       this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
     });
   }
@@ -464,9 +468,9 @@ export class CursosSpComponent implements OnInit {
     this.servicioTarea.obtenerInfoTarea(id_tarea).subscribe(data=>{
       if(data){
         console.log(data)
-        
+
         this.openView(content)
-        
+
         this.servicioTarea.obtenerInfoSesion(data["id_sesion"]).subscribe(dataSesion=>{
             //asignando informacion a los input del modal detalles
             $("#view_input_sesion").val(dataSesion["titulo"]);

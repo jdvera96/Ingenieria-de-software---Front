@@ -1,5 +1,6 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
+import {RouterTestingModule} from '@angular/router/testing';
+import {HttpClientTestingModule,} from '@angular/common/http/testing';
 import { NotificacionesSPComponent } from './notificaciones-sp.component';
 
 describe('NotificacionesSPComponent', () => {
@@ -8,7 +9,11 @@ describe('NotificacionesSPComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ NotificacionesSPComponent ]
+      declarations: [ NotificacionesSPComponent ],
+      imports: [
+        RouterTestingModule,
+        HttpClientTestingModule
+      ],
     })
     .compileComponents();
   }));

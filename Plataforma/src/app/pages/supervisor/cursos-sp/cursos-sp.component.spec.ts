@@ -1,5 +1,6 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
+import {RouterTestingModule} from '@angular/router/testing';
+import {HttpClientTestingModule,} from '@angular/common/http/testing';
 import { CursosSpComponent } from './cursos-sp.component';
 
 describe('CursosSpComponent', () => {
@@ -8,7 +9,11 @@ describe('CursosSpComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ CursosSpComponent ]
+      declarations: [ CursosSpComponent ],
+      imports: [
+        RouterTestingModule,
+        HttpClientTestingModule
+      ],
     })
     .compileComponents();
   }));
