@@ -5,6 +5,7 @@ import {SupervisorService} from '../../../servicios/administrador/supervisores/s
 
 import Swal from 'sweetalert2'
 import * as $ from 'jquery';
+import { EstudianteService } from '../../../servicios/administrador/estudiantes/estudiante.service';
 
 @Component({
   selector: 'ngx-gestion-supervisores',
@@ -18,11 +19,34 @@ export class GestionSupervisoresComponent implements OnInit {
 
   closeResult = '';
 
+  countryData: any[];
+  cityData: any[];
+  cities: any[];
+  country:string;
+  key=true;
+
+  val01=false;
+  val02=false;
+  val03=false;
+  val04=false;
+  val05=false;
+  val06=false;
+  val07=false;
+  val08=false;
+  val09=false;
+  val10=false;
+  val11=false;
+  val12=false;
+  val13=false;
+  val14=false;
   constructor(private modalService: NgbModal,
-    public supervisorService: SupervisorService) { }
+    public supervisorService: SupervisorService,
+    private estudianteService: EstudianteService) { }
 
   ngOnInit(): void {
     this.obtenerTodos();
+    this.inicializarPaises();
+    this.inicializarCiudades();
   }
 
   openView(content) {
@@ -56,6 +80,7 @@ export class GestionSupervisoresComponent implements OnInit {
   }
 
   supervisorInfoView(content,id_supervisor){
+    this.resetValidation()
     this.supervisorService.obtenerInfoSupervisor(id_supervisor).subscribe(data=>{
       if(data){
         console.log(data)
@@ -70,7 +95,8 @@ export class GestionSupervisoresComponent implements OnInit {
         $("#view_input_telefono").val(data['telefono']);
         $('#view_input_fecha').val(data['fecha_nacimiento']);
         $("#view_input_escolaridad").val(data['escolaridad']);
-        $("#view_input_pais").val(data['pais']);
+        this.country=data['pais'];
+        this.key=true;
         $("#view_input_ciudad").val(data['ciudad']);
         $("#view_input_sexo").val(data['sexo']);
         
@@ -99,7 +125,9 @@ export class GestionSupervisoresComponent implements OnInit {
    
   }
 
-  guardarCambios(){
+  guardarCambios():boolean{
+    if(!this.validationView())
+      return false;
     let nombres_apelllidos=$("#view_input_nombres").val();
 
     let arreglo=nombres_apelllidos.split(' ')
@@ -145,14 +173,17 @@ export class GestionSupervisoresComponent implements OnInit {
 
       }
     })
+    return true;
   }
 
-  supervisorCrearView(content){  
+  supervisorCrearView(content){ 
+    this.resetValidation(); 
     this.openView(content)
   }
 
   crearSupervisor(){
-
+    if(!this.validationRegister())
+      return false;
     let email=$('#view_inputCrear_correo').val();
     let password=$('#view_inputCrear_password').val();
     let rol='supervisor';
@@ -268,4 +299,139 @@ export class GestionSupervisoresComponent implements OnInit {
     this.supervisorObject=coincidencias;
     
   }
+
+  
+  validationView():boolean{
+    let nombres_apelllidos=$("#view_input_nombres").val();
+
+    let arreglo=nombres_apelllidos.split(' ')
+    if(arreglo.length != 4)
+      this.val01=true;
+    else
+      this.val01=false;
+    let direccion=$("#view_input_direccion").val();
+    if(direccion.length==0)
+      this.val02=true;
+    else
+      this.val02=false;
+    let telefono=$("#view_input_telefono").val();
+    if(telefono.length==0)
+      this.val03=true;
+    else
+      this.val03=false;
+    let fecha=$("#view_input_fecha").val();
+    if(fecha.length==0)
+      this.val04=true;
+    else
+      this.val05=false;
+    let ciudad=$("#view_input_ciudad").val();
+    if(ciudad.length==0)
+      this.val05=true;
+    else
+      this.val05=false
+    if(this.val01 || this.val02 || this.val03 || this.val04 || this.val05)
+      return false;
+    return true;
+  }
+
+  resetValidation(){
+    this.val01=false;
+    this.val02=false;
+    this.val03=false;
+    this.val04=false;
+    this.val05=false;
+    this.val06=false;
+    this.val07=false;
+    this.val08=false;
+    this.val09=false;
+    this.val10=false;
+    this.val11=false;
+    this.val12=false;
+    this.val13=false;
+    this.val14=false;
+  }
+  validationRegister():boolean{
+    let email=$('#view_inputCrear_correo').val();
+    if(email.length == 0)
+      this.val06=true;
+    else
+      this.val06=false;
+    let password=$('#view_inputCrear_password').val();
+    if(password.length == 0)
+      this.val07=true;
+    else
+      this.val07=false;    
+    let nombres=$('#view_inputCrear_nombres').val();
+    let arregloN=nombres.split(' ')
+    if(arregloN.length != 2)
+      this.val08=true;
+    else
+      this.val08=false;
+    let apellidos=$('#view_inputCrear_apellidos').val();
+    let arregloA=apellidos.split(' ')
+    if(arregloA.length != 2)
+      this.val09=true;
+    else
+      this.val09=false;
+    let cedula=$('#view_inputCrear_cedula').val()
+    if(cedula.length == 0)
+      this.val10=true;
+    else
+      this.val10=false; 
+    let fecha=$('#view_inputCrear_fecha').val();
+    if(fecha.length == 0)
+      this.val04=true;
+    else
+      this.val04=false; 
+    let direccion=$('#view_inputCrear_direccion').val();
+    if(direccion.length == 0)
+      this.val02=true;
+    else
+      this.val02=false; 
+    let telefono=$('#view_inputCrear_telefono').val();
+    if(telefono.length == 0)
+      this.val03=true;
+    else
+      this.val03=false; 
+    let ciudad=$('#view_inputCrear_ciudad').val();
+    if(ciudad.length == 0)
+      this.val05=true;
+    else
+      this.val05=false; 
+    if(this.val06 || this.val07 || this.val08 || this.val09 || this.val10 || this.val04
+      || this.val02 || this.val03 || this.val05)
+      return false;
+    return true;
+  }
+
+  
+  inicializarPaises() {
+    this.estudianteService.obtenerDataPaises().subscribe((data) => {
+      var anydata = <any>data;
+      this.countryData = anydata;
+    });
+  }
+
+  inicializarCiudades() {
+    this.estudianteService.obtenerDataCiudades().subscribe((data) => {
+      var anydata = <any>data;
+      this.cityData = anydata;
+    });
+
+  }
+
+  setCitiesValues(countrySelected) {
+    this.cities = this.cityData.filter(ciudad => ciudad.country_id == countrySelected.id)
+  }
+
+ 
+  callFunction() {
+    console.log("ngFor ends");
+    if(this.key){
+      $("#view_input_pais").val(this.country);
+      this.key=false;
+      
+    }
+  }
+
 }

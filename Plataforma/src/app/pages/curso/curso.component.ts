@@ -12,13 +12,15 @@ export class CursoComponent implements OnInit {
   
   id: string= '';
   curso: string="";
-  constructor(private router: Router, private activador: ActivatedRoute, private servicioCursos: CursosService) {}
+  constructor(private router: Router, private activador: ActivatedRoute, private servicioCursos: CursosService) {
+    this.router.routeReuseStrategy.shouldReuseRoute = () => false;
+  }
 
 
 
   ngOnInit(): void {
     this.id=this.activador.snapshot.paramMap.get('id');
-
+    
     this.cargarCursos(this.id);
   }
 
@@ -34,16 +36,13 @@ export class CursoComponent implements OnInit {
     this.router.navigate([`/pages/${this.id}/asistencias`]);
   }
 
-  cargarCursos(_id:string){
+  cargarCursos(_id:string){    
     let infoCredenciales=localStorage.getItem('login-mitikas');
     let array=infoCredenciales.split("-");
     let id_profesor=array[3];
 
    this.servicioCursos.obtenerCursos(id_profesor).subscribe(result=>{
     for(var i=0;i<result["length"];i++){
-      console.log("Result: "+result[i]["id_curso"]["id"]);
-      console.log("id: "+ result[i]["id_curso"]["titulo_curso"]);
-      console.log('curso: ',)
       if(result[i]["id_curso"]["id"]==_id){
         this.curso= result[i]["id_curso"]["titulo_curso"];
         return;

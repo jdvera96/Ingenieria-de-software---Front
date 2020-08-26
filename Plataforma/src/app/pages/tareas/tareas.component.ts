@@ -131,7 +131,7 @@ export class TareasComponent implements OnInit {
         
         this.openView(content)
         
-        this.servicioTareas.obtenerInfoSesion(data["id_sesion"]).subscribe(dataSesion=>{
+        this.servicioTareas.obtenerInfoSesion(data["id_sesion"]["id"]).subscribe(dataSesion=>{
             //asignando informacion a los input del modal detalles
             $("#view_input_sesion").val(dataSesion["titulo"]);
             $("#view_input_titulo").val(data['nombre_tarea']);

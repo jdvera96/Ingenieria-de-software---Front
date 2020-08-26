@@ -21,6 +21,12 @@
       }
     }
   }
+  .created-by{
+    color:white
+  }
+  .developed-by{
+    color:white
+  }
 
   @include media-breakpoint-down(is) {
     .socials {

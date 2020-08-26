@@ -29,4 +29,12 @@ export class EstudianteService {
   eliminarEstudiante(id_estudiante: string){
     return this.http.patch("https://patricioxavi10.pythonanywhere.com/api/estudiante/update/"+id_estudiante,{'estado': false});
   }
+  
+  obtenerDataPaises() {
+    return this.http.get('assets/archivos/countries.json');
+  }
+
+  obtenerDataCiudades() {
+    return this.http.get('assets/archivos/cities.json');
+  }
 }

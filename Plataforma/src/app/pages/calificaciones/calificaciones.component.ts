@@ -53,14 +53,37 @@ export class CalificacionesComponent implements OnInit {
   }
 
 
-  guardarCalificacion(id_estudiante){
+  guardarCalificacion(){
       //obteniendo calificacion y id_tarea
-      let t_table=$(`#${id_estudiante}`)
-      
-      let calificacion=t_table.find(".nota").val();
+      let arrayElegidos=[];
+
+      //let t_table=$(`#${id_estudiante}`)
+      let elementPadre=$('#t_body_calificaciones');
       let id_tarea=$("#tarea_select option:selected").val();
 
-      this.servicioCalificacion.asignarCalificacion(calificacion,id_tarea,id_estudiante).subscribe(result=>{
+      let arrayHijos=elementPadre.find(".nota");
+      let arrayIdEstudiante=elementPadre.find(".fila");
+
+
+      for(let i=0;i<arrayHijos.length;i+=1){
+        if(arrayHijos[i].value !=""){
+          arrayElegidos.push({'id_estudiante': arrayIdEstudiante[i].id,'calificacion': arrayHijos[i].value})
+                  
+          console.log(arrayIdEstudiante[i].id);
+          console.log(arrayHijos[i].value);
+        }
+
+      }
+      for(let i=0;i<arrayElegidos.length;i+=1){
+        this.servicioCalificacion.asignarCalificacion(arrayElegidos[i].calificacion,id_tarea,arrayElegidos[i].id_estudiante).subscribe(result=>{        
+        })        
+      }
+      Swal.fire(
+        'Exito',
+        'Calificacion asignada exitosamente',
+        'success'
+      )
+      /*this.servicioCalificacion.asignarCalificacion(calificacion,id_tarea,id_estudiante).subscribe(result=>{
         if(result){
           console.log("calificacion asignada");
 
@@ -72,7 +95,7 @@ export class CalificacionesComponent implements OnInit {
 
           this.cargarEstudiantes();
         }
-      })
+      })*/
   }
 
 

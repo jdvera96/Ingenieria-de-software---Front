@@ -430,5 +430,17 @@
         "native": "Colombia",
         "emoji": "🇨🇴",
         "emojiU": "U+1F1E8 U+1F1F4"
+    },
+    {
+        "id": 103,
+        "name": "Ecuador",
+        "iso3": "ECU",
+        "iso2": "EC",
+        "phone_code": "593",
+        "capital": "Quito",
+        "currency": "DOL",
+        "native": "Ecuadore",
+        "emoji": "ec",
+        "emojiU": "U+1F1E8 U+1F1F4"
     }
 ]

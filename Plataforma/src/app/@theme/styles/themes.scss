@@ -90,3 +90,23 @@ $nb-themes: nb-register-theme((
   slide-out-shadow-color: 0 4px 14px 0 #8f9bb3,
   slide-out-shadow-color-rtl: 0 4px 14px 0 #8f9bb3,
 ), dark, dark);
+
+a.active span{
+  color:#3366ff;
+}
+span.menu-title{
+  color:#fff
+}
+span.menu-title:hover{
+  color:#3366ff;
+}
+
+nb-layout-header {
+  background-color:#166b5b!important;
+}
+nb-layout-footer nav.fixed{
+  background-color:#166b5b!important;
+}
+.user-name{
+  color:#fff!important;
+};

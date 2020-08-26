@@ -7,6 +7,8 @@ import { DashboardModule } from './dashboard/dashboard.module';
 import { ECommerceModule } from './e-commerce/e-commerce.module';
 import { PagesRoutingModule } from './pages-routing.module';
 import { MiscellaneousModule } from './miscellaneous/miscellaneous.module';
+import { DigitOnlyDemosComponent } from './digit-only-demos/digit-only-demos.component';
+import { DigitOnlyModule } from '@uiowa/digit-only';
 
 import { CursosComponent } from './cursos/cursos.component';
 import { CursoComponent } from './curso/curso.component';
@@ -36,6 +38,7 @@ import { GestionSupervisoresComponent } from './administrador/gestion-supervisor
     DashboardModule,
     ECommerceModule,
     MiscellaneousModule,
+    DigitOnlyModule
   ],
   declarations: [
     PagesComponent,
@@ -57,6 +60,7 @@ import { GestionSupervisoresComponent } from './administrador/gestion-supervisor
     GestionEstudiantesComponent,
     GestionProfesoresComponent,
     GestionSupervisoresComponent,
+    DigitOnlyDemosComponent
   ],
 })
 export class PagesModule {

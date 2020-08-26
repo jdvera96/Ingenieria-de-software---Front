@@ -13,5 +13,21 @@ export class NotificacionesService {
       "titulo":objeto.titulo ,
       "body" : objeto.descripcion});
   }
+
+  enviarNotificacionPorClase(objeto){
+    return this.http.post("https://patricioxavi10.pythonanywhere.com/api/sendnotificacionbycurso",{
+      "titulo":objeto.titulo ,
+      "body" : objeto.descripcion,
+      "id_clase":objeto.id_clase
+    });
+  }
+
+  enviarNotificacionPorGrupo(objeto){
+    return this.http.post("https://patricioxavi10.pythonanywhere.com/api/sendnotificacionbygrupo",{
+      "titulo":objeto.titulo ,
+      "body" : objeto.descripcion,
+      "grupo" :objeto.grupo
+    });
+  }
 }
 

@@ -1,6 +1,7 @@
 <button class="btn btn-cool-blues btn-rounded" (click)="goToBack()"><i class="fas fa-arrow-left"></i>&nbsp;Atras</button>
 <h1 class="text-center">Calificaciones</h1>
 
+<div class="container">
 <div class="form-group">
         
     <select class="form-control" id="tarea_select" (click)="cargarEstudiantes()" >
@@ -14,32 +15,47 @@
 <table class="table">
     <thead class="thead-dark">
       <tr>        
-        <th scope="col">Nombres</th>
-        <th scope="col">Apellidos</th>
+        <th scope="col">Nombre</th>
         <th scope="col">Estado</th>
         <th scope="col">Calificacion</th>
-        <th scope="col">Acción</th>
       </tr>
     </thead>
-    <tbody>
-        <tr *ngFor='let estudiante of objectEstudiantes' id="{{estudiante.id_estudiante.cedula}}">            
-            <td>{{estudiante.id_estudiante.nombres}}</td>
-            <td>{{estudiante.id_estudiante.apellidos}}</td>
+    <tbody id="t_body_calificaciones">
+        <tr *ngFor='let estudiante of objectEstudiantes' id="{{estudiante.id_estudiante.cedula}}" class="fila">                        
+            <td>{{estudiante.id_estudiante.apellidos}} {{estudiante.id_estudiante.nombres}}</td>
             
             <td *ngIf="estudiante.estado; else elseBlock">Calificado</td>
             <ng-template #elseBlock><td>No calificado</td></ng-template>
 
             <td *ngIf="estudiante.calificacion!=null; else elseBlock2">
-              <input type="text" class="form-control nota" value="{{estudiante.calificacion}}" />
+              <input
+                id="digit-only-min-max"
+                type="text"
+                digitOnly
+                min="0"
+                max="100"
+                class="form-control nota"
+                value="{{estudiante.calificacion}}"
+              />
+              <!--<input type="text" class="form-control nota" value="{{estudiante.calificacion}}" />-->
             </td>
             <ng-template #elseBlock2><td>
-              <input type="text" class="form-control nota" value="" />
+              <input
+                id="digit-only-min-max"
+                type="text"
+                digitOnly
+                min="0"
+                max="100"
+                class="form-control nota"
+                value="{{estudiante.calificacion}}"
+              />
+              <!--<input type="text" class="form-control nota" value="" />-->
             </td></ng-template>
-            
-            <td>
-              <button class="btn btn-sm btn-success" (click)="guardarCalificacion(estudiante.id_estudiante.cedula)"><i class="far fa-save"></i>&nbsp; Guardar</button>
-              </td> 
       </tr>
     </tbody>
 </table>
+</div>
+<div class="text-center">
+  <button (click)="guardarCalificacion()" class="btn btn-green-moon btn-rounded">Actualizar calificaciones</button>
+  </div>
 </div>

@@ -17,8 +17,13 @@ export class PagesComponent {
   menu = MENU_ITEMS;
   constructor(private servicioCursos: CursosService) { 
     var login=localStorage.getItem('login-mitikas');
-    if(login!=null)
-    this.cargarCursos();
+    if(login!=null){
+      let array=login.split('-');
+      if(array[0]=='Profesor'){
+         if( this.menu["1"]["children"].length==0)
+            this.cargarCursos();
+      }
+    }
   }
 
   cargarCursos(){
@@ -37,7 +42,7 @@ export class PagesComponent {
         "title":curso,
         "link":"/pages/curso/"+result[i]["id_curso"]["id"]
       }
-      this.menu["2"]["children"].push(ele);
+      this.menu["1"]["children"].push(ele);
     }
 
    }) 

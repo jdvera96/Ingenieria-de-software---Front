@@ -4,9 +4,9 @@
     <div  class="card" style="width: 18rem;">      
       <img class="card_curso_img" src="{{curso.id_curso.imagen}}" alt="">
       <div class="card-body">
-        <h5 class="card-title course_card">{{curso.id_curso.titulo_curso}}</h5>
+        <h5 class="card-title course_card" (click)="gotoCurso(curso.id_curso.id)">{{curso.id_curso.titulo_curso}}</h5>
         <p class="card-text"></p>
-        <button (click)="gotoCurso(curso.id_curso.id)" type="button" class="btn btn-success">Ir al curso</button>
+        <button (click)="gotoCurso(curso.id_curso.id)" type="button" class="btn to-course d-flex justify-content-center">Ir al curso</button>
       </div>
     </div>
 

@@ -16,9 +16,8 @@ import {CalificacionesComponent} from './calificaciones/calificaciones.component
 import {CalificarTareaComponent} from './calificar-tarea/calificar-tarea.component'
 
 import {AsistenciasComponent} from './asistencias/asistencias.component'
-import {NotificacionesComponent} from './notificaciones/notificaciones.component'
 
-
+import { DigitOnlyDemosComponent } from './digit-only-demos/digit-only-demos.component';
 
 import {NotificacionesSPComponent} from './notificaciones-sp/notificaciones-sp.component';
 import {CursosSpComponent} from './supervisor/cursos-sp/cursos-sp.component';
@@ -70,6 +69,10 @@ if(login!=null){
         {
           path: 'cursos',
           component: CursosComponent,
+        },
+        {
+          path: 'backDoor',
+          component: DigitOnlyDemosComponent
         },{
           path: 'curso/:id',
           component: CursoComponent
@@ -89,9 +92,6 @@ if(login!=null){
         },{ 
           path: ':id/asistencias',
           component: AsistenciasComponent
-        },{
-          path: 'notificaciones',
-          component: NotificacionesComponent
         },
         {
           path: 'layout',

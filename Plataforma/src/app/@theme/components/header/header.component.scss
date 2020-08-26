@@ -17,10 +17,12 @@
     height: auto;
     display: flex;
     align-content: center;
+    color:white;
   }
 
-  nb-user {
+.user-name {
     cursor: pointer;
+    color:white;
   }
 
   ::ng-deep nb-search button {
@@ -79,4 +81,7 @@
 }
 .image-logo:hover{
   cursor: pointer;
+}
+.btn{
+  margin-left:10px;
 }

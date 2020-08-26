@@ -7,9 +7,9 @@ import {AsistenciaService} from '../../../servicios/supervisor/asistencias/asist
 
 
 import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap'
-import Swal from 'sweetalert2'
 
 import * as $ from 'jquery';
+import { TareaService } from '../../../servicios/profesor/tareas/tarea.service';
 
 @Component({
   selector: 'ngx-cursos-sp',
@@ -21,14 +21,15 @@ export class CursosSpComponent implements OnInit {
   id_supervisor: string; 
   objectCursos: any;
   objectSesiones: any;
+  objectTareas:any;
 
-  
   closeResult = '';
 
   constructor(private servicioCurso: CursosService,private servicioTarea: TareasSpService,
               private servicioCalificaciones: CalificacionService,
               private servicioAsistencias: AsistenciaService,
-              private modalService: NgbModal
+              private modalService: NgbModal,
+              private servicioTareas: TareaService
     ) { }
 
   ngOnInit(): void {
@@ -74,6 +75,12 @@ export class CursosSpComponent implements OnInit {
 
     })
   }
+  cargarTareas(id_clase){
+    this.servicioTareas.obtenerTareas(id_clase).subscribe(result=>{
+      return result;
+      
+    }) 
+  }
 
 
   detectarSelect(){
@@ -118,7 +125,10 @@ export class CursosSpComponent implements OnInit {
 
       if(select_accion=='1'){
         //cargo las sessiones y dentro hago la consulta de las tareas
-        this.cargarSesiones(select_cursos);
+        //this.cargarSesiones(select_cursos);
+        //this.cargarTareas(select_cursos);
+        //Cargar tabla de tareas
+        this.consultarTareas(select_cursos);
 
         
 
@@ -144,8 +154,7 @@ export class CursosSpComponent implements OnInit {
   //----- seccion consultas principales
   consultarTareas(id_clase){
     this.servicioTarea.obtenerTareas(id_clase).subscribe(result=>{
-      console.log('tareas: ',result);
-
+      console.log(result);
       this.mostrarTablaTareas(result);
     })
   }
@@ -189,7 +198,7 @@ export class CursosSpComponent implements OnInit {
 
   mostrarTablaTareas(data){
 
-    let table=$(`<table class="table"></table>`);
+    let table=$(`<table class="table" style='background-color:#fff;'></table>`);
 
     let cabecera=$(`<thead class="thead-dark">
                       <tr>
@@ -208,12 +217,12 @@ export class CursosSpComponent implements OnInit {
     for(let i=0;i<data.length;i+=1){
 
       //obtengo el nombre de la sesion mediante el id_sesion
-      let nombre_sesion=this.encontrarSesionByID(data[i].id_sesion);
+      //let nombre_sesion=this.encontrarSesionByID(data[i].id_sesion);
 
       let fila=$(`<tr>
                     <th scope="row">${i+1}</th>
                     <td>${data[i].nombre_tarea}</td>
-                    <td>${nombre_sesion}</td>
+                    <td>${data[i].id_sesion.titulo}</td>
                     <td>${data[i].estado}</td>
                     
                     <td>
@@ -224,44 +233,50 @@ export class CursosSpComponent implements OnInit {
                   </tr>`)
       
       body.append(fila);
+      table.append(body);
+      $('#show_data').append(table);
+      $("#"+data[i].id).click(function(){
+        console.log("Se asigno data");
+        //obteniendo datos de la tarea
+        $.get("https://patricioxavi10.pythonanywhere.com/api/getTarea/"+data[i].id, function(data2, status){
+          console.log(data2);
+          //asignando al modal
+          $("#campo_titulo").text(data2['nombre_tarea']);
+          $("#campo_sesion").text(data2['id_sesion']["titulo"]);
+          $("#campo_descripcion").text(data2['descripcion_tarea']);
+          $("#campo_fecha").text(data2['fecha_creacion']);
+        });
+  
+      })
     }
     
     table.append(cabecera);
-    table.append(body);
+    
 
 
     //agregando al html
-    $('#show_data').html(" ")
-    $('#show_data').append(table);
+    //$('#show_data').html(" ")
+    
 
-    $('.seeButton').click(function(){
-
-      console.log('dio click')
-
-      //obteniendo datos de la tarea
-      
-      $.get("https://patricioxavi10.pythonanywhere.com/api/getTarea/18", function(data, status){
-        console.log(data);
-
-        
-        //asignando al modal
-        $("#campo_titulo").text(data['nombre_tarea']);
-        $("#campo_sesion").text(data['id_sesion']);
-        $("#campo_descripcion").text(data['descripcion_tarea']);
-        $("#campo_fecha").text('pendiente');
-        $("#campo_url").text('pendiente');
-      });
-
-      
-      
-    })
+    
 
     
 
   }
 
+  fillInfo(id_tarea){
+    console.log("Funcion")
+    this.servicioTarea.obtenerInfoTarea(id_tarea).subscribe(result=>{
+
+      $("#campo_titulo").text(result['nombre_tarea']);
+      $("#campo_sesion").text(result['id_sesion']["titulo"]);
+      $("#campo_descripcion").text(result['descripcion_tarea']);
+      $("#campo_fecha").text(result['fecha_creacion']);
+    });
+  }
+
   mostrarTablaCalificaciones(data){
-    let table=$(`<table class="table"></table>`);
+    let table=$(`<table class="table" style='background-color:#fff;'></table>`);
 
     let cabecera=$(`<thead class="thead-dark">
                       <tr>
@@ -313,7 +328,7 @@ export class CursosSpComponent implements OnInit {
   }
 
   mostrarTablaAsistencias(data){
-    let table=$(`<table class="table"></table>`);
+    let table=$(`<table class="table" style='background-color:#fff;'></table></table>`);
 
     let cabecera=$(`<thead class="thead-dark">
                       <tr>
@@ -350,7 +365,7 @@ export class CursosSpComponent implements OnInit {
 
   mostrarTablaListado(listaCurso){
     console.log(listaCurso);
-    let table=$(`<table class="table"></table>`);
+    let table=$(`<table class="table" style='background-color:#fff;'></table></table>`);
 
     let cabecera=$(`<thead class="thead-dark">
                       <tr>
@@ -402,7 +417,7 @@ export class CursosSpComponent implements OnInit {
   mostrarSelectorTareas(tareas){
 
       //cargando el selector con tareas al html
-      let p=$(`<p class="titulo_h2">Eliga una tarea</p>`);
+      let p=$(`<p class="titulo_h2"style='font-weight:bold;margin-top:1%'>Elija una tarea</p>`);
       let selector=$(`<select class="form-control" id="tarea_select" >
                         <option value="" selected disabled>Seleccione una tarea</option>
                     </select>`);
@@ -420,7 +435,7 @@ export class CursosSpComponent implements OnInit {
   mostrarSelectorSesiones(sesiones){
 
     //cargando el selector con tareas al html
-    let p=$(`<p class="titulo_h2">Eliga una sesion</p>`);
+    let p=$(`<p class="titulo_h2" style='font-weight:bold;margin-top:1%'>Elija una sesion</p>`);
     let selector=$(`<select class="form-control" id="sesion_select" >
                       <option value="" selected disabled>Seleccione una sesion</option>
                   </select>`);

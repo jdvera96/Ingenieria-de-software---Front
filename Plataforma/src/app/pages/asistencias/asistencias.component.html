@@ -14,8 +14,7 @@
 <table class="table">
     <thead class="thead-dark">
       <tr>
-        <th scope="col">Nombres</th>
-        <th scope="col">Apellidos</th>
+        <th scope="col">Nombre</th>
         <!--<th scope="col">Estado</th>-->
         <th scope="col">Asistencia</th>
         <!--<th scope="col">Accion</th>-->
@@ -23,8 +22,8 @@
     </thead>
     <tbody id="t_body_asistencias">
         <tr *ngFor='let estudiante of objectEstudiantes' id="{{estudiante.id_estudiante.cedula}}" class="fila">            
-            <td>{{estudiante.id_estudiante.nombres}}</td>
-            <td>{{estudiante.id_estudiante.apellidos}}</td>     
+            
+            <td>{{estudiante.id_estudiante.apellidos}} {{estudiante.id_estudiante.nombres}}</td>     
 
             <td *ngIf="estudiante.asistencia; else elseBlock2">
               <label class="checkbox">

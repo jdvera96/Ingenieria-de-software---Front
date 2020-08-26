@@ -254,11 +254,6 @@ var menu_profesor: NbMenuItem[]=[
     link: '/pages/cursos',
   },
   {
-    title: 'Notificaciones',
-    icon: 'home-outline',
-    link: '/pages/notificaciones',
-  },
-  {
     title: 'Cursos',
     icon: 'home-outline',
     children:[]

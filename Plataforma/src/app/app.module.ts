@@ -12,7 +12,7 @@ import { ThemeModule } from './@theme/theme.module';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-
+//import { DigitOnlyModule } from '@uiowa/digit-only';
 
 import { CommonModule } from "@angular/common";
 
@@ -50,8 +50,8 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     CoreModule.forRoot(),
     ThemeModule.forRoot(),
     NgbModule,
-    FontAwesomeModule,
-   
+    FontAwesomeModule
+    
   ],
   bootstrap: [AppComponent],
 })

@@ -2,18 +2,21 @@
 
 <h1 class="text-center">Administrar cursos</h1>
 
-<div class="form-group">
+<div class="container">
+  <div class="form-group">
     
-    <div class="container">
-        <p class="titulo_h2">Eliga un curso</p>
+
+      <div class="row">
+        <div class="col-md-6">
+        <p class="titulo_h2">Elija un curso</p>
         <select class="form-control" id="curso_select" >
             <option value="" selected disabled>Seleccione un curso</option>
             <option *ngFor='let curso of objectCursos' value="{{curso.id}}">{{curso.id_curso.titulo_curso}}</option>
         </select>
-    </div>
+      </div>
     
-    <div class="container mt-3 mb-3">
-        <p class="titulo_h2">Eliga un accion</p>
+      <div class="col-md-6">
+        <p class="titulo_h2">Elija un accion</p>
         <select class="form-control " id="accion_select" (click)="detectarSelect()">
             <option value="" selected disabled>Seleccione una accion</option>
             <option value="1">Consultar Tareas</option>
@@ -21,18 +24,20 @@
             <option value="3">Consultar Asistencias</option>
             <option value="4">Consultar Listado</option>
         </select>
+        </div>
 
     </div>
 
-    <div class="container" id="div_tareas">
+
+    <div class="" id="div_tareas">
 
     </div>
 
-    <div class="container" id="div_sesiones">
+    <div class="" id="div_sesiones">
 
     </div>
 
-    <div class="container"> 
+    <div class="text-center"> 
         <button type="button" class="btn btn-success" (click)="accionConsultar()">Consultar</button>
     </div>
 
@@ -42,55 +47,36 @@
     
 </div>
 
+
 <div class="w3-container">
   
     <div id="id01" class="w3-modal ">
       <div class="w3-modal-content " id="modal_contenedor">
         <div class="w3-container">
-          <span onclick="document.getElementById('id01').style.display='none'" class="w3-button w3-display-topright">&times;</span>
-          <h2>Detalle de la tarea</h2>
-          <h3>Titulo</h3>
-          <p id="campo_titulo">Tarea de prueba</p>
-          <h3>Sesion</h3>
-          <p id="campo_sesion">Sesion de prueba</p>
-          <h3>Descripcion</h3>
-          <p id="campo_descripcion">Descripcion de prueba</p>
-          <h3>Fecha de creacion</h3>
+          <div class="row">
+            <div class="col-md-11">
+            <h2 class="text-center">Detalle de la tarea</h2>
+          </div>
+            <button onclick="document.getElementById('id01').style.display='none'" class="w3-button w3-display-topright">&times;</button>                
+          <div class="col-md-6">
+            <h3 class="">Titulo</h3>
+            <p id="campo_titulo">Tarea de prueba</p>
+          </div>
+          <div class="col-md-6">
+            <h3>Sesion</h3>
+            <p id="campo_sesion">Sesion de prueba</p>
+          </div>
+          <div class="col-md-6">
+            <h3>Descripcion</h3>
+            <p id="campo_descripcion">Descripcion de prueba</p>
+          </div>
+          <div class="col-md-6">
+            <h3>Fecha de creacion</h3>
             <p id="campo_fecha">Fecha de prueba</p>
-            <h3>Url adjunto</h3>
-            <p id="campo_url">Url de prueba</p>
+          </div>
+          </div>
         </div>
       </div>
     </div>
   </div>
-  
-
-<!-- Modal para visualizar detalle de la tarea -->
-<ng-template #content2 let-modal>
-    <div class="modal-header">
-      <h4 class="modal-title" id="modal-basic-title-view">Detalles</h4>
-      <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
-        <span aria-hidden="true">&times;</span>
-      </button>
-    </div>
-    <div class="modal-body">
-      <form>
-        <div class="form-group">
-          <label>Sesion</label>
-          <input disabled type="text" class="form-control" id="view_input_sesion" aria-describedby="inputSesion">
-      
-          <label>Titulo</label>
-          <input disabled type="text" class="form-control" id="view_input_titulo" aria-describedby="inputTitulo">
-          
-          <label>Descripcion</label>
-          <input disabled type="text" class="form-control" id="view_input_descripcion" aria-describedby="input_descripcion">
-          
-        </div>
-      </form>
-    </div>
-    
-    <div class="modal-footer">
-      <button type="button" class="btn btn-outline-dark" (click)="modal.close('cerrar')">Cerrar</button>
-    </div>
-  </ng-template>
   
