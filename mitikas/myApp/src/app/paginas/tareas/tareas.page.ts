@@ -24,7 +24,7 @@ export class TareasPage implements OnInit {
       num = number;
     }
     this.id=parseInt(num, 10);
-    consulta.obtenerClase(localStorage.getItem("id"),num).subscribe((data)=>{
+    consulta.obtenerClase(/*localStorage.getItem("id")*/"1721072559",/*num*/"9").subscribe((data)=>{
         const anydata=<any>data;
         this.datos = anydata;
         this.titulo =data[0]["id_tarea"]["id_sesion"]["id_clase"]["titulo"];

@@ -5,8 +5,12 @@ import { ConsultaService } from 'src/app/servicio/consulta.service';
 //import { Firebase } from '@ionic-native/firebase/ngx';
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { Variable } from '@angular/compiler/src/render3/r3_ast';
+import { environment } from './../../../environments/environment';
+
+
+
 @NgModule({
-  schemas: [ CUSTOM_ELEMENTS_SCHEMA ]
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 
 @Component({
@@ -19,6 +23,8 @@ export class InicioPage implements OnInit {
   email: string;
   password: string;
   subscription: boolean;
+
+  isCaptchaInvalid = true;
 
   constructor(public alertController: AlertController, public nav: NavController, private activatedRoute: ActivatedRoute, public consulta: ConsultaService, private menu: MenuController,public platform: Platform) { }
 
@@ -75,6 +81,15 @@ export class InicioPage implements OnInit {
   
   ionViewWillLeave() {
     this.platform.backButton.unsubscribe();
+  }
+
+  get siteKey(){
+    return environment.recaptcha.sitekey;
+  }
+
+  captchaResolved(ev){
+    console.log("Captcha resolved",ev);
+    this.isCaptchaInvalid=false;
   }
 
 }

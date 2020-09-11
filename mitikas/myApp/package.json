@@ -40,6 +40,7 @@
     "core-js": "^2.5.4",
     "eslint-config-airbnb-base": "^14.2.0",
     "jquery": "^3.5.1",
+    "ng-recaptcha": "^6.0.0",
     "phonegap-plugin-multidex": "^1.0.0",
     "rxjs": "^6.5.5",
     "semistandard": "^14.2.2",

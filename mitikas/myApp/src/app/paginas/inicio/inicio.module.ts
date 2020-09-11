@@ -8,12 +8,17 @@ import { InicioPageRoutingModule } from './inicio-routing.module';
 
 import { InicioPage } from './inicio.page';
 
+//recaptcha
+import { RecaptchaModule,RecaptchaFormsModule} from 'ng-recaptcha';
+
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    InicioPageRoutingModule
+    InicioPageRoutingModule,
+    RecaptchaModule,
+    RecaptchaFormsModule 
   ],
   declarations: [InicioPage]
 })

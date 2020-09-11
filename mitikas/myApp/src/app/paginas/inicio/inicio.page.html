@@ -23,8 +23,11 @@
           <!--handleFirstNameValue(event)-->
         </ion-item>
       </ion-list>
+      <div id="recaptcha">
+        <re-captcha (resolved)="captchaResolved($event)" [siteKey]="siteKey"></re-captcha>
+      </div>
       <div class="ion-padding">
-        <ion-button expand="block" type="submit" (click)="login()" class="ion-no-margin">Iniciar Sesión</ion-button>
+        <ion-button expand="block" [disabled]="isCaptchaInvalid" type="submit" (click)="login()" class="ion-no-margin">Iniciar Sesión</ion-button>
       </div>
       <div id="contraseniaOlvidada">
         <a routerLink="">¿Olvidaste tu contraseña?</a>

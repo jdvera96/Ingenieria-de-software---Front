@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouteReuseStrategy } from '@angular/router';
 
@@ -22,7 +22,7 @@ import { ComponentsModule } from './components/components.module';
     IonicModule.forRoot(),
     AppRoutingModule,
     HttpClientModule,
-    ComponentsModule],
+    ComponentsModule,],
   providers: [
     Firebase,
     StatusBar,
@@ -30,5 +30,6 @@ import { ComponentsModule } from './components/components.module';
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
   ],
   bootstrap: [AppComponent]
+
 })
 export class AppModule {}
