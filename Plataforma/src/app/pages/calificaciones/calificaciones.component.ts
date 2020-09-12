@@ -58,9 +58,10 @@ export class CalificacionesComponent implements OnInit {
       let arrayElegidos=[];
 
       //let t_table=$(`#${id_estudiante}`)
+      
       let elementPadre=$('#t_body_calificaciones');
       let id_tarea=$("#tarea_select option:selected").val();
-
+      elementPadre.find(".nota").attr("disabled",true);
       let arrayHijos=elementPadre.find(".nota");
       let arrayIdEstudiante=elementPadre.find(".fila");
 
@@ -71,6 +72,7 @@ export class CalificacionesComponent implements OnInit {
                   
           console.log(arrayIdEstudiante[i].id);
           console.log(arrayHijos[i].value);
+          arrayHijos
         }
 
       }

@@ -24,8 +24,11 @@ export class TareaService {
     return this.http.post("https://patricioxavi10.pythonanywhere.com/api/creartarea",{
       "nombre_tarea": titulo,
       "descripcion_tarea": descripcion,
-      "id_sesion": id_sesion,
+      "fecha_creacion": null,
+      "url": "",
+      "id_sesion":id_sesion,
       "id_profesor": id_profesor
+
     });
   }
 

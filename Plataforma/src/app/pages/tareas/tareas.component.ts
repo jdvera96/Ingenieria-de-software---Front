@@ -8,6 +8,7 @@ import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap'
 import Swal from 'sweetalert2'
 
 import * as $ from 'jquery';
+import { NotificacionesService } from '../../servicios/notificaciones/notificaciones.service';
 
 @Component({
   selector: 'ngx-tareas',
@@ -17,7 +18,8 @@ import * as $ from 'jquery';
 export class TareasComponent implements OnInit {
 
   id_clase: string;
-  objectTareas: any;
+  objectAllTareas: any;
+  objectTareas: any[] = [];
   objectSesiones: any;
 
   closeResult = '';
@@ -26,19 +28,19 @@ export class TareasComponent implements OnInit {
               private location: Location,
               private servicioTareas: TareaService,
               private activador: ActivatedRoute,
-              private modalService: NgbModal) {
+              private modalService: NgbModal,
+              private servicioNotificaciones: NotificacionesService) {
 
    }
 
   ngOnInit(): void {
     this.id_clase=this.activador.snapshot.paramMap.get('id');
     this.obtenerTareas();
+    this.obtenerSesionesPorClase();
+    
   }
 
-  openCrear(content) {
-
-    //cargando las sesiones cuando el modal se abre
-    this.obtenerSesionesPorClase();
+  openCrear(content) {    
 
     this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
       console.log('dio click en crear');
@@ -74,10 +76,22 @@ export class TareasComponent implements OnInit {
   }
 
   obtenerTareas(){
-    this.servicioTareas.obtenerTareas(this.id_clase).subscribe(result=>{
-      this.objectTareas=result;
-      console.log(this.objectTareas);
+    this.servicioTareas.obtenerTareas(this.id_clase).subscribe(result=>{      
+        this.objectAllTareas=result;            
+      console.log(this.objectAllTareas.length);
     }) 
+  }
+
+  actualizarTareas(){
+    this.objectTareas=[];
+    for(let i=0; i<this.objectAllTareas.length;i++){
+      let object=this.objectAllTareas[i];
+      console.log(object["id_sesion"]["id"]);
+      console.log($("#select_sesion option:selected").val());
+      if(object["id_sesion"]["id"]==$("#select_sesion option:selected").val())
+        this.objectTareas.push(object);
+    }
+    console.log(this.objectTareas)
   }
 
   obtenerSesionesPorClase(){
@@ -99,20 +113,33 @@ export class TareasComponent implements OnInit {
     let sesion=$("#tarea_select_sesion option:selected").val();
     let titulo=$("#input_titulo").val();
     let descripcion=$("#input_descripcion").val();
-    let dataStorage=localStorage.getItem("login-mitikas")
+    let dataStorage=localStorage.getItem("login-mitikas");
     let array=dataStorage.split("-")
     let id_profesor=array[3]
+
+    console.log("Informacion");    
+    console.log(sesion);
+    console.log(titulo);
+    console.log(descripcion);
+    console.log(id_profesor);
 
     this.servicioTareas.registrarTarea(id_profesor,sesion,titulo,descripcion).subscribe(result=>{
       console.log('result: ',result);
 
       if(result){
-        console.log("tarea creada exitosamente");
-        Swal.fire(
-          'Exito',
-          'Tarea creada exitosamente',
-          'success'
-        )
+        
+        
+        let objeto={"titulo": titulo,"descripcion":descripcion,"id_clase":this.id_clase}
+        console.log(objeto);
+        this.servicioNotificaciones.enviarNotificacionPorClase(objeto).subscribe(result=>{
+          console.log(result);
+          Swal.fire(
+            'Exito',
+            'Tarea creada exitosamente',
+            'success'
+          )
+        })
+        
         this.obtenerTareas();
         this.modalService.dismissAll();
       }else{

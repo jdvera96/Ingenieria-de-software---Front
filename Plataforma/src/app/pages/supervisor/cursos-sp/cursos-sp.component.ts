@@ -204,8 +204,9 @@ export class CursosSpComponent implements OnInit {
                       <tr>
                         <th scope="col">#</th>
                         <th scope="col">Nombre</th>
-                        <th scope="col">Sesion</th>
+                        <th scope="col">Modulo</th>
                         <th scope="col">Fecha Creación</th>
+                        <th scope="col">Fecha Entrega</th>
                         <th scope="col">Acción</th>
                       </tr>
                     </thead>`);
@@ -223,11 +224,12 @@ export class CursosSpComponent implements OnInit {
                     <th scope="row">${i+1}</th>
                     <td>${data[i].nombre_tarea}</td>
                     <td>${data[i].id_sesion.titulo}</td>
-                    <td>${data[i].estado}</td>
+                    <td>${data[i].fecha_creacion}</td>
+                    <td>${data[i].fecha_creacion}</td>
                     
                     <td>
                       <button onclick="document.getElementById('id01').style.display='block'" class="btn btn-sm btn-success seeButton" id="${data[i].id}">
-                        <i class="far fa-eye"></i>&nbsp; Ver
+                        <i class="far fa-eye"></i>&nbsp; Descripcion
                       </button>
                     </td>
                   </tr>`)
@@ -295,12 +297,18 @@ export class CursosSpComponent implements OnInit {
     for(let i=0;i<data.length;i+=1){
 
       if(data[i].estado==false){
-        data[i].estado='sin calificar'
+        data[i].estado='Sin calificar'
       }
 
       if(data[i].calificacion==null){
         data[i].calificacion=0
       }
+
+      if(data[i].calificacion >= 70)
+        data[i].estado='Aprobado'
+      else 
+        data[i].estado='Reprobado'
+      
 
       //formateando nombres y apellidos
       let nombre=data[i].id_estudiante.nombres.split(' ')[0]
@@ -342,10 +350,15 @@ export class CursosSpComponent implements OnInit {
     let body=$(`<tbody></tbody>`);
 
     for(let i=0;i<data.length;i+=1){
+      let asistencia;
+      if(data[i].asistencia)
+        asistencia="Asistió"
+      else
+        asistencia="No Asistió"
       let fila=$(`<tr>
                     <th scope="row">${i+1}</th>
                     <td>${data[i].id_estudiante.apellidos} ${data[i].id_estudiante.nombres}</td>
-                    <td>${data[i].asistencia}</td>
+                    <td>${asistencia}</td>
                    
                    
                   </tr>`)
@@ -435,9 +448,9 @@ export class CursosSpComponent implements OnInit {
   mostrarSelectorSesiones(sesiones){
 
     //cargando el selector con tareas al html
-    let p=$(`<p class="titulo_h2" style='font-weight:bold;margin-top:1%'>Elija una sesion</p>`);
+    let p=$(`<p class="titulo_h2" style='font-weight:bold;margin-top:1%'>Elija un Modulo</p>`);
     let selector=$(`<select class="form-control" id="sesion_select" >
-                      <option value="" selected disabled>Seleccione una sesion</option>
+                      <option value="" selected disabled>Seleccione un modulo</option>
                   </select>`);
 
     for(let i=0;i<sesiones.length;i+=1){

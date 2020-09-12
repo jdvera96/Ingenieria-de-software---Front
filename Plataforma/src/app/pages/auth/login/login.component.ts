@@ -68,13 +68,18 @@ export class LoginComponent implements OnInit {
       this.servicioApiLogin.obtenerLogin(this.correo,this.password).subscribe(response=>{
         console.log('resultado: ',response);        
         
-        
-        if(response["rol"]){
+        if(response["isAdmin"]){
+          let valor="Administrador-Admin-Admin-Admin";
+          localStorage.setItem('login-mitikas',valor);
+          Swal.close();
+          location.href="http://localhost:4200/";
+        }
+        else if(response["rol"]){
 
           let valor=response["rol"]+"-"+response["nombre"]+"-"+response["apellido"]+"-"+response["cedula"];
           localStorage.setItem('login-mitikas',valor);
           Swal.close();
-          location.href="http://localhost:4200/";          
+          location.href="http://localhost:4200/";
         }else{
           console.log('credenciales invalidas');
           //Swal.stopLoading();          

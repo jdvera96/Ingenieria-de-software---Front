@@ -29,6 +29,7 @@
 
             <td *ngIf="estudiante.calificacion!=null; else elseBlock2">
               <input
+                [disabled]="estudiante.estado"
                 id="digit-only-min-max"
                 type="text"
                 digitOnly
@@ -41,6 +42,7 @@
             </td>
             <ng-template #elseBlock2><td>
               <input
+                [disabled]="estudiante.estado"
                 id="digit-only-min-max"
                 type="text"
                 digitOnly

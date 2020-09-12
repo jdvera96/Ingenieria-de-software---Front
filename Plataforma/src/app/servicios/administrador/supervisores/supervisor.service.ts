@@ -25,6 +25,6 @@ export class SupervisorService {
   }
 
   eliminarSupervisor(id_profesor: string){
-    return this.http.patch("https://patricioxavi10.pythonanywhere.com/api/profesor/update/"+id_profesor,{'estado': false});
+    return this.http.patch("https://patricioxavi10.pythonanywhere.com/api/supervisor/update/"+id_profesor,{'estado': false});
   }
 }

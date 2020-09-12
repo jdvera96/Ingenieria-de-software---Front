@@ -173,7 +173,7 @@ if(login!=null){
         },
         {
           path: '',
-          redirectTo: 'notificacionesSP',
+          redirectTo: 'cursosSp',
           pathMatch: 'full',
         },
         {
@@ -202,8 +202,12 @@ if(login!=null){
           component: GestionSupervisoresComponent
         },
         {
+          path: 'notificacionesSP',
+          component: NotificacionesSPComponent,
+        },
+        {
           path: '',
-          redirectTo: 'notificacionesSP',
+          redirectTo: 'gestionPersonas',
           pathMatch: 'full',
         },
         {

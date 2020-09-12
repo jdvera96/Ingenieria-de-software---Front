@@ -60,7 +60,7 @@ export class AsistenciasComponent implements OnInit {
 
     let id_sesion=$("#sesion_select option:selected").val();
     let elementPadre=$('#t_body_asistencias');
-
+    elementPadre.find(".asistencia").attr("disabled",true);
     let arrayHijos=elementPadre.find(".asistencia");
     let arrayIdEstudiante=elementPadre.find(".fila");
     console.log(arrayHijos);

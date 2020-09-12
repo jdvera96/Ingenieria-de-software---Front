@@ -2,6 +2,11 @@
 <button class="btn btn-cool-blues btn-rounded" (click)="goToBack()"><i class="fas fa-arrow-left"></i>&nbsp;Atras</button>
 <h1 class="text-center">Tareas</h1>
 
+<select class="form-control" id="select_sesion" >
+  <option *ngFor='let sesion of objectSesiones' value="{{sesion.id}}">{{sesion.titulo}}</option>
+</select>
+<button class="btn btn-green-moon btn-rounded" (click)="actualizarTareas()">&nbsp;Consultar</button>
+
 <button (click)="openCrear(content)" class="float-right btn btn-green-moon btn-rounded"><i class="fas fa-plus"></i>&nbsp;Nueva Tarea </button>
 <div class="table-responsive">
 <table class="table">
@@ -9,8 +14,8 @@
       <tr>
         <!--<th scope="col">#</th>-->
         <th scope="col">Titulo</th>
+        <th scope="col">Fecha Creación</th>
         <th scope="col">Fecha Entrega</th>
-        <th scope="col">Calificacion</th>
         <th scope="col">Acción</th>
       </tr>
     </thead>
@@ -19,7 +24,7 @@
             <!--<th scope="row">{{tarea.id}}</th>-->
             <td>{{tarea.nombre_tarea}}</td>
             <td>{{tarea.fecha}}</td>
-            <td>{{tarea.calificacion}}</td>
+            <td>{{tarea.fecha}}</td>
             <td>
               <button class="btn btn-sm btn-success seeButton" (click)="tareaInfoView(content2,tarea.id)" id="{{tarea.id}}"><i class="far fa-eye"></i>&nbsp; Ver</button>
               <button class="btn btn-sm btn-danger deleteButton" (click)="deleteTarea(tarea.id)" id="{{tarea.id}}"><i class="fas fa-times"></i>&nbsp;Borrar</button>                            
@@ -47,7 +52,7 @@
   <div class="modal-body">
     <form>
       <div class="form-group">
-        <label>Eliga la sesion</label>
+        <label>Eliga el modulo</label>
 
         <select class="form-control" id="tarea_select_sesion" >
           <option *ngFor='let sesion of objectSesiones' value="{{sesion.id}}">{{sesion.titulo}}</option>
@@ -56,7 +61,7 @@
         <label>Titulo</label>
         <input type="text" class="form-control" id="input_titulo" aria-describedby="inputTitulo">
         <label>Descripcion</label>
-        <input type="text" class="form-control" id="input_descripcion" aria-describedby="input_descripcion">
+        <textarea class="form-control" id="input_descripcion" rows="3"></textarea>
         
       </div>
     </form>
@@ -84,7 +89,7 @@
         <input disabled type="text" class="form-control" id="view_input_titulo" aria-describedby="inputTitulo">
         
         <label>Descripcion</label>
-        <input disabled type="text" class="form-control" id="view_input_descripcion" aria-describedby="input_descripcion">
+        <textarea disabled class="form-control" id="view_input_descripcion" aria-describedby="input_descripcion"></textarea>
         
       </div>
     </form>

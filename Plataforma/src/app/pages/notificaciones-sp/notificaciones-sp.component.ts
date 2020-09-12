@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {NotificacionesService} from '../../servicios/notificaciones/notificaciones.service'
 import * as $ from 'jquery';
 import { CursosService } from '../../servicios/supervisor/cursos/cursos.service';
+import Swal from 'sweetalert2'
 
 @Component({
   selector: 'ngx-notificaciones-sp',
@@ -13,31 +14,14 @@ export class NotificacionesSPComponent implements OnInit {
   id_supervisor: string; 
   objectCursos: any;
   curso:boolean=false;
-  
+  val01=false;
+  val02=false;
 
   constructor(private servicioNotificaciones: NotificacionesService,
     private servicioCurso: CursosService) { }
 
   ngOnInit(): void {
-    (function() {
-      'use strict';
-      window.addEventListener('load', function() {
-        // Fetch all the forms we want to apply custom Bootstrap validation styles to
-        var forms = document.getElementsByClassName('needs-validation');
-        // Loop over them and prevent submission
-        var validation = Array.prototype.filter.call(forms, function(form) {
-          form.addEventListener('submit', function(event) {
-            if (form.checkValidity() === false) {
-              event.preventDefault();
-              event.stopPropagation();
-            }
-            form.classList.add('was-validated');
-            event.preventDefault();
-            event.stopPropagation();
-          }, false);
-        });
-      }, false);
-    })();
+    
     
     //obtener datos del local storage
     let data=localStorage.getItem('login-mitikas');
@@ -48,10 +32,9 @@ export class NotificacionesSPComponent implements OnInit {
     this.cargarCursos();
   }
 
-
-
   sendNotificacion(){
-
+    if(!this.validationView())
+      return false;
     let titulo=$('#notificacion_titulo').val();
     let descripcion=$('#notificacion_descripcion').val();
     let grupo=$('#notificacion_grupo').val();
@@ -60,6 +43,11 @@ export class NotificacionesSPComponent implements OnInit {
       let objeto={"titulo": titulo,"descripcion":descripcion}
       this.servicioNotificaciones.enviarNotificacion(objeto).subscribe(result=>{
         console.log(result);
+        Swal.fire(
+          'Exito',
+          'Notificacion enviada correctamente',
+          'success'
+        )
       }) 
     }else if(grupo=="Por curso"){
       let curso=$('#notificacion_curso').val();
@@ -69,19 +57,23 @@ export class NotificacionesSPComponent implements OnInit {
         console.log(objeto);
         this.servicioNotificaciones.enviarNotificacionPorClase(objeto).subscribe(result=>{
           console.log(result);
+          Swal.fire(
+            'Exito',
+            'Notificacion enviada correctamente',
+            'success'
+          )
         })
       
-
-      /*let objeto={"titulo": titulo,"descripcion":descripcion,"id_clase":curso}
-      console.log(objeto);
-      this.servicioNotificaciones.enviarNotificacionPorClase(objeto).subscribe(result=>{
-        console.log(result);
-      })*/
     }else{
       let objeto={"titulo": titulo,"descripcion":descripcion,"grupo":grupo};
       console.log(objeto);
       this.servicioNotificaciones.enviarNotificacionPorGrupo(objeto).subscribe(result=>{
         console.log(result);
+        Swal.fire(
+          'Exito',
+          'Notificacion enviada correctamente',
+          'success'
+        )
       }) 
     }
   }
@@ -103,6 +95,28 @@ export class NotificacionesSPComponent implements OnInit {
     }else{
       console.log('error con id supervisor');
     }
+  }
+
+  validationView():boolean{
+    
+    let direccion=$("#notificacion_titulo").val();
+    if(direccion.length==0)
+      this.val01=true;
+    else
+      this.val01=false;
+    let telefono=$("#notificacion_descripcion").val();
+    if(telefono.length==0)
+      this.val02=true;
+    else
+      this.val02=false;
+    
+    if(this.val01 || this.val02)
+      return false;
+    return true;
+  }
+  resetValidation(){
+    this.val01=false;
+    this.val02=false;
   }
 
 }

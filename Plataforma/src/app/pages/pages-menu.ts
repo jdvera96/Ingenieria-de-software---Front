@@ -261,16 +261,16 @@ var menu_profesor: NbMenuItem[]=[
 ];
 
 var menu_supervisor: NbMenuItem[]=[
-  
-  {
-    title: 'NotifiacionesSP',
-    icon: 'home-outline',
-    link: '/pages/notificacionesSP',
-  },
+    
   {
     title: 'Consultar',
     icon: 'home-outline',
     link: '/pages/cursosSp',
+  },
+  {
+    title: 'NotifiacionesSP',
+    icon: 'home-outline',
+    link: '/pages/notificacionesSP',
   }
 ];
 
@@ -280,6 +280,11 @@ var menu_administrador: NbMenuItem[]=[
     title: 'Gestionar',
     icon: 'home-outline',
     link: '/pages/gestionPersonas',
+  },
+  {
+    title: 'NotifiacionesSP',
+    icon: 'home-outline',
+    link: '/pages/notificacionesSP',
   }
 ];
 
