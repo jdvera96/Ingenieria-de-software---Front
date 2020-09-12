@@ -22,6 +22,10 @@ export class TareasComponent implements OnInit {
   objectTareas: any[] = [];
   objectSesiones: any;
 
+  val01=false;
+  val02=false;
+  val03=false;
+
   closeResult = '';
 
   constructor(private router: Router,
@@ -106,8 +110,9 @@ export class TareasComponent implements OnInit {
   }
 
   crearTarea(){
-    console.log('creando tarea');
-    console.log('tarea creada');
+    //this.resetValidation()
+    if(!this.validationView())
+      return false;
 
     //obteniendo data del modal
     let sesion=$("#tarea_select_sesion option:selected").val();
@@ -147,6 +152,8 @@ export class TareasComponent implements OnInit {
         console.log("error");
       }
     })
+    this.obtenerTareas();
+    this.actualizarTareas();
     
 
   }
@@ -198,8 +205,8 @@ export class TareasComponent implements OnInit {
                 `Tarea ${infoTarea["nombre_tarea"]} ha sido eliminada`,
                 'success'
               )
-
               this.obtenerTareas();
+              this.actualizarTareas();
             }
           })
 
@@ -209,12 +216,36 @@ export class TareasComponent implements OnInit {
 
     })
     
-
-    
   }
 
   goToBack(){
     this.location.back();
+  }
+
+  validationView():boolean{
+    
+    let titulo=$("#input_titulo").val();
+    if(titulo.length==0)
+      this.val01=true;
+    else
+      this.val01=false;
+    let fecha=$("#input_fecha").val();
+    if(fecha.length==0)
+      this.val02=true;
+    else
+      this.val02=false;
+    let descripcion=$("#input_descripcion").val();
+    if(descripcion.length==0)
+      this.val03=true;
+    else
+      this.val03=false;
+    if(this.val01 || this.val02 || this.val03)
+      return false;
+    return true;
+  }
+  resetValidation(){
+    this.val01=false;
+    this.val02=false;
   }
 
 

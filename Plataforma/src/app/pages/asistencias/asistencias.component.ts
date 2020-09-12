@@ -77,7 +77,7 @@ export class AsistenciasComponent implements OnInit {
 
 
     for(let i=0;i<arrayElegidos.length;i+=1){
-      this.servicioAsistencia.asignarAsistencia(id_sesion,arrayElegidos[i].id_estudiante,arrayElegidos[i].asistencia).subscribe(result=>{
+      this.servicioAsistencia.asignarAsistencia(id_sesion,arrayElegidos[i].id_estudiante,arrayElegidos[i].asistencia,arrayElegidos[i].asistido).subscribe(result=>{
         console.log(result)
         
       })

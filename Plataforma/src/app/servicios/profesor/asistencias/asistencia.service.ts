@@ -16,9 +16,9 @@ export class AsistenciaService {
     return this.http.get("https://patricioxavi10.pythonanywhere.com/api/getasistencias/"+id_sesion);
   }
 
-   asignarAsistencia(id_sesion,id_estudiante,asistencia){
+   asignarAsistencia(id_sesion,id_estudiante,asistencia,asistido){
     return this.http.patch("https://patricioxavi10.pythonanywhere.com/api/asistencia",
-    {"id_sesion": id_sesion, "id_estudiante": id_estudiante,"asistencia": asistencia})
+    {"id_sesion": id_sesion, "id_estudiante": id_estudiante,"asistencia": asistencia,"asistido": asistido})
   }
 
 }

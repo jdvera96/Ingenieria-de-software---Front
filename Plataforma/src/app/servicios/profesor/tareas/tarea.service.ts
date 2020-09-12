@@ -21,13 +21,16 @@ export class TareaService {
   }
 
   registrarTarea(id_profesor,id_sesion,titulo,descripcion,fechaEntrega){
+    var today = new Date();
+
+    var date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
     return this.http.post("https://patricioxavi10.pythonanywhere.com/api/creartarea",{
       "nombre_tarea": titulo,
       "descripcion_tarea": descripcion,
-      "fecha_creacion": null,
       "url": "",
       "id_sesion":id_sesion,
       "id_profesor": id_profesor,
+      "fecha_creacion": date,
       'fecha_entrega':fechaEntrega
 
     });
