@@ -113,6 +113,7 @@ export class TareasComponent implements OnInit {
     let sesion=$("#tarea_select_sesion option:selected").val();
     let titulo=$("#input_titulo").val();
     let descripcion=$("#input_descripcion").val();
+    let fechaEntrega=$("#input_fecha").val();
     let dataStorage=localStorage.getItem("login-mitikas");
     let array=dataStorage.split("-")
     let id_profesor=array[3]
@@ -123,7 +124,7 @@ export class TareasComponent implements OnInit {
     console.log(descripcion);
     console.log(id_profesor);
 
-    this.servicioTareas.registrarTarea(id_profesor,sesion,titulo,descripcion).subscribe(result=>{
+    this.servicioTareas.registrarTarea(id_profesor,sesion,titulo,descripcion,fechaEntrega).subscribe(result=>{
       console.log('result: ',result);
 
       if(result){

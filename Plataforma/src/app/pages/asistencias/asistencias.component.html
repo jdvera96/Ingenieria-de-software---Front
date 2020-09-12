@@ -27,13 +27,13 @@
 
             <td *ngIf="estudiante.asistencia; else elseBlock2">
               <label class="checkbox">
-                <input type="checkbox" class="asistencia" checked/>
+                <input [disabled]="estudiante.asistido" type="checkbox" class="asistencia" checked/>
                 <span class="primary"></span>
             </label>
             </td>
             <ng-template #elseBlock2><td>
               <label class="checkbox">
-                <input type="checkbox" class="asistencia"/>
+                <input [disabled]="estudiante.asistido" type="checkbox" class="asistencia"/>
                 <span class="primary"></span>
             </label>
             </td></ng-template>                                    

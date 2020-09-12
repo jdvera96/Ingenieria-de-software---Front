@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 
+import pdfMake from 'pdfmake/build/pdfmake';
+import pdfFonts from 'pdfmake/build/vfs_fonts';
+pdfMake.vfs = pdfFonts.pdfMake.vfs;
+
 import {CursosService} from '../../../servicios/supervisor/cursos/cursos.service'
 import {TareasSpService} from '../../../servicios/supervisor/tareas/tareas-sp.service'
 import {CalificacionService} from '../../../servicios/supervisor/calificaciones/calificacion.service'
@@ -24,6 +28,8 @@ export class CursosSpComponent implements OnInit {
   objectTareas:any;
 
   closeResult = '';
+
+  pdfContenido: any[]=[];
 
   constructor(private servicioCurso: CursosService,private servicioTarea: TareasSpService,
               private servicioCalificaciones: CalificacionService,
@@ -128,9 +134,7 @@ export class CursosSpComponent implements OnInit {
         //this.cargarSesiones(select_cursos);
         //this.cargarTareas(select_cursos);
         //Cargar tabla de tareas
-        this.consultarTareas(select_cursos);
-
-        
+        this.consultarTareas(select_cursos);       
 
       }else if(select_accion=='2'){
         console.log('consultar calificaciones');
@@ -145,6 +149,7 @@ export class CursosSpComponent implements OnInit {
       }else if(select_accion=='4'){
         console.log('mostrar Listado del curso');
         this.consultarListado(select_cursos);
+
       }
 
     }
@@ -155,14 +160,14 @@ export class CursosSpComponent implements OnInit {
   consultarTareas(id_clase){
     this.servicioTarea.obtenerTareas(id_clase).subscribe(result=>{
       console.log(result);
-      this.mostrarTablaTareas(result);
+      this.mostrarTablaTareas(result);      
     })
   }
 
   consultarCalificaciones(id_tarea){
 
     this.servicioCalificaciones.obtenerCalificaciones_Estudiantes(id_tarea).subscribe(result=>{
-      
+      console.log(result);
       this.mostrarTablaCalificaciones(result);
     })
     
@@ -172,7 +177,7 @@ export class CursosSpComponent implements OnInit {
 
     this.servicioAsistencias.obtenerAsistencia_Estudiantes(id_sesion).subscribe(result=>{
       console.log('asistencias: ',result);
-      this.mostrarTablaAsistencias(result);
+      this.mostrarTablaAsistencias(result);      
     })
     
   } 
@@ -197,8 +202,8 @@ export class CursosSpComponent implements OnInit {
   //--------- seccion de mostrar tablas  --------------
 
   mostrarTablaTareas(data){
-
-    let table=$(`<table class="table" style='background-color:#fff;'></table>`);
+    this.pdfContenido=[]
+    let table=$(`<table id="descarga-tabla" class="table" style='background-color:#fff;'></table>`);
 
     let cabecera=$(`<thead class="thead-dark">
                       <tr>
@@ -207,14 +212,14 @@ export class CursosSpComponent implements OnInit {
                         <th scope="col">Modulo</th>
                         <th scope="col">Fecha Creación</th>
                         <th scope="col">Fecha Entrega</th>
-                        <th scope="col">Acción</th>
+                        <th scope="col">Descripcion</th>
                       </tr>
                     </thead>`);
     
     let body=$(`<tbody></tbody>`);
+    this.pdfContenido.push(["Nombre","Modulo","Fecha Creación","Fecha Entrega"])
 
-
-
+    
     for(let i=0;i<data.length;i+=1){
 
       //obtengo el nombre de la sesion mediante el id_sesion
@@ -225,15 +230,15 @@ export class CursosSpComponent implements OnInit {
                     <td>${data[i].nombre_tarea}</td>
                     <td>${data[i].id_sesion.titulo}</td>
                     <td>${data[i].fecha_creacion}</td>
-                    <td>${data[i].fecha_creacion}</td>
+                    <td>${data[i].fecha_entrega}</td>
                     
                     <td>
                       <button onclick="document.getElementById('id01').style.display='block'" class="btn btn-sm btn-success seeButton" id="${data[i].id}">
-                        <i class="far fa-eye"></i>&nbsp; Descripcion
+                        <i class="far fa-eye"></i>&nbsp; Ver
                       </button>
                     </td>
                   </tr>`)
-      
+      this.pdfContenido.push([data[i].nombre_tarea,data[i].id_sesion.titulo,data[i].fecha_creacion,data[i].fecha_entrega])
       body.append(fila);
       table.append(body);
       $('#show_data').append(table);
@@ -253,17 +258,9 @@ export class CursosSpComponent implements OnInit {
     }
     
     table.append(cabecera);
-    
-
-
     //agregando al html
     //$('#show_data').html(" ")
     
-
-    
-
-    
-
   }
 
   fillInfo(id_tarea){
@@ -278,8 +275,9 @@ export class CursosSpComponent implements OnInit {
   }
 
   mostrarTablaCalificaciones(data){
-    let table=$(`<table class="table" style='background-color:#fff;'></table>`);
-
+    this.pdfContenido=[]
+    let table=$(`<table id="descarga-tabla" class="table" style='background-color:#fff;'></table>`);
+    
     let cabecera=$(`<thead class="thead-dark">
                       <tr>
                         <th scope="col">#</th>
@@ -290,10 +288,11 @@ export class CursosSpComponent implements OnInit {
                       </tr>
                     </thead>`);
     
+    this.pdfContenido.push(["Nombre","Estado","Calificacion"])
     let body=$(`<tbody></tbody>`);
 
     console.log(data)
-
+    
     for(let i=0;i<data.length;i+=1){
 
       if(data[i].estado==false){
@@ -321,7 +320,7 @@ export class CursosSpComponent implements OnInit {
                     <td>${data[i].calificacion}</td>
                    
                   </tr>`)
-      
+      this.pdfContenido.push([data[i].id_estudiante.apellidos +" "+ data[i].id_estudiante.nombres,data[i].estado,data[i].calificacion])
       body.append(fila);
     }
     
@@ -336,8 +335,8 @@ export class CursosSpComponent implements OnInit {
   }
 
   mostrarTablaAsistencias(data){
-    let table=$(`<table class="table" style='background-color:#fff;'></table></table>`);
-
+    let table=$(`<table id="descarga-tabla" class="table" style='background-color:#fff;'></table></table>`);
+    this.pdfContenido=[];
     let cabecera=$(`<thead class="thead-dark">
                       <tr>
                         <th scope="col">#</th>
@@ -346,9 +345,9 @@ export class CursosSpComponent implements OnInit {
     
                       </tr>
                     </thead>`);
-    
+    this.pdfContenido.push(["Apellidos y Nombres","Asistencias"])
     let body=$(`<tbody></tbody>`);
-
+    
     for(let i=0;i<data.length;i+=1){
       let asistencia;
       if(data[i].asistencia)
@@ -362,7 +361,8 @@ export class CursosSpComponent implements OnInit {
                    
                    
                   </tr>`)
-      
+      this.pdfContenido.push([data[i].id_estudiante.apellidos +" "+ data[i].id_estudiante.nombres
+                  ,asistencia])
       body.append(fila);
     }
     
@@ -378,8 +378,8 @@ export class CursosSpComponent implements OnInit {
 
   mostrarTablaListado(listaCurso){
     console.log(listaCurso);
-    let table=$(`<table class="table" style='background-color:#fff;'></table></table>`);
-
+    let table=$(`<table id="descarga-tabla" class="table" style='background-color:#fff;'></table></table>`);
+    this.pdfContenido=[]
     let cabecera=$(`<thead class="thead-dark">
                       <tr>
                         <th scope="col">#</th>
@@ -388,15 +388,16 @@ export class CursosSpComponent implements OnInit {
     
                       </tr>
                     </thead>`);
-    
+    this.pdfContenido.push(["Apellidos y Nombres","Rol"])
     let body=$(`<tbody></tbody>`);
-
+    
     let fila_profesor=$(`<tr>
                           <th scope="row">1</th>
                           <td>${listaCurso.id_profesor.apellidos} ${listaCurso.id_profesor.nombres}</td>
                           <td>Profesor</td>
                         </tr>`)
-
+    this.pdfContenido.push([listaCurso.id_profesor.apellidos +" "+ listaCurso.id_profesor.nombres
+                        ,"Profesor"])
     //agrego la primera fila a la tabla de datos
     body.append(fila_profesor);
     
@@ -411,7 +412,8 @@ export class CursosSpComponent implements OnInit {
                    
                    
                   </tr>`)
-      
+      this.pdfContenido.push([listaEstudiantes[i].apellidos +" "+ listaEstudiantes[i].nombres
+                  ,"alumno"])
       body.append(fila);
     }
     
@@ -509,5 +511,25 @@ export class CursosSpComponent implements OnInit {
       }
     })
   }
+
+  generatePdf(){
+    
+    console.log(this.pdfContenido)
+    var docDefinition = {
+
+      content: [
+        {
+          table: {
+            // headers are automatically repeated if the table spans over multiple pages
+            // you can declare how many rows should be treated as headers
+            headerRows: 1,
+            body: this.pdfContenido
+          }
+        }
+      ]
+    };
+    
+    pdfMake.createPdf(docDefinition).open();
+   }
 
 }

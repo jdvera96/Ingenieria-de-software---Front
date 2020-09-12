@@ -20,14 +20,15 @@ export class TareaService {
     return this.http.get("https://patricioxavi10.pythonanywhere.com/api/getsesion/"+id_sesion);
   }
 
-  registrarTarea(id_profesor,id_sesion,titulo,descripcion){
+  registrarTarea(id_profesor,id_sesion,titulo,descripcion,fechaEntrega){
     return this.http.post("https://patricioxavi10.pythonanywhere.com/api/creartarea",{
       "nombre_tarea": titulo,
       "descripcion_tarea": descripcion,
       "fecha_creacion": null,
       "url": "",
       "id_sesion":id_sesion,
-      "id_profesor": id_profesor
+      "id_profesor": id_profesor,
+      'fecha_entrega':fechaEntrega
 
     });
   }

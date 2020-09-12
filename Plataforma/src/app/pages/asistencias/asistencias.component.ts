@@ -71,7 +71,7 @@ export class AsistenciasComponent implements OnInit {
       console.log(arrayHijos[i].checked);
       console.log(arrayIdEstudiante[i].id);
 
-      arrayElegidos.push({'id_estudiante': arrayIdEstudiante[i].id,'asistencia': arrayHijos[i].checked})
+      arrayElegidos.push({'id_estudiante': arrayIdEstudiante[i].id,'asistencia': arrayHijos[i].checked, 'asistido':true})
       
     }
 
